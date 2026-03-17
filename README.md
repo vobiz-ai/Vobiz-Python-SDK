@@ -276,7 +276,7 @@ client.applications.delete(app_id)
 # Browse available numbers in inventory
 inventory = client.phone_numbers.list_inventory(country="IN", page=1, per_page=20)
 for num in inventory.items:
-    print(num['e164'], num['monthly_rate'])
+    print(num.e164, num.monthly_fee)
 
 # Purchase a number
 client.phone_numbers.purchase_from_inventory(e164="+911234567890", currency="INR")
@@ -338,7 +338,7 @@ client.endpoints.delete(endpoint_id)
 # List all SIP trunks
 trunks = client.sip_trunks.list()
 for trunk in trunks.objects:
-    print(trunk.id, trunk.name)
+    print(trunk.trunk_id, trunk.name)
 
 # Get a specific trunk
 trunk = client.sip_trunks.get("trunk-uuid")
@@ -367,7 +367,7 @@ Whitelist IP addresses for inbound SIP traffic.
 ```python
 # Create an IP ACL entry
 acl = client.ip_access_control_lists.create(
-    ip_address="203.0.113.10",
+    ip_address="1.2.3.4",
     description="Office static IP",
 )
 acl_id = acl.id

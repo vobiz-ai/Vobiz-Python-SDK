@@ -22,11 +22,11 @@ class Accounts:
         )
         return self.client.process_response("GET", resp)
 
-    def get_transactions(self, account_id, limit=None, offset=None):
+    def get_transactions(self, auth_id, limit=None, offset=None):
         """
-        GET https://api.vobiz.ai/api/v1/account/{account_id}/transactions
+        GET https://api.vobiz.ai/api/v1/account/{auth_id}/transactions
         """
-        url = f"{VOBIZ_API_V1}/account/{account_id}/transactions"
+        url = f"{VOBIZ_API_V1}/account/{auth_id}/transactions"
         params = {}
         if limit is not None:
             params["limit"] = limit
@@ -37,21 +37,21 @@ class Accounts:
         )
         return self.client.process_response("GET", resp)
 
-    def get_balance(self, account_id, currency):
+    def get_balance(self, auth_id, currency):
         """
-        GET https://api.vobiz.ai/api/v1/account/{account_id}/balance/{currency}
+        GET https://api.vobiz.ai/api/v1/account/{auth_id}/balance/{currency}
         """
-        url = f"{VOBIZ_API_V1}/account/{account_id}/balance/{currency}"
+        url = f"{VOBIZ_API_V1}/account/{auth_id}/balance/{currency}"
         resp = self.client.session.get(
             url, timeout=self.client.timeout, proxies=self.client.proxies
         )
         return self.client.process_response("GET", resp)
 
-    def get_concurrency(self, account_id):
+    def get_concurrency(self, auth_id):
         """
-        GET https://api.vobiz.ai/api/v1/account/{account_id}/concurrency
+        GET https://api.vobiz.ai/api/v1/account/{auth_id}/concurrency
         """
-        url = f"{VOBIZ_API_V1}/account/{account_id}/concurrency"
+        url = f"{VOBIZ_API_V1}/account/{auth_id}/concurrency"
         resp = self.client.session.get(
             url, timeout=self.client.timeout, proxies=self.client.proxies
         )

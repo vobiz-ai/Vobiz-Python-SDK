@@ -5,7 +5,7 @@ long_description = Path("README.md").read_text(encoding="utf-8")
 
 setup(
     name="vobiz-python",
-    version='0.1.0',
+    version='0.1.1',
     description='Vobiz Python SDK for voice, trunks, phone numbers, endpoints, and XML.',
     long_description=long_description,
     long_description_content_type='text/markdown',

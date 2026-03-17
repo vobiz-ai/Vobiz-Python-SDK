@@ -95,8 +95,7 @@ class ResponseElement(VobizXMLElement):
             digits_match_b_leg=None,
             sip_headers=None,
     ):
-        self.add(
-            DialElement(
+        dial = DialElement(
                 action=action,
                 method=method,
                 hangup_on_star=hangup_on_star,
@@ -113,8 +112,9 @@ class ResponseElement(VobizXMLElement):
                 digits_match=digits_match,
                 digits_match_b_leg=digits_match_b_leg,
                 sip_headers=sip_headers,
-            ))
-        return self
+            )
+        self.add(dial)
+        return dial
 
     def add_dtmf(
             self,
@@ -142,8 +142,7 @@ class ResponseElement(VobizXMLElement):
             invalid_digits_sound=None,
             log=None,
     ):
-        self.add(
-            GetDigitsElement(
+        el = GetDigitsElement(
                 action=action,
                 method=method,
                 timeout=timeout,
@@ -156,8 +155,9 @@ class ResponseElement(VobizXMLElement):
                 valid_digits=valid_digits,
                 invalid_digits_sound=invalid_digits_sound,
                 log=log,
-            ))
-        return self
+            )
+        self.add(el)
+        return el
 
     def add_get_input(
             self,
