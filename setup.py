@@ -9,7 +9,7 @@ setup(
     description='Vobiz Python SDK for voice, trunks, phone numbers, endpoints, and XML.',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/Piyush-sahoo/Vobiz-Python-SDK',
+    url='https://github.com/vobiz-ai/Vobiz-Python-SDK',
     author='Vobiz',
     author_email='support@vobiz.ai',
     license='MIT',

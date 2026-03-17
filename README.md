@@ -42,7 +42,7 @@ pip install vobiz-python
 Or install from source:
 
 ```bash
-git clone https://github.com/Piyush-sahoo/Vobiz-Python-SDK.git
+git clone https://github.com/vobiz-ai/Vobiz-Python-SDK.git
 cd Vobiz-Python-SDK
 pip install -e .
 ```
