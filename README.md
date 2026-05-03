@@ -37,7 +37,7 @@ Make outbound calls, manage SIP trunks, phone numbers, endpoints, and build dyna
 ## Installation
 
 ```bash
-pip install vobiz
+pip install vobiz-python
 ```
 
 Or install from source:
@@ -177,6 +177,7 @@ python examples/make_call.py
 ```
 
 **Full flow:**
+
 1. `make_call.py` fires an outbound call via the Vobiz API
 2. The called phone rings
 3. When answered, Vobiz calls your `ANSWER_URL` (via ngrok → your Flask server)
@@ -328,12 +329,12 @@ client.endpoints.delete(endpoint_id)
 
 **Connect your SIP client:**
 
-| Setting | Value |
-|---------|-------|
-| SIP Server | `sip.vobiz.ai` |
-| Port | `5060` (UDP/TCP) / `5061` (TLS) |
-| Username | your endpoint username |
-| Password | your endpoint password |
+| Setting    | Value                           |
+| ---------- | ------------------------------- |
+| SIP Server | `sip.vobiz.ai`                  |
+| Port       | `5060` (UDP/TCP) / `5061` (TLS) |
+| Username   | your endpoint username          |
+| Password   | your endpoint password          |
 
 ---
 
@@ -566,13 +567,13 @@ Copy `.env.example` to `.env` and fill in your values:
 cp .env.example .env
 ```
 
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `VOBIZ_AUTH_ID` | **Yes** | Your account Auth ID (e.g. `MA_XXXXXXXXXX`) |
-| `VOBIZ_AUTH_TOKEN` | **Yes** | Your account Auth Token |
+| Variable            | Required       | Description                                           |
+| ------------------- | -------------- | ----------------------------------------------------- |
+| `VOBIZ_AUTH_ID`     | **Yes**        | Your account Auth ID (e.g. `MA_XXXXXXXXXX`)           |
+| `VOBIZ_AUTH_TOKEN`  | **Yes**        | Your account Auth Token                               |
 | `FROM_PHONE_NUMBER` | For call demos | Your Vobiz DID in E.164 format (e.g. `+911234567890`) |
-| `TO_PHONE_NUMBER` | For call demos | Destination number in E.164 format |
-| `ANSWER_URL` | For call demos | Public HTTPS URL for the answer webhook |
+| `TO_PHONE_NUMBER`   | For call demos | Destination number in E.164 format                    |
+| `ANSWER_URL`        | For call demos | Public HTTPS URL for the answer webhook               |
 
 > **Security:** `.env` is in `.gitignore`. Never commit real credentials to git. Use `.env.example` as the template for your team.
 
@@ -603,10 +604,11 @@ python examples/make_call.py
 ```
 
 **What happens:**
+
 1. `make_call.py` creates the call via the Vobiz API
 2. The call UUID is printed
 3. Your phone (`TO_PHONE_NUMBER`) rings — answer it
-4. You hear: *"Hello! This is a live test call from the Vobiz Python SDK..."*
+4. You hear: _"Hello! This is a live test call from the Vobiz Python SDK..."_
 5. DTMF digit `1` is sent to the live call
 6. The call hangs up after a few seconds
 7. The hangup callback hits your server with full call details (duration, status, etc.)
@@ -638,29 +640,29 @@ The integration suite is in `tests/integration/test_vobiz_all_operations_integra
 
 Required credentials:
 
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `VOBIZ_AUTH_ID` | **Yes** | Master account Auth ID |
-| `VOBIZ_AUTH_TOKEN` | **Yes** | Master account Auth Token |
+| Variable           | Required | Description               |
+| ------------------ | -------- | ------------------------- |
+| `VOBIZ_AUTH_ID`    | **Yes**  | Master account Auth ID    |
+| `VOBIZ_AUTH_TOKEN` | **Yes**  | Master account Auth Token |
 
 Optional operation IDs and toggles (for broader coverage):
 
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `VOBIZ_TEST_APPLICATION_ID` | No | Existing application ID for get/update/delete tests |
-| `VOBIZ_TEST_CALL_UUID` | No | Existing live/queued call UUID for call action tests |
-| `VOBIZ_TEST_CREDENTIAL_ID` | No | Existing credential ID for get/update/delete tests |
-| `VOBIZ_TEST_ENDPOINT_ID` | No | Existing endpoint ID for get/update/delete tests |
-| `VOBIZ_TEST_ACL_ID` | No | Existing IP ACL ID for get/update/delete tests |
-| `VOBIZ_TEST_ORIGINATION_URI_ID` | No | Existing origination URI ID for get/update/delete tests |
-| `VOBIZ_TEST_RECORDING_ID` | No | Existing recording ID for get/delete tests |
-| `VOBIZ_TEST_TRUNK_ID` | No | Existing trunk ID for get/update/delete and number assignment tests |
-| `VOBIZ_TEST_SUBACCOUNT_ID` | No | Existing subaccount ID for get/update/delete tests |
-| `VOBIZ_TEST_NUMBER` | No | Existing purchased number for release/assign/unassign tests |
-| `VOBIZ_TEST_OUTBOUND_FROM` | No | Source number for live call create tests |
-| `VOBIZ_TEST_OUTBOUND_TO` | No | Destination number for live call create tests |
-| `VOBIZ_TEST_ENABLE_MUTATIONS` | No | Set `true` to enable create/update mutation paths |
-| `VOBIZ_TEST_ENABLE_DESTRUCTIVE` | No | Set `true` to enable destructive delete/bulk delete paths |
+| Variable                        | Required | Description                                                         |
+| ------------------------------- | -------- | ------------------------------------------------------------------- |
+| `VOBIZ_TEST_APPLICATION_ID`     | No       | Existing application ID for get/update/delete tests                 |
+| `VOBIZ_TEST_CALL_UUID`          | No       | Existing live/queued call UUID for call action tests                |
+| `VOBIZ_TEST_CREDENTIAL_ID`      | No       | Existing credential ID for get/update/delete tests                  |
+| `VOBIZ_TEST_ENDPOINT_ID`        | No       | Existing endpoint ID for get/update/delete tests                    |
+| `VOBIZ_TEST_ACL_ID`             | No       | Existing IP ACL ID for get/update/delete tests                      |
+| `VOBIZ_TEST_ORIGINATION_URI_ID` | No       | Existing origination URI ID for get/update/delete tests             |
+| `VOBIZ_TEST_RECORDING_ID`       | No       | Existing recording ID for get/delete tests                          |
+| `VOBIZ_TEST_TRUNK_ID`           | No       | Existing trunk ID for get/update/delete and number assignment tests |
+| `VOBIZ_TEST_SUBACCOUNT_ID`      | No       | Existing subaccount ID for get/update/delete tests                  |
+| `VOBIZ_TEST_NUMBER`             | No       | Existing purchased number for release/assign/unassign tests         |
+| `VOBIZ_TEST_OUTBOUND_FROM`      | No       | Source number for live call create tests                            |
+| `VOBIZ_TEST_OUTBOUND_TO`        | No       | Destination number for live call create tests                       |
+| `VOBIZ_TEST_ENABLE_MUTATIONS`   | No       | Set `true` to enable create/update mutation paths                   |
+| `VOBIZ_TEST_ENABLE_DESTRUCTIVE` | No       | Set `true` to enable destructive delete/bulk delete paths           |
 
 ### Multi-version test run with tox
 
