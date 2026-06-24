@@ -1,4 +1,0 @@
-from .test_responseElement import ResponseElementTest
-from .test_recordElement import RecordElementTest
-from .test_gatherElement import GatherElementTest
-from .test_messageElement import MessageElementTest

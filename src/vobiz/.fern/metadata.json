@@ -1,0 +1,15 @@
+{
+  "cliVersion": "5.50.5",
+  "generatorName": "fernapi/fern-python-sdk",
+  "generatorVersion": "5.14.21",
+  "generatorConfig": {
+    "package_name": "vobiz",
+    "client_class_name": "Vobiz",
+    "pydantic_config": {
+      "extra_fields": "forbid"
+    }
+  },
+  "originGitCommit": "e8a4ebb9425a3225753a525b2fd4e400cdc04676",
+  "originGitCommitIsDirty": true,
+  "invokedBy": "manual"
+}
