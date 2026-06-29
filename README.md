@@ -1,286 +1,198 @@
-# Vobiz Python SDK
+# Vobiz Python Library
 
-The official Python SDK for [Vobiz](https://vobiz.ai) — the AI-first voice & telephony API platform for builders. Programmatically make and control live calls, manage SIP trunks, phone numbers, conferences, and recordings, and build dynamic call flows directly from Python, with full type hints and both sync and async clients.
+[![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=Vobiz%2FPython)
+[![pypi](https://img.shields.io/pypi/v/vobiz)](https://pypi.python.org/pypi/vobiz)
 
-## Quick Links
+The Vobiz Python library provides convenient access to the Vobiz APIs from Python.
 
-- **Vobiz Documentation:** [https://docs.vobiz.ai](https://docs.vobiz.ai)
-- **Vobiz Dashboard & Credentials:** [https://console.vobiz.ai](https://console.vobiz.ai)
-- **Full API Reference:** [`./reference.md`](./reference.md)
-- **Usage Cheat-Sheet:** [`./USAGE.md`](./USAGE.md)
+## Table of Contents
 
-## Features
-
-The Vobiz Python SDK provides comprehensive access to the Vobiz API, enabling you to integrate powerful voice and telephony capabilities into your Python applications:
-
-- **Programmatic Call Control:** Initiate outbound calls, manage live call legs, and control call flows using VobizXML.
-- **SIP Trunk Management:** Create, retrieve, update, and delete SIP trunks for flexible voice routing.
-- **Phone Number Management:** List, purchase, assign, and unassign phone numbers from your inventory.
-- **Conference Calling:** Create and manage conference rooms, including muting/unmuting and kicking members.
-- **Call Detail Records (CDRs):** Access detailed records of all calls made and received, with robust filtering and export options.
-- **Call Recording:** Start and stop call recordings, and manage stored recordings.
-- **In-Call Actions:** Play audio, convert text-to-speech (TTS), and send DTMF tones during live calls.
-- **Real-time Audio Streaming:** Stream raw audio from live calls to WebSocket URLs for custom processing.
-- **Application Management:** Create and manage applications to define call handling logic via webhooks.
-- **Sub-Account & KYC Management:** Programmatically manage sub-accounts and their KYC verification processes.
-- **Partner API Access:** For Vobiz partners, manage customer accounts, transfer balances, and access customer-specific CDRs and numbers.
-
-## Requirements
-
-The Vobiz Python SDK requires **Python 3.8** or newer.
+- [Installation](#installation)
+- [Reference](#reference)
+- [Usage](#usage)
+- [Environments](#environments)
+- [Async Client](#async-client)
+- [Exception Handling](#exception-handling)
+- [Advanced](#advanced)
+  - [Access Raw Response Data](#access-raw-response-data)
+  - [Retries](#retries)
+  - [Timeouts](#timeouts)
+  - [Custom Client](#custom-client)
+- [Contributing](#contributing)
 
 ## Installation
-
-Install the Vobiz Python SDK using pip:
 
 ```sh
 pip install vobiz
 ```
 
-## Authentication
+## Reference
 
-All requests to the Vobiz API require authentication using your account's **Auth ID** and **Auth Token**. These credentials are passed as `api_key` and `auth_token` respectively when initializing the Vobiz client. You can find your Auth ID and Auth Token in your [Vobiz Dashboard](https://console.vobiz.ai).
+A full reference for this library is available [here](./reference.md).
 
-The `api_key` maps to the `X-Auth-ID` HTTP header, and `auth_token` maps to the `X-Auth-Token` HTTP header.
+## Usage
 
-For production environments, it is highly recommended to load your credentials from environment variables to avoid hard-coding sensitive information directly in your codebase:
+Instantiate and use the client with the following:
 
 ```python
-import os
 from vobiz import Vobiz
 
 client = Vobiz(
-    api_key=os.environ.get("VOBIZ_AUTH_ID"),
-    auth_token=os.environ.get("VOBIZ_AUTH_TOKEN"),
+    api_key="<value>",
+    auth_token="<X-Auth-Token>",
+)
+
+client.calls.make_call(
+    auth_id="MA_XXXXXX",
+    from_="14155551234",
+    to="+919876543210",
+    answer_url="https://example.com/answer",
+    answer_method="POST",
 )
 ```
 
-## Quickstart — Make a Call
+## Environments
 
-This example demonstrates how to initiate an outbound call using the Vobiz Python SDK. When the callee answers, Vobiz will fetch the `answer_url`, which should return [VobizXML](https://docs.vobiz.ai/xml-builder) to define the call's behavior.
-
-```python
-import os
-from vobiz import Vobiz
-
-AUTH_ID = os.environ.get("VOBIZ_AUTH_ID")
-
-client = Vobiz(
-    api_key=AUTH_ID,
-    auth_token=os.environ.get("VOBIZ_AUTH_TOKEN")
-)
-
-try:
-    response = client.calls.make_call(
-        auth_id=AUTH_ID,
-        from_="14155551234",          # Your Vobiz phone number or SIP URI
-        to="+919876543210",           # Destination phone number
-        answer_url="https://example.com/answer",  # URL for VobizXML instructions
-        answer_method="POST",
-    )
-    print(f"Call initiated successfully: {response}")
-except Exception as e:
-    print(f"Error making call: {e}")
-```
-
-## Common Operations
-
-Here are some common operations you can perform with the Vobiz Python SDK. For an exhaustive list of every method and parameter, see [`reference.md`](./reference.md).
-
-### List Live Calls
-
-Retrieve a list of all currently active (live) calls on your account.
-
-```python
-from vobiz import Vobiz
-
-AUTH_ID = "YOUR_AUTH_ID"
-client = Vobiz(api_key=AUTH_ID, auth_token="YOUR_AUTH_TOKEN")
-
-live_calls = client.live_calls.list_live_calls(
-    auth_id=AUTH_ID,
-    status="live"
-)
-
-print("Live Calls:")
-for call in live_calls.data:
-    print(f"- Call UUID: {call.call_uuid}, From: {call.from_}, To: {call.to}")
-```
-
-### Hang Up a Live Call
-
-Terminate an active call using its unique `call_uuid`.
-
-```python
-from vobiz import Vobiz
-
-AUTH_ID = "YOUR_AUTH_ID"
-client = Vobiz(api_key=AUTH_ID, auth_token="YOUR_AUTH_TOKEN")
-
-client.live_calls.hangup_call(
-    auth_id=AUTH_ID, 
-    call_uuid="YOUR_CALL_UUID"
-)
-print("Call hung up successfully.")
-```
-
-### Send DTMF Tones
-
-Send DTMF (keypad) tones on an active call. Use `w` for a 0.5-second pause and `W` for a 1-second pause.
-
-```python
-from vobiz import Vobiz
-
-AUTH_ID = "YOUR_AUTH_ID"
-client = Vobiz(api_key=AUTH_ID, auth_token="YOUR_AUTH_TOKEN")
-
-client.dtmf.send_dtmf(
-    auth_id=AUTH_ID,
-    call_uuid="YOUR_CALL_UUID",
-    digits="1234w5678", # Sends "1234", pauses, then sends "5678"
-    leg="aleg",         # or "bleg" depending on which leg to send to
-)
-print("DTMF tones sent.")
-```
-
-### Convert Text-to-Speech (TTS)
-
-Convert text to speech and play it on a live call.
-
-```python
-from vobiz import Vobiz
-
-AUTH_ID = "YOUR_AUTH_ID"
-client = Vobiz(api_key=AUTH_ID, auth_token="YOUR_AUTH_TOKEN")
-
-client.speak_text.call(
-    auth_id=AUTH_ID,
-    call_uuid="YOUR_CALL_UUID",
-    text="Hello, your appointment is confirmed for tomorrow at 3 PM.",
-    voice="WOMAN",
-    language="en-US",
-)
-print("TTS playback initiated.")
-```
-
-### List Recordings
-
-Retrieve a list of all call recordings associated with your account.
-
-```python
-from vobiz import Vobiz
-
-AUTH_ID = "YOUR_AUTH_ID"
-client = Vobiz(api_key=AUTH_ID, auth_token="YOUR_AUTH_TOKEN")
-
-recordings = client.recordings.list_recordings(
-    auth_id=AUTH_ID,
-    limit=50
-)
-
-print("Recordings:")
-for recording in recordings.data:
-    print(f"- Recording ID: {recording.recording_id}, Duration: {recording.duration}s")
-```
-
-## Configuration
-
-The Vobiz client can be configured with various options during initialization:
-
-- `api_key` (str): Your Vobiz Auth ID.
-- `auth_token` (str): Your Vobiz Auth Token.
-- `environment` (VobizEnvironment): Specifies the Vobiz API environment (e.g., `VobizEnvironment.PRODUCTION`).
-- `base_url` (str): Override the default base URL for the API.
-- `timeout` (float): Request timeout in seconds.
-- `max_retries` (int): Maximum number of retries for failed requests.
-
-Example with custom configuration:
+This SDK allows you to configure different environments for API requests.
 
 ```python
 from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    api_key="YOUR_AUTH_ID",
-    auth_token="YOUR_AUTH_TOKEN",
     environment=VobizEnvironment.PRODUCTION,
-    timeout=30.0,  # 30-second timeout
-    max_retries=2, # Retry failed requests up to 2 times
 )
 ```
 
-## Error Handling
+## Async Client
 
-The Vobiz Python SDK raises `ApiError` for failed HTTP requests. This exception provides access to the HTTP status code and the response body, allowing you to handle API-specific errors gracefully.
+The SDK also exports an `async` client so that you can make non-blocking calls to our API. Note that if you are constructing an Async httpx client class to pass into this client, use `httpx.AsyncClient()` instead of `httpx.Client()` (e.g. for the `httpx_client` parameter of this client).
 
 ```python
-from vobiz.core.api_error import ApiError
-from vobiz import Vobiz
+import asyncio
 
-client = Vobiz(api_key="YOUR_AUTH_ID", auth_token="YOUR_AUTH_TOKEN")
+from vobiz import AsyncVobiz
 
-try:
-    client.calls.make_call(
-        auth_id="YOUR_AUTH_ID",
+client = AsyncVobiz(
+    api_key="<value>",
+    auth_token="<X-Auth-Token>",
+)
+
+
+async def main() -> None:
+    await client.calls.make_call(
+        auth_id="MA_XXXXXX",
         from_="14155551234",
         to="+919876543210",
         answer_url="https://example.com/answer",
         answer_method="POST",
     )
-except ApiError as e:
-    print(f"API Error occurred! Status Code: {e.status_code}")
-    print(f"Error Body: {e.body}")
-except Exception as e:
-    print(f"An unexpected error occurred: {e}")
-```
 
-## Async Client
-
-The SDK provides an asynchronous client, `AsyncVobiz`, which can be used in `asyncio` environments for non-blocking operations. It shares the exact same interface and configuration options as the synchronous client.
-
-```python
-import asyncio
-from vobiz import AsyncVobiz
-
-async def main():
-    client = AsyncVobiz(
-        api_key="YOUR_AUTH_ID",
-        auth_token="YOUR_AUTH_TOKEN"
-    )
-    
-    try:
-        response = await client.calls.make_call(
-            auth_id="YOUR_AUTH_ID",
-            from_="14155551234",
-            to="+919876543210",
-            answer_url="https://example.com/answer",
-            answer_method="POST",
-        )
-        print(response)
-    except Exception as e:
-        print(f"Async call failed: {e}")
 
 asyncio.run(main())
 ```
 
-## Other Vobiz SDKs
+## Exception Handling
 
-If you are building in languages other than Python, Vobiz provides official SDKs for several other runtimes:
+When the API returns a non-success status code (4xx or 5xx response), a subclass of the following error
+will be thrown.
 
-| Language | Repository |
-| --- | --- |
-| **TypeScript / Node.js** | [vobiz-ai/Vobiz-Node-SDK](https://github.com/vobiz-ai/Vobiz-Node-SDK) |
-| **Go** | [vobiz-ai/Vobiz-Go-SDK](https://github.com/vobiz-ai/Vobiz-Go-SDK) |
-| **Ruby** | [vobiz-ai/Vobiz-Ruby-SDK](https://github.com/vobiz-ai/Vobiz-Ruby-SDK) |
-| **C#** | [vobiz-ai/Vobiz-Csharp-sdk](https://github.com/vobiz-ai/Vobiz-Csharp-sdk) |
-| **Java** | [vobiz-ai/Vobiz-Java-SDK](https://github.com/vobiz-ai/Vobiz-Java-SDK) |
-| **PHP** | [vobiz-ai/Vobiz-PHP-SDK](https://github.com/vobiz-ai/Vobiz-PHP-SDK) |
+```python
+from vobiz.core.api_error import ApiError
 
-## Support
+try:
+    client.calls.make_call(...)
+except ApiError as e:
+    print(e.status_code)
+    print(e.body)
+```
 
-- **Documentation:** [https://docs.vobiz.ai](https://docs.vobiz.ai)
-- **Console & Dashboard:** [https://console.vobiz.ai](https://console.vobiz.ai)
+## Advanced
 
-## License
+### Access Raw Response Data
 
-This SDK is distributed under the [MIT License](LICENSE).
+The SDK provides access to raw response data, including headers, through the `.with_raw_response` property.
+The `.with_raw_response` property returns a "raw" client that can be used to access the `.headers` and `.data` attributes.
+
+```python
+from vobiz import Vobiz
+
+client = Vobiz(...)
+response = client.calls.with_raw_response.make_call(...)
+print(response.headers)  # access the response headers
+print(response.status_code)  # access the response status code
+print(response.data)  # access the underlying object
+```
+
+### Retries
+
+The SDK is instrumented with automatic retries with exponential backoff. A request will be retried as long
+as the request is deemed retryable and the number of retry attempts has not grown larger than the configured
+retry limit (default: 2).
+
+Which status codes are retried depends on the `retryStatusCodes` generator configuration:
+
+**`legacy`** (current default): retries on
+- [408](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/408) (Timeout)
+- [409](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409) (Conflict)
+- [429](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429) (Too Many Requests)
+- [5XX](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#server_error_responses) (All server errors, including 500)
+
+**`recommended`**: retries on
+- [408](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/408) (Timeout)
+- [409](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409) (Conflict)
+- [429](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429) (Too Many Requests)
+- [502](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502) (Bad Gateway)
+- [503](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503) (Service Unavailable)
+- [504](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504) (Gateway Timeout)
+
+Use the `max_retries` request option to configure this behavior.
+
+```python
+client.calls.make_call(..., request_options={
+    "max_retries": 1
+})
+```
+
+### Timeouts
+
+The SDK defaults to a 60 second timeout. You can configure this with a timeout option at the client or request level.
+
+```python
+from vobiz import Vobiz
+
+client = Vobiz(..., timeout=20.0)
+
+# Override timeout for a specific method
+client.calls.make_call(..., request_options={
+    "timeout_in_seconds": 1
+})
+```
+
+### Custom Client
+
+You can override the `httpx` client to customize it for your use-case. Some common use-cases include support for proxies
+and transports.
+
+```python
+import httpx
+from vobiz import Vobiz
+
+client = Vobiz(
+    ...,
+    httpx_client=httpx.Client(
+        proxy="http://my.test.proxy.example.com",
+        transport=httpx.HTTPTransport(local_address="0.0.0.0"),
+    ),
+)
+```
+
+## Contributing
+
+While we value open-source contributions to this SDK, this library is generated programmatically.
+Additions made directly to this library would have to be moved over to our generation code,
+otherwise they would be overwritten upon the next generated release. Feel free to open a PR as
+a proof of concept, but know that we will not be able to merge it as-is. We suggest opening
+an issue first to discuss with us!
+
+On the other hand, contributions to the README are always very welcome!
