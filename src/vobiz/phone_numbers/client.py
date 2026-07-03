@@ -5,6 +5,8 @@ import typing
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawPhoneNumbersClient, RawPhoneNumbersClient
+from .types.get_number_health_request_granularity import GetNumberHealthRequestGranularity
+from .types.get_number_health_response import GetNumberHealthResponse
 from .types.list_inventory_numbers_response import ListInventoryNumbersResponse
 from .types.list_numbers_response import ListNumbersResponse
 
@@ -303,6 +305,62 @@ class PhoneNumbersClient:
         )
         """
         _response = self._raw_client.unassign_number_from_trunk(auth_id, phone_number, request_options=request_options)
+        return _response.data
+
+    def get_number_health(
+        self,
+        auth_id: str,
+        e164: str,
+        *,
+        granularity: typing.Optional[GetNumberHealthRequestGranularity] = None,
+        days: typing.Optional[int] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> GetNumberHealthResponse:
+        """
+        Returns the health & analytics dashboard for one of your numbers: current
+        status, spam flag, and call metrics over the selected window (total and
+        answered calls, answer rate, minutes, average duration) plus a per-period
+        time series of snapshots.
+
+        Parameters
+        ----------
+        auth_id : str
+            Your account Auth ID
+
+        e164 : str
+            The number in E.164, URL-encoded (use %2B instead of +).
+
+        granularity : typing.Optional[GetNumberHealthRequestGranularity]
+            Snapshot granularity.
+
+        days : typing.Optional[int]
+            Size of the window (in days) for the summary and snapshots.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GetNumberHealthResponse
+            Number health dashboard
+
+        Examples
+        --------
+        from vobiz import Vobiz
+
+        client = Vobiz(
+            auth_token="YOUR_AUTH_TOKEN",
+            api_key="YOUR_API_KEY",
+        )
+        client.phone_numbers.get_number_health(
+            auth_id="MA_XXXXXX",
+            e164="%2B919876543210",
+            days=30,
+        )
+        """
+        _response = self._raw_client.get_number_health(
+            auth_id, e164, granularity=granularity, days=days, request_options=request_options
+        )
         return _response.data
 
     def assign_did_to_subaccount(
@@ -749,6 +807,70 @@ class AsyncPhoneNumbersClient:
         """
         _response = await self._raw_client.unassign_number_from_trunk(
             auth_id, phone_number, request_options=request_options
+        )
+        return _response.data
+
+    async def get_number_health(
+        self,
+        auth_id: str,
+        e164: str,
+        *,
+        granularity: typing.Optional[GetNumberHealthRequestGranularity] = None,
+        days: typing.Optional[int] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> GetNumberHealthResponse:
+        """
+        Returns the health & analytics dashboard for one of your numbers: current
+        status, spam flag, and call metrics over the selected window (total and
+        answered calls, answer rate, minutes, average duration) plus a per-period
+        time series of snapshots.
+
+        Parameters
+        ----------
+        auth_id : str
+            Your account Auth ID
+
+        e164 : str
+            The number in E.164, URL-encoded (use %2B instead of +).
+
+        granularity : typing.Optional[GetNumberHealthRequestGranularity]
+            Snapshot granularity.
+
+        days : typing.Optional[int]
+            Size of the window (in days) for the summary and snapshots.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GetNumberHealthResponse
+            Number health dashboard
+
+        Examples
+        --------
+        import asyncio
+
+        from vobiz import AsyncVobiz
+
+        client = AsyncVobiz(
+            auth_token="YOUR_AUTH_TOKEN",
+            api_key="YOUR_API_KEY",
+        )
+
+
+        async def main() -> None:
+            await client.phone_numbers.get_number_health(
+                auth_id="MA_XXXXXX",
+                e164="%2B919876543210",
+                days=30,
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.get_number_health(
+            auth_id, e164, granularity=granularity, days=days, request_options=request_options
         )
         return _response.data
 

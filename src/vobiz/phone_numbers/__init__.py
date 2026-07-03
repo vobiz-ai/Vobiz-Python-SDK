@@ -7,6 +7,10 @@ from importlib import import_module
 
 if typing.TYPE_CHECKING:
     from .types import (
+        GetNumberHealthRequestGranularity,
+        GetNumberHealthResponse,
+        GetNumberHealthResponseSnapshotsItem,
+        GetNumberHealthResponseSummary,
         ListInventoryNumbersResponse,
         ListInventoryNumbersResponseItemsItem,
         ListInventoryNumbersResponseItemsItemCapabilities,
@@ -15,6 +19,10 @@ if typing.TYPE_CHECKING:
         ListNumbersResponseItemsItemCapabilities,
     )
 _dynamic_imports: typing.Dict[str, str] = {
+    "GetNumberHealthRequestGranularity": ".types",
+    "GetNumberHealthResponse": ".types",
+    "GetNumberHealthResponseSnapshotsItem": ".types",
+    "GetNumberHealthResponseSummary": ".types",
     "ListInventoryNumbersResponse": ".types",
     "ListInventoryNumbersResponseItemsItem": ".types",
     "ListInventoryNumbersResponseItemsItemCapabilities": ".types",
@@ -46,6 +54,10 @@ def __dir__():
 
 
 __all__ = [
+    "GetNumberHealthRequestGranularity",
+    "GetNumberHealthResponse",
+    "GetNumberHealthResponseSnapshotsItem",
+    "GetNumberHealthResponseSummary",
     "ListInventoryNumbersResponse",
     "ListInventoryNumbersResponseItemsItem",
     "ListInventoryNumbersResponseItemsItemCapabilities",

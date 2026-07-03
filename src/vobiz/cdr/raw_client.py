@@ -37,6 +37,13 @@ class RawCdrClient:
         end_date: typing.Optional[dt.date] = None,
         call_direction: typing.Optional[ListCdrsRequestCallDirection] = None,
         min_duration: typing.Optional[int] = None,
+        sip_call_id: typing.Optional[str] = None,
+        bridge_uuid: typing.Optional[str] = None,
+        hangup_cause: typing.Optional[str] = None,
+        hangup_disposition: typing.Optional[str] = None,
+        context: typing.Optional[str] = None,
+        campaign_id: typing.Optional[str] = None,
+        search: typing.Optional[str] = None,
         page: typing.Optional[int] = None,
         per_page: typing.Optional[int] = None,
         request_options: typing.Optional[RequestOptions] = None,
@@ -68,6 +75,27 @@ class RawCdrClient:
         min_duration : typing.Optional[int]
             Minimum call duration in seconds. Excludes calls shorter than this value.
 
+        sip_call_id : typing.Optional[str]
+            Filter by the SIP Call-ID of the call (matches the cdr's sip_call_id field).
+
+        bridge_uuid : typing.Optional[str]
+            Filter by the UUID of the bridged leg (matches the cdr's bridge_uuid field).
+
+        hangup_cause : typing.Optional[str]
+            Filter by telephony hangup cause, e.g. NORMAL_CLEARING.
+
+        hangup_disposition : typing.Optional[str]
+            Filter by how the leg was released, e.g. send_refuse.
+
+        context : typing.Optional[str]
+            Filter by the call context, e.g. sip-trunking.
+
+        campaign_id : typing.Optional[str]
+            Filter by the campaign identifier associated with the call.
+
+        search : typing.Optional[str]
+            Free-text search across CDR fields (numbers, IDs, etc.).
+
         page : typing.Optional[int]
             Page number for paginated results.
 
@@ -92,6 +120,13 @@ class RawCdrClient:
                 "end_date": str(end_date) if end_date is not None else None,
                 "call_direction": call_direction,
                 "min_duration": min_duration,
+                "sip_call_id": sip_call_id,
+                "bridge_uuid": bridge_uuid,
+                "hangup_cause": hangup_cause,
+                "hangup_disposition": hangup_disposition,
+                "context": context,
+                "campaign_id": campaign_id,
+                "search": search,
                 "page": page,
                 "per_page": per_page,
             },
@@ -126,6 +161,13 @@ class RawCdrClient:
         end_date: typing.Optional[dt.date] = None,
         call_direction: typing.Optional[SearchCdrsRequestCallDirection] = None,
         min_duration: typing.Optional[int] = None,
+        sip_call_id: typing.Optional[str] = None,
+        bridge_uuid: typing.Optional[str] = None,
+        hangup_cause: typing.Optional[str] = None,
+        hangup_disposition: typing.Optional[str] = None,
+        context: typing.Optional[str] = None,
+        campaign_id: typing.Optional[str] = None,
+        search: typing.Optional[str] = None,
         page: typing.Optional[int] = None,
         per_page: typing.Optional[int] = None,
         request_options: typing.Optional[RequestOptions] = None,
@@ -157,6 +199,27 @@ class RawCdrClient:
         min_duration : typing.Optional[int]
             Minimum call duration in seconds. Excludes calls shorter than this value.
 
+        sip_call_id : typing.Optional[str]
+            Filter by the SIP Call-ID of the call (matches the cdr's sip_call_id field).
+
+        bridge_uuid : typing.Optional[str]
+            Filter by the UUID of the bridged leg (matches the cdr's bridge_uuid field).
+
+        hangup_cause : typing.Optional[str]
+            Filter by telephony hangup cause, e.g. NORMAL_CLEARING.
+
+        hangup_disposition : typing.Optional[str]
+            Filter by how the leg was released, e.g. send_refuse.
+
+        context : typing.Optional[str]
+            Filter by the call context, e.g. sip-trunking.
+
+        campaign_id : typing.Optional[str]
+            Filter by the campaign identifier associated with the call.
+
+        search : typing.Optional[str]
+            Free-text search across CDR fields (numbers, IDs, etc.).
+
         page : typing.Optional[int]
             Page number for paginated results.
 
@@ -181,6 +244,13 @@ class RawCdrClient:
                 "end_date": str(end_date) if end_date is not None else None,
                 "call_direction": call_direction,
                 "min_duration": min_duration,
+                "sip_call_id": sip_call_id,
+                "bridge_uuid": bridge_uuid,
+                "hangup_cause": hangup_cause,
+                "hangup_disposition": hangup_disposition,
+                "context": context,
+                "campaign_id": campaign_id,
+                "search": search,
                 "page": page,
                 "per_page": per_page,
             },
@@ -270,6 +340,13 @@ class RawCdrClient:
         end_date: typing.Optional[dt.date] = None,
         call_direction: typing.Optional[ExportCdrsRequestCallDirection] = None,
         min_duration: typing.Optional[int] = None,
+        sip_call_id: typing.Optional[str] = None,
+        bridge_uuid: typing.Optional[str] = None,
+        hangup_cause: typing.Optional[str] = None,
+        hangup_disposition: typing.Optional[str] = None,
+        context: typing.Optional[str] = None,
+        campaign_id: typing.Optional[str] = None,
+        search: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> typing.Iterator[HttpResponse[typing.Iterator[bytes]]]:
         """
@@ -300,6 +377,27 @@ class RawCdrClient:
         min_duration : typing.Optional[int]
             Minimum call duration in seconds. Excludes calls shorter than this value.
 
+        sip_call_id : typing.Optional[str]
+            Filter by the SIP Call-ID of the call (matches the cdr's sip_call_id field).
+
+        bridge_uuid : typing.Optional[str]
+            Filter by the UUID of the bridged leg (matches the cdr's bridge_uuid field).
+
+        hangup_cause : typing.Optional[str]
+            Filter by telephony hangup cause, e.g. NORMAL_CLEARING.
+
+        hangup_disposition : typing.Optional[str]
+            Filter by how the leg was released, e.g. send_refuse.
+
+        context : typing.Optional[str]
+            Filter by the call context, e.g. sip-trunking.
+
+        campaign_id : typing.Optional[str]
+            Filter by the campaign identifier associated with the call.
+
+        search : typing.Optional[str]
+            Free-text search across CDR fields (numbers, IDs, etc.).
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration. You can pass in configuration such as `chunk_size`, and more to customize the request and response.
 
@@ -318,6 +416,13 @@ class RawCdrClient:
                 "end_date": str(end_date) if end_date is not None else None,
                 "call_direction": call_direction,
                 "min_duration": min_duration,
+                "sip_call_id": sip_call_id,
+                "bridge_uuid": bridge_uuid,
+                "hangup_cause": hangup_cause,
+                "hangup_disposition": hangup_disposition,
+                "context": context,
+                "campaign_id": campaign_id,
+                "search": search,
             },
             request_options=request_options,
         ) as _response:
@@ -419,6 +524,13 @@ class AsyncRawCdrClient:
         end_date: typing.Optional[dt.date] = None,
         call_direction: typing.Optional[ListCdrsRequestCallDirection] = None,
         min_duration: typing.Optional[int] = None,
+        sip_call_id: typing.Optional[str] = None,
+        bridge_uuid: typing.Optional[str] = None,
+        hangup_cause: typing.Optional[str] = None,
+        hangup_disposition: typing.Optional[str] = None,
+        context: typing.Optional[str] = None,
+        campaign_id: typing.Optional[str] = None,
+        search: typing.Optional[str] = None,
         page: typing.Optional[int] = None,
         per_page: typing.Optional[int] = None,
         request_options: typing.Optional[RequestOptions] = None,
@@ -450,6 +562,27 @@ class AsyncRawCdrClient:
         min_duration : typing.Optional[int]
             Minimum call duration in seconds. Excludes calls shorter than this value.
 
+        sip_call_id : typing.Optional[str]
+            Filter by the SIP Call-ID of the call (matches the cdr's sip_call_id field).
+
+        bridge_uuid : typing.Optional[str]
+            Filter by the UUID of the bridged leg (matches the cdr's bridge_uuid field).
+
+        hangup_cause : typing.Optional[str]
+            Filter by telephony hangup cause, e.g. NORMAL_CLEARING.
+
+        hangup_disposition : typing.Optional[str]
+            Filter by how the leg was released, e.g. send_refuse.
+
+        context : typing.Optional[str]
+            Filter by the call context, e.g. sip-trunking.
+
+        campaign_id : typing.Optional[str]
+            Filter by the campaign identifier associated with the call.
+
+        search : typing.Optional[str]
+            Free-text search across CDR fields (numbers, IDs, etc.).
+
         page : typing.Optional[int]
             Page number for paginated results.
 
@@ -474,6 +607,13 @@ class AsyncRawCdrClient:
                 "end_date": str(end_date) if end_date is not None else None,
                 "call_direction": call_direction,
                 "min_duration": min_duration,
+                "sip_call_id": sip_call_id,
+                "bridge_uuid": bridge_uuid,
+                "hangup_cause": hangup_cause,
+                "hangup_disposition": hangup_disposition,
+                "context": context,
+                "campaign_id": campaign_id,
+                "search": search,
                 "page": page,
                 "per_page": per_page,
             },
@@ -508,6 +648,13 @@ class AsyncRawCdrClient:
         end_date: typing.Optional[dt.date] = None,
         call_direction: typing.Optional[SearchCdrsRequestCallDirection] = None,
         min_duration: typing.Optional[int] = None,
+        sip_call_id: typing.Optional[str] = None,
+        bridge_uuid: typing.Optional[str] = None,
+        hangup_cause: typing.Optional[str] = None,
+        hangup_disposition: typing.Optional[str] = None,
+        context: typing.Optional[str] = None,
+        campaign_id: typing.Optional[str] = None,
+        search: typing.Optional[str] = None,
         page: typing.Optional[int] = None,
         per_page: typing.Optional[int] = None,
         request_options: typing.Optional[RequestOptions] = None,
@@ -539,6 +686,27 @@ class AsyncRawCdrClient:
         min_duration : typing.Optional[int]
             Minimum call duration in seconds. Excludes calls shorter than this value.
 
+        sip_call_id : typing.Optional[str]
+            Filter by the SIP Call-ID of the call (matches the cdr's sip_call_id field).
+
+        bridge_uuid : typing.Optional[str]
+            Filter by the UUID of the bridged leg (matches the cdr's bridge_uuid field).
+
+        hangup_cause : typing.Optional[str]
+            Filter by telephony hangup cause, e.g. NORMAL_CLEARING.
+
+        hangup_disposition : typing.Optional[str]
+            Filter by how the leg was released, e.g. send_refuse.
+
+        context : typing.Optional[str]
+            Filter by the call context, e.g. sip-trunking.
+
+        campaign_id : typing.Optional[str]
+            Filter by the campaign identifier associated with the call.
+
+        search : typing.Optional[str]
+            Free-text search across CDR fields (numbers, IDs, etc.).
+
         page : typing.Optional[int]
             Page number for paginated results.
 
@@ -563,6 +731,13 @@ class AsyncRawCdrClient:
                 "end_date": str(end_date) if end_date is not None else None,
                 "call_direction": call_direction,
                 "min_duration": min_duration,
+                "sip_call_id": sip_call_id,
+                "bridge_uuid": bridge_uuid,
+                "hangup_cause": hangup_cause,
+                "hangup_disposition": hangup_disposition,
+                "context": context,
+                "campaign_id": campaign_id,
+                "search": search,
                 "page": page,
                 "per_page": per_page,
             },
@@ -652,6 +827,13 @@ class AsyncRawCdrClient:
         end_date: typing.Optional[dt.date] = None,
         call_direction: typing.Optional[ExportCdrsRequestCallDirection] = None,
         min_duration: typing.Optional[int] = None,
+        sip_call_id: typing.Optional[str] = None,
+        bridge_uuid: typing.Optional[str] = None,
+        hangup_cause: typing.Optional[str] = None,
+        hangup_disposition: typing.Optional[str] = None,
+        context: typing.Optional[str] = None,
+        campaign_id: typing.Optional[str] = None,
+        search: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> typing.AsyncIterator[AsyncHttpResponse[typing.AsyncIterator[bytes]]]:
         """
@@ -682,6 +864,27 @@ class AsyncRawCdrClient:
         min_duration : typing.Optional[int]
             Minimum call duration in seconds. Excludes calls shorter than this value.
 
+        sip_call_id : typing.Optional[str]
+            Filter by the SIP Call-ID of the call (matches the cdr's sip_call_id field).
+
+        bridge_uuid : typing.Optional[str]
+            Filter by the UUID of the bridged leg (matches the cdr's bridge_uuid field).
+
+        hangup_cause : typing.Optional[str]
+            Filter by telephony hangup cause, e.g. NORMAL_CLEARING.
+
+        hangup_disposition : typing.Optional[str]
+            Filter by how the leg was released, e.g. send_refuse.
+
+        context : typing.Optional[str]
+            Filter by the call context, e.g. sip-trunking.
+
+        campaign_id : typing.Optional[str]
+            Filter by the campaign identifier associated with the call.
+
+        search : typing.Optional[str]
+            Free-text search across CDR fields (numbers, IDs, etc.).
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration. You can pass in configuration such as `chunk_size`, and more to customize the request and response.
 
@@ -700,6 +903,13 @@ class AsyncRawCdrClient:
                 "end_date": str(end_date) if end_date is not None else None,
                 "call_direction": call_direction,
                 "min_duration": min_duration,
+                "sip_call_id": sip_call_id,
+                "bridge_uuid": bridge_uuid,
+                "hangup_cause": hangup_cause,
+                "hangup_disposition": hangup_disposition,
+                "context": context,
+                "campaign_id": campaign_id,
+                "search": search,
             },
             request_options=request_options,
         ) as _response:

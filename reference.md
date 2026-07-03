@@ -904,6 +904,11 @@ client.cdr.list_cdrs(
     start_date=datetime.date.fromisoformat("2026-03-01"),
     end_date=datetime.date.fromisoformat("2026-03-17"),
     min_duration=10,
+    sip_call_id="dD1qwu5VZ5iK3ed5u3uspjY5RKL",
+    bridge_uuid="4b7ae653-f40d-42f1-b582-6b05dfcd0c0a",
+    hangup_cause="NORMAL_CLEARING",
+    hangup_disposition="send_refuse",
+    context="sip-trunking",
 )
 
 ```
@@ -969,6 +974,62 @@ client.cdr.list_cdrs(
 <dd>
 
 **min_duration:** `typing.Optional[int]` — Minimum call duration in seconds. Excludes calls shorter than this value.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sip_call_id:** `typing.Optional[str]` — Filter by the SIP Call-ID of the call (matches the cdr's sip_call_id field).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**bridge_uuid:** `typing.Optional[str]` — Filter by the UUID of the bridged leg (matches the cdr's bridge_uuid field).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hangup_cause:** `typing.Optional[str]` — Filter by telephony hangup cause, e.g. NORMAL_CLEARING.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hangup_disposition:** `typing.Optional[str]` — Filter by how the leg was released, e.g. send_refuse.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**context:** `typing.Optional[str]` — Filter by the call context, e.g. sip-trunking.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**campaign_id:** `typing.Optional[str]` — Filter by the campaign identifier associated with the call.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**search:** `typing.Optional[str]` — Free-text search across CDR fields (numbers, IDs, etc.).
     
 </dd>
 </dl>
@@ -1049,6 +1110,11 @@ client.cdr.search_cdrs(
     start_date=datetime.date.fromisoformat("2026-03-01"),
     end_date=datetime.date.fromisoformat("2026-03-17"),
     min_duration=10,
+    sip_call_id="dD1qwu5VZ5iK3ed5u3uspjY5RKL",
+    bridge_uuid="4b7ae653-f40d-42f1-b582-6b05dfcd0c0a",
+    hangup_cause="NORMAL_CLEARING",
+    hangup_disposition="send_refuse",
+    context="sip-trunking",
 )
 
 ```
@@ -1114,6 +1180,62 @@ client.cdr.search_cdrs(
 <dd>
 
 **min_duration:** `typing.Optional[int]` — Minimum call duration in seconds. Excludes calls shorter than this value.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sip_call_id:** `typing.Optional[str]` — Filter by the SIP Call-ID of the call (matches the cdr's sip_call_id field).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**bridge_uuid:** `typing.Optional[str]` — Filter by the UUID of the bridged leg (matches the cdr's bridge_uuid field).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hangup_cause:** `typing.Optional[str]` — Filter by telephony hangup cause, e.g. NORMAL_CLEARING.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hangup_disposition:** `typing.Optional[str]` — Filter by how the leg was released, e.g. send_refuse.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**context:** `typing.Optional[str]` — Filter by the call context, e.g. sip-trunking.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**campaign_id:** `typing.Optional[str]` — Filter by the campaign identifier associated with the call.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**search:** `typing.Optional[str]` — Free-text search across CDR fields (numbers, IDs, etc.).
     
 </dd>
 </dl>
@@ -1326,6 +1448,62 @@ client.cdr.export_cdrs(...)
 <dd>
 
 **min_duration:** `typing.Optional[int]` — Minimum call duration in seconds. Excludes calls shorter than this value.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sip_call_id:** `typing.Optional[str]` — Filter by the SIP Call-ID of the call (matches the cdr's sip_call_id field).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**bridge_uuid:** `typing.Optional[str]` — Filter by the UUID of the bridged leg (matches the cdr's bridge_uuid field).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hangup_cause:** `typing.Optional[str]` — Filter by telephony hangup cause, e.g. NORMAL_CLEARING.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hangup_disposition:** `typing.Optional[str]` — Filter by how the leg was released, e.g. send_refuse.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**context:** `typing.Optional[str]` — Filter by the call context, e.g. sip-trunking.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**campaign_id:** `typing.Optional[str]` — Filter by the campaign identifier associated with the call.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**search:** `typing.Optional[str]` — Free-text search across CDR fields (numbers, IDs, etc.).
     
 </dd>
 </dl>
@@ -3818,6 +3996,109 @@ client.phone_numbers.unassign_number_from_trunk(
 <dd>
 
 **phone_number:** `str` — The phone number to unassign, URL-encoded (use %2B instead of +).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.phone_numbers.<a href="src/vobiz/phone_numbers/client.py">get_number_health</a>(...) -> GetNumberHealthResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the health & analytics dashboard for one of your numbers: current
+status, spam flag, and call metrics over the selected window (total and
+answered calls, answer rate, minutes, average duration) plus a per-period
+time series of snapshots.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from vobiz import Vobiz
+from vobiz.environment import VobizEnvironment
+
+client = Vobiz(
+    api_key="<value>",
+    auth_token="<X-Auth-Token>",
+    environment=VobizEnvironment.PRODUCTION,
+)
+
+client.phone_numbers.get_number_health(
+    auth_id="MA_XXXXXX",
+    e164="%2B919876543210",
+    days=30,
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**auth_id:** `str` — Your account Auth ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**e164:** `str` — The number in E.164, URL-encoded (use %2B instead of +).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**granularity:** `typing.Optional[GetNumberHealthRequestGranularity]` — Snapshot granularity.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**days:** `typing.Optional[int]` — Size of the window (in days) for the summary and snapshots.
     
 </dd>
 </dl>

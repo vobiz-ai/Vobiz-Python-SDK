@@ -16,6 +16,8 @@ from ..errors.forbidden_error import ForbiddenError
 from ..errors.internal_server_error import InternalServerError
 from ..errors.not_found_error import NotFoundError
 from ..types.error import Error
+from .types.get_number_health_request_granularity import GetNumberHealthRequestGranularity
+from .types.get_number_health_response import GetNumberHealthResponse
 from .types.list_inventory_numbers_response import ListInventoryNumbersResponse
 from .types.list_numbers_response import ListNumbersResponse
 from pydantic import ValidationError
@@ -399,6 +401,82 @@ class RawPhoneNumbersClient:
                         ),
                     ),
                 )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def get_number_health(
+        self,
+        auth_id: str,
+        e164: str,
+        *,
+        granularity: typing.Optional[GetNumberHealthRequestGranularity] = None,
+        days: typing.Optional[int] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[GetNumberHealthResponse]:
+        """
+        Returns the health & analytics dashboard for one of your numbers: current
+        status, spam flag, and call metrics over the selected window (total and
+        answered calls, answer rate, minutes, average duration) plus a per-period
+        time series of snapshots.
+
+        Parameters
+        ----------
+        auth_id : str
+            Your account Auth ID
+
+        e164 : str
+            The number in E.164, URL-encoded (use %2B instead of +).
+
+        granularity : typing.Optional[GetNumberHealthRequestGranularity]
+            Snapshot granularity.
+
+        days : typing.Optional[int]
+            Size of the window (in days) for the summary and snapshots.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[GetNumberHealthResponse]
+            Number health dashboard
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            f"api/v1/account/{encode_path_param(auth_id)}/numbers/{encode_path_param(e164)}/health",
+            method="GET",
+            params={
+                "granularity": granularity,
+                "days": days,
+            },
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    GetNumberHealthResponse,
+                    parse_obj_as(
+                        type_=GetNumberHealthResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
             if _response.status_code == 404:
                 raise NotFoundError(
                     headers=dict(_response.headers),
@@ -935,6 +1013,82 @@ class AsyncRawPhoneNumbersClient:
                         ),
                     ),
                 )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def get_number_health(
+        self,
+        auth_id: str,
+        e164: str,
+        *,
+        granularity: typing.Optional[GetNumberHealthRequestGranularity] = None,
+        days: typing.Optional[int] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[GetNumberHealthResponse]:
+        """
+        Returns the health & analytics dashboard for one of your numbers: current
+        status, spam flag, and call metrics over the selected window (total and
+        answered calls, answer rate, minutes, average duration) plus a per-period
+        time series of snapshots.
+
+        Parameters
+        ----------
+        auth_id : str
+            Your account Auth ID
+
+        e164 : str
+            The number in E.164, URL-encoded (use %2B instead of +).
+
+        granularity : typing.Optional[GetNumberHealthRequestGranularity]
+            Snapshot granularity.
+
+        days : typing.Optional[int]
+            Size of the window (in days) for the summary and snapshots.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[GetNumberHealthResponse]
+            Number health dashboard
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            f"api/v1/account/{encode_path_param(auth_id)}/numbers/{encode_path_param(e164)}/health",
+            method="GET",
+            params={
+                "granularity": granularity,
+                "days": days,
+            },
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    GetNumberHealthResponse,
+                    parse_obj_as(
+                        type_=GetNumberHealthResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
             if _response.status_code == 404:
                 raise NotFoundError(
                     headers=dict(_response.headers),

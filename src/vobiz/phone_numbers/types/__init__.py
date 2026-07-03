@@ -6,6 +6,10 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
+    from .get_number_health_request_granularity import GetNumberHealthRequestGranularity
+    from .get_number_health_response import GetNumberHealthResponse
+    from .get_number_health_response_snapshots_item import GetNumberHealthResponseSnapshotsItem
+    from .get_number_health_response_summary import GetNumberHealthResponseSummary
     from .list_inventory_numbers_response import ListInventoryNumbersResponse
     from .list_inventory_numbers_response_items_item import ListInventoryNumbersResponseItemsItem
     from .list_inventory_numbers_response_items_item_capabilities import (
@@ -15,6 +19,10 @@ if typing.TYPE_CHECKING:
     from .list_numbers_response_items_item import ListNumbersResponseItemsItem
     from .list_numbers_response_items_item_capabilities import ListNumbersResponseItemsItemCapabilities
 _dynamic_imports: typing.Dict[str, str] = {
+    "GetNumberHealthRequestGranularity": ".get_number_health_request_granularity",
+    "GetNumberHealthResponse": ".get_number_health_response",
+    "GetNumberHealthResponseSnapshotsItem": ".get_number_health_response_snapshots_item",
+    "GetNumberHealthResponseSummary": ".get_number_health_response_summary",
     "ListInventoryNumbersResponse": ".list_inventory_numbers_response",
     "ListInventoryNumbersResponseItemsItem": ".list_inventory_numbers_response_items_item",
     "ListInventoryNumbersResponseItemsItemCapabilities": ".list_inventory_numbers_response_items_item_capabilities",
@@ -46,6 +54,10 @@ def __dir__():
 
 
 __all__ = [
+    "GetNumberHealthRequestGranularity",
+    "GetNumberHealthResponse",
+    "GetNumberHealthResponseSnapshotsItem",
+    "GetNumberHealthResponseSummary",
     "ListInventoryNumbersResponse",
     "ListInventoryNumbersResponseItemsItem",
     "ListInventoryNumbersResponseItemsItemCapabilities",
