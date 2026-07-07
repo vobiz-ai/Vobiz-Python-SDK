@@ -4431,6 +4431,8 @@ client.trunks.create_trunk(
     name="My Outbound Trunk",
     trunk_type="OUTBOUND",
     max_concurrent_calls=10,
+    webhook_url="https://your-app.example.com/trunk-webhook",
+    webhook_method="POST",
 )
 
 ```
@@ -4472,6 +4474,26 @@ client.trunks.create_trunk(
 <dd>
 
 **max_concurrent_calls:** `int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**webhook_url:** `typing.Optional[str]` 
+
+HTTPS URL to receive real-time call-event webhooks (`CallInitiated`
+and `Hangup`) for this trunk. Max 500 characters; private, localhost,
+and cloud-metadata IPs are blocked. See [Trunk Webhooks](/trunks/webhook).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**webhook_method:** `typing.Optional[CreateTrunkRequestWebhookMethod]` — HTTP method for the webhook callback. Defaults to `POST`.
     
 </dd>
 </dl>
@@ -4665,6 +4687,22 @@ client.trunks.update_trunk(
 <dd>
 
 **enabled:** `bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**webhook_url:** `typing.Optional[str]` — HTTPS URL for real-time call-event webhooks (`CallInitiated`, `Hangup`). See [Trunk Webhooks](/trunks/webhook).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**webhook_method:** `typing.Optional[UpdateTrunkRequestWebhookMethod]` — HTTP method for the webhook callback. Defaults to `POST`.
     
 </dd>
 </dl>

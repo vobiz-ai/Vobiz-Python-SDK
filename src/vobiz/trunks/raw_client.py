@@ -10,9 +10,11 @@ from ..core.jsonable_encoder import encode_path_param
 from ..core.parse_error import ParsingError
 from ..core.pydantic_utilities import parse_obj_as
 from ..core.request_options import RequestOptions
+from .types.create_trunk_request_webhook_method import CreateTrunkRequestWebhookMethod
 from .types.create_trunk_response import CreateTrunkResponse
 from .types.list_trunks_response import ListTrunksResponse
 from .types.retrieve_trunk_response import RetrieveTrunkResponse
+from .types.update_trunk_request_webhook_method import UpdateTrunkRequestWebhookMethod
 from .types.update_trunk_response import UpdateTrunkResponse
 from pydantic import ValidationError
 
@@ -74,6 +76,8 @@ class RawTrunksClient:
         name: str,
         trunk_type: str,
         max_concurrent_calls: int,
+        webhook_url: typing.Optional[str] = OMIT,
+        webhook_method: typing.Optional[CreateTrunkRequestWebhookMethod] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[CreateTrunkResponse]:
         """
@@ -90,6 +94,14 @@ class RawTrunksClient:
 
         max_concurrent_calls : int
 
+        webhook_url : typing.Optional[str]
+            HTTPS URL to receive real-time call-event webhooks (`CallInitiated`
+            and `Hangup`) for this trunk. Max 500 characters; private, localhost,
+            and cloud-metadata IPs are blocked. See [Trunk Webhooks](/trunks/webhook).
+
+        webhook_method : typing.Optional[CreateTrunkRequestWebhookMethod]
+            HTTP method for the webhook callback. Defaults to `POST`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -105,6 +117,8 @@ class RawTrunksClient:
                 "name": name,
                 "trunk_type": trunk_type,
                 "max_concurrent_calls": max_concurrent_calls,
+                "webhook_url": webhook_url,
+                "webhook_method": webhook_method,
             },
             headers={
                 "content-type": "application/json",
@@ -184,6 +198,8 @@ class RawTrunksClient:
         name: str,
         max_concurrent_calls: int,
         enabled: bool,
+        webhook_url: typing.Optional[str] = OMIT,
+        webhook_method: typing.Optional[UpdateTrunkRequestWebhookMethod] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[UpdateTrunkResponse]:
         """
@@ -202,6 +218,12 @@ class RawTrunksClient:
 
         enabled : bool
 
+        webhook_url : typing.Optional[str]
+            HTTPS URL for real-time call-event webhooks (`CallInitiated`, `Hangup`). See [Trunk Webhooks](/trunks/webhook).
+
+        webhook_method : typing.Optional[UpdateTrunkRequestWebhookMethod]
+            HTTP method for the webhook callback. Defaults to `POST`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -217,6 +239,8 @@ class RawTrunksClient:
                 "name": name,
                 "max_concurrent_calls": max_concurrent_calls,
                 "enabled": enabled,
+                "webhook_url": webhook_url,
+                "webhook_method": webhook_method,
             },
             headers={
                 "content-type": "application/json",
@@ -345,6 +369,8 @@ class AsyncRawTrunksClient:
         name: str,
         trunk_type: str,
         max_concurrent_calls: int,
+        webhook_url: typing.Optional[str] = OMIT,
+        webhook_method: typing.Optional[CreateTrunkRequestWebhookMethod] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[CreateTrunkResponse]:
         """
@@ -361,6 +387,14 @@ class AsyncRawTrunksClient:
 
         max_concurrent_calls : int
 
+        webhook_url : typing.Optional[str]
+            HTTPS URL to receive real-time call-event webhooks (`CallInitiated`
+            and `Hangup`) for this trunk. Max 500 characters; private, localhost,
+            and cloud-metadata IPs are blocked. See [Trunk Webhooks](/trunks/webhook).
+
+        webhook_method : typing.Optional[CreateTrunkRequestWebhookMethod]
+            HTTP method for the webhook callback. Defaults to `POST`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -376,6 +410,8 @@ class AsyncRawTrunksClient:
                 "name": name,
                 "trunk_type": trunk_type,
                 "max_concurrent_calls": max_concurrent_calls,
+                "webhook_url": webhook_url,
+                "webhook_method": webhook_method,
             },
             headers={
                 "content-type": "application/json",
@@ -455,6 +491,8 @@ class AsyncRawTrunksClient:
         name: str,
         max_concurrent_calls: int,
         enabled: bool,
+        webhook_url: typing.Optional[str] = OMIT,
+        webhook_method: typing.Optional[UpdateTrunkRequestWebhookMethod] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[UpdateTrunkResponse]:
         """
@@ -473,6 +511,12 @@ class AsyncRawTrunksClient:
 
         enabled : bool
 
+        webhook_url : typing.Optional[str]
+            HTTPS URL for real-time call-event webhooks (`CallInitiated`, `Hangup`). See [Trunk Webhooks](/trunks/webhook).
+
+        webhook_method : typing.Optional[UpdateTrunkRequestWebhookMethod]
+            HTTP method for the webhook callback. Defaults to `POST`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -488,6 +532,8 @@ class AsyncRawTrunksClient:
                 "name": name,
                 "max_concurrent_calls": max_concurrent_calls,
                 "enabled": enabled,
+                "webhook_url": webhook_url,
+                "webhook_method": webhook_method,
             },
             headers={
                 "content-type": "application/json",

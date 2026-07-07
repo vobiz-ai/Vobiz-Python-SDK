@@ -7,19 +7,23 @@ from importlib import import_module
 
 if typing.TYPE_CHECKING:
     from .types import (
+        CreateTrunkRequestWebhookMethod,
         CreateTrunkResponse,
         ListTrunksResponse,
         ListTrunksResponseMeta,
         ListTrunksResponseObjectsItem,
         RetrieveTrunkResponse,
+        UpdateTrunkRequestWebhookMethod,
         UpdateTrunkResponse,
     )
 _dynamic_imports: typing.Dict[str, str] = {
+    "CreateTrunkRequestWebhookMethod": ".types",
     "CreateTrunkResponse": ".types",
     "ListTrunksResponse": ".types",
     "ListTrunksResponseMeta": ".types",
     "ListTrunksResponseObjectsItem": ".types",
     "RetrieveTrunkResponse": ".types",
+    "UpdateTrunkRequestWebhookMethod": ".types",
     "UpdateTrunkResponse": ".types",
 }
 
@@ -46,10 +50,12 @@ def __dir__():
 
 
 __all__ = [
+    "CreateTrunkRequestWebhookMethod",
     "CreateTrunkResponse",
     "ListTrunksResponse",
     "ListTrunksResponseMeta",
     "ListTrunksResponseObjectsItem",
     "RetrieveTrunkResponse",
+    "UpdateTrunkRequestWebhookMethod",
     "UpdateTrunkResponse",
 ]

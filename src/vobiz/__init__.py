@@ -269,11 +269,13 @@ if typing.TYPE_CHECKING:
         UpdateSubaccountResponse,
     )
     from .trunks import (
+        CreateTrunkRequestWebhookMethod,
         CreateTrunkResponse,
         ListTrunksResponse,
         ListTrunksResponseMeta,
         ListTrunksResponseObjectsItem,
         RetrieveTrunkResponse,
+        UpdateTrunkRequestWebhookMethod,
         UpdateTrunkResponse,
     )
 _dynamic_imports: typing.Dict[str, str] = {
@@ -309,6 +311,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "CreateSubaccountResponseAuthCredentials": ".sub_accounts",
     "CreateSubaccountResponseSubAccount": ".sub_accounts",
     "CreateSubaccountResponseTokens": ".sub_accounts",
+    "CreateTrunkRequestWebhookMethod": ".trunks",
     "CreateTrunkResponse": ".trunks",
     "DefaultAioHttpClient": "._default_clients",
     "DefaultAsyncHttpxClient": "._default_clients",
@@ -486,6 +489,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "UpdateOriginationUriResponse": ".origination_uri",
     "UpdateSubaccountRequestKycMode": ".sub_accounts",
     "UpdateSubaccountResponse": ".sub_accounts",
+    "UpdateTrunkRequestWebhookMethod": ".trunks",
     "UpdateTrunkResponse": ".trunks",
     "Vobiz": ".client",
     "VobizEnvironment": ".environment",
@@ -572,6 +576,7 @@ __all__ = [
     "CreateSubaccountResponseAuthCredentials",
     "CreateSubaccountResponseSubAccount",
     "CreateSubaccountResponseTokens",
+    "CreateTrunkRequestWebhookMethod",
     "CreateTrunkResponse",
     "DefaultAioHttpClient",
     "DefaultAsyncHttpxClient",
@@ -749,6 +754,7 @@ __all__ = [
     "UpdateOriginationUriResponse",
     "UpdateSubaccountRequestKycMode",
     "UpdateSubaccountResponse",
+    "UpdateTrunkRequestWebhookMethod",
     "UpdateTrunkResponse",
     "Vobiz",
     "VobizEnvironment",
