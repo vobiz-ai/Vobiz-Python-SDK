@@ -5,10 +5,16 @@ import typing
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawTrunksClient, RawTrunksClient
+from .types.create_trunk_request_transport import CreateTrunkRequestTransport
+from .types.create_trunk_request_trunk_direction import CreateTrunkRequestTrunkDirection
+from .types.create_trunk_request_trunk_status import CreateTrunkRequestTrunkStatus
 from .types.create_trunk_request_webhook_method import CreateTrunkRequestWebhookMethod
 from .types.create_trunk_response import CreateTrunkResponse
 from .types.list_trunks_response import ListTrunksResponse
 from .types.retrieve_trunk_response import RetrieveTrunkResponse
+from .types.update_trunk_request_transport import UpdateTrunkRequestTransport
+from .types.update_trunk_request_trunk_direction import UpdateTrunkRequestTrunkDirection
+from .types.update_trunk_request_trunk_status import UpdateTrunkRequestTrunkStatus
 from .types.update_trunk_request_webhook_method import UpdateTrunkRequestWebhookMethod
 from .types.update_trunk_response import UpdateTrunkResponse
 
@@ -70,10 +76,29 @@ class TrunksClient:
         auth_id: str,
         *,
         name: str,
-        trunk_type: str,
-        max_concurrent_calls: int,
+        trunk_direction: typing.Optional[CreateTrunkRequestTrunkDirection] = OMIT,
+        trunk_status: typing.Optional[CreateTrunkRequestTrunkStatus] = OMIT,
+        secure: typing.Optional[bool] = OMIT,
+        trunk_domain: typing.Optional[str] = OMIT,
+        transport: typing.Optional[CreateTrunkRequestTransport] = OMIT,
+        inbound_destination: typing.Optional[str] = OMIT,
+        description: typing.Optional[str] = OMIT,
+        concurrent_calls_limit: typing.Optional[int] = OMIT,
+        cps_limit: typing.Optional[int] = OMIT,
+        credential_uuid: typing.Optional[str] = OMIT,
+        ipacl_uuid: typing.Optional[str] = OMIT,
+        primary_uri_uuid: typing.Optional[str] = OMIT,
+        fallback_uri_uuid: typing.Optional[str] = OMIT,
+        recording: typing.Optional[bool] = OMIT,
+        enable_transcription: typing.Optional[bool] = OMIT,
+        pii_redaction: typing.Optional[bool] = OMIT,
+        pii_entity_types: typing.Optional[str] = OMIT,
         webhook_url: typing.Optional[str] = OMIT,
         webhook_method: typing.Optional[CreateTrunkRequestWebhookMethod] = OMIT,
+        recording_webhook_enabled: typing.Optional[bool] = OMIT,
+        username: typing.Optional[str] = OMIT,
+        password: typing.Optional[str] = OMIT,
+        ip_whitelist: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateTrunkResponse:
         """
@@ -85,18 +110,75 @@ class TrunksClient:
             Your account Auth ID
 
         name : str
+            Trunk name.
 
-        trunk_type : str
+        trunk_direction : typing.Optional[CreateTrunkRequestTrunkDirection]
+            Direction of the trunk — **`inbound` or `outbound` only** (a trunk is one direction, not both).
 
-        max_concurrent_calls : int
+        trunk_status : typing.Optional[CreateTrunkRequestTrunkStatus]
+            Trunk status — `enabled` or `disabled` (note: not `active`).
+
+        secure : typing.Optional[bool]
+
+        trunk_domain : typing.Optional[str]
+            SIP domain. Auto-generated as `{first8ofUUID}.sip.vobiz.ai` if omitted.
+
+        transport : typing.Optional[CreateTrunkRequestTransport]
+
+        inbound_destination : typing.Optional[str]
+
+        description : typing.Optional[str]
+
+        concurrent_calls_limit : typing.Optional[int]
+            Stored on the trunk. The **enforced** concurrency limit is account-level (account base + channel subscriptions), not this field.
+
+        cps_limit : typing.Optional[int]
+            Stored on the trunk. The **enforced** CPS is account-level, not this field.
+
+        credential_uuid : typing.Optional[str]
+            Attach an existing SIP credential (username / password / realm) by UUID.
+
+        ipacl_uuid : typing.Optional[str]
+            Attach an existing IP access-control list (IP-based auth) by UUID.
+
+        primary_uri_uuid : typing.Optional[str]
+            Primary origination URI UUID.
+
+        fallback_uri_uuid : typing.Optional[str]
+            Fallback origination URI UUID.
+
+        recording : typing.Optional[bool]
+            Enable call recording.
+
+        enable_transcription : typing.Optional[bool]
+            Auto-transcribe recordings when `recording=true`.
+
+        pii_redaction : typing.Optional[bool]
+            Redact PII from transcriptions.
+
+        pii_entity_types : typing.Optional[str]
+            Comma-separated list of entity types to redact.
 
         webhook_url : typing.Optional[str]
-            HTTPS URL to receive real-time call-event webhooks (`CallInitiated`
-            and `Hangup`) for this trunk. Max 500 characters; private, localhost,
-            and cloud-metadata IPs are blocked. See [Trunk Webhooks](/trunks/webhook).
+            Customer webhook for call-admission events (`CallInitiated` / `Hangup`).
+            Must be a valid **public** http/https URL. SSRF-validated — localhost,
+            private (RFC1918), and cloud-metadata (`169.254.169.254`) URLs are
+            rejected with `invalid webhook_url`. See [Trunk Webhooks](/trunks/webhook).
 
         webhook_method : typing.Optional[CreateTrunkRequestWebhookMethod]
-            HTTP method for the webhook callback. Defaults to `POST`.
+            HTTP method for the webhook callback.
+
+        recording_webhook_enabled : typing.Optional[bool]
+            Fire a `recording.completed` webhook to `webhook_url` after a recording is saved.
+
+        username : typing.Optional[str]
+            Deprecated — use `credential_uuid`.
+
+        password : typing.Optional[str]
+            Deprecated — use `credential_uuid`.
+
+        ip_whitelist : typing.Optional[typing.Sequence[str]]
+            Deprecated — use `ipacl_uuid`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -116,20 +198,45 @@ class TrunksClient:
         )
         client.trunks.create_trunk(
             auth_id="MA_XXXXXX",
-            name="My Outbound Trunk",
-            trunk_type="OUTBOUND",
-            max_concurrent_calls=10,
-            webhook_url="https://your-app.example.com/trunk-webhook",
+            name="Retell AI SIP",
+            trunk_direction="outbound",
+            transport="udp",
+            concurrent_calls_limit=50,
+            cps_limit=15,
+            credential_uuid="b1e2...",
+            ipacl_uuid="c3d4...",
+            recording=True,
+            enable_transcription=True,
+            webhook_url="https://example.com/vobiz/webhook",
             webhook_method="POST",
         )
         """
         _response = self._raw_client.create_trunk(
             auth_id,
             name=name,
-            trunk_type=trunk_type,
-            max_concurrent_calls=max_concurrent_calls,
+            trunk_direction=trunk_direction,
+            trunk_status=trunk_status,
+            secure=secure,
+            trunk_domain=trunk_domain,
+            transport=transport,
+            inbound_destination=inbound_destination,
+            description=description,
+            concurrent_calls_limit=concurrent_calls_limit,
+            cps_limit=cps_limit,
+            credential_uuid=credential_uuid,
+            ipacl_uuid=ipacl_uuid,
+            primary_uri_uuid=primary_uri_uuid,
+            fallback_uri_uuid=fallback_uri_uuid,
+            recording=recording,
+            enable_transcription=enable_transcription,
+            pii_redaction=pii_redaction,
+            pii_entity_types=pii_entity_types,
             webhook_url=webhook_url,
             webhook_method=webhook_method,
+            recording_webhook_enabled=recording_webhook_enabled,
+            username=username,
+            password=password,
+            ip_whitelist=ip_whitelist,
             request_options=request_options,
         )
         return _response.data
@@ -176,11 +283,27 @@ class TrunksClient:
         auth_id: str,
         trunk_id: str,
         *,
-        name: str,
-        max_concurrent_calls: int,
-        enabled: bool,
+        name: typing.Optional[str] = OMIT,
+        trunk_direction: typing.Optional[UpdateTrunkRequestTrunkDirection] = OMIT,
+        trunk_status: typing.Optional[UpdateTrunkRequestTrunkStatus] = OMIT,
+        secure: typing.Optional[bool] = OMIT,
+        trunk_domain: typing.Optional[str] = OMIT,
+        transport: typing.Optional[UpdateTrunkRequestTransport] = OMIT,
+        inbound_destination: typing.Optional[str] = OMIT,
+        description: typing.Optional[str] = OMIT,
+        concurrent_calls_limit: typing.Optional[int] = OMIT,
+        cps_limit: typing.Optional[int] = OMIT,
+        credential_uuid: typing.Optional[str] = OMIT,
+        ipacl_uuid: typing.Optional[str] = OMIT,
+        primary_uri_uuid: typing.Optional[str] = OMIT,
+        fallback_uri_uuid: typing.Optional[str] = OMIT,
+        recording: typing.Optional[bool] = OMIT,
+        enable_transcription: typing.Optional[bool] = OMIT,
+        pii_redaction: typing.Optional[bool] = OMIT,
+        pii_entity_types: typing.Optional[str] = OMIT,
         webhook_url: typing.Optional[str] = OMIT,
         webhook_method: typing.Optional[UpdateTrunkRequestWebhookMethod] = OMIT,
+        recording_webhook_enabled: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> UpdateTrunkResponse:
         """
@@ -193,17 +316,49 @@ class TrunksClient:
 
         trunk_id : str
 
-        name : str
+        name : typing.Optional[str]
 
-        max_concurrent_calls : int
+        trunk_direction : typing.Optional[UpdateTrunkRequestTrunkDirection]
+            Direction of the trunk — `inbound` or `outbound` only.
 
-        enabled : bool
+        trunk_status : typing.Optional[UpdateTrunkRequestTrunkStatus]
+
+        secure : typing.Optional[bool]
+
+        trunk_domain : typing.Optional[str]
+
+        transport : typing.Optional[UpdateTrunkRequestTransport]
+
+        inbound_destination : typing.Optional[str]
+
+        description : typing.Optional[str]
+
+        concurrent_calls_limit : typing.Optional[int]
+
+        cps_limit : typing.Optional[int]
+
+        credential_uuid : typing.Optional[str]
+
+        ipacl_uuid : typing.Optional[str]
+
+        primary_uri_uuid : typing.Optional[str]
+
+        fallback_uri_uuid : typing.Optional[str]
+
+        recording : typing.Optional[bool]
+
+        enable_transcription : typing.Optional[bool]
+
+        pii_redaction : typing.Optional[bool]
+
+        pii_entity_types : typing.Optional[str]
 
         webhook_url : typing.Optional[str]
-            HTTPS URL for real-time call-event webhooks (`CallInitiated`, `Hangup`). See [Trunk Webhooks](/trunks/webhook).
+            Customer webhook for call-admission events (`CallInitiated` / `Hangup`). Public http/https URL; SSRF-validated. See [Trunk Webhooks](/trunks/webhook).
 
         webhook_method : typing.Optional[UpdateTrunkRequestWebhookMethod]
-            HTTP method for the webhook callback. Defaults to `POST`.
+
+        recording_webhook_enabled : typing.Optional[bool]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -224,19 +379,32 @@ class TrunksClient:
         client.trunks.update_trunk(
             auth_id="MA_XXXXXX",
             trunk_id="trunk_id",
-            name="name",
-            max_concurrent_calls=1,
-            enabled=True,
         )
         """
         _response = self._raw_client.update_trunk(
             auth_id,
             trunk_id,
             name=name,
-            max_concurrent_calls=max_concurrent_calls,
-            enabled=enabled,
+            trunk_direction=trunk_direction,
+            trunk_status=trunk_status,
+            secure=secure,
+            trunk_domain=trunk_domain,
+            transport=transport,
+            inbound_destination=inbound_destination,
+            description=description,
+            concurrent_calls_limit=concurrent_calls_limit,
+            cps_limit=cps_limit,
+            credential_uuid=credential_uuid,
+            ipacl_uuid=ipacl_uuid,
+            primary_uri_uuid=primary_uri_uuid,
+            fallback_uri_uuid=fallback_uri_uuid,
+            recording=recording,
+            enable_transcription=enable_transcription,
+            pii_redaction=pii_redaction,
+            pii_entity_types=pii_entity_types,
             webhook_url=webhook_url,
             webhook_method=webhook_method,
+            recording_webhook_enabled=recording_webhook_enabled,
             request_options=request_options,
         )
         return _response.data
@@ -341,10 +509,29 @@ class AsyncTrunksClient:
         auth_id: str,
         *,
         name: str,
-        trunk_type: str,
-        max_concurrent_calls: int,
+        trunk_direction: typing.Optional[CreateTrunkRequestTrunkDirection] = OMIT,
+        trunk_status: typing.Optional[CreateTrunkRequestTrunkStatus] = OMIT,
+        secure: typing.Optional[bool] = OMIT,
+        trunk_domain: typing.Optional[str] = OMIT,
+        transport: typing.Optional[CreateTrunkRequestTransport] = OMIT,
+        inbound_destination: typing.Optional[str] = OMIT,
+        description: typing.Optional[str] = OMIT,
+        concurrent_calls_limit: typing.Optional[int] = OMIT,
+        cps_limit: typing.Optional[int] = OMIT,
+        credential_uuid: typing.Optional[str] = OMIT,
+        ipacl_uuid: typing.Optional[str] = OMIT,
+        primary_uri_uuid: typing.Optional[str] = OMIT,
+        fallback_uri_uuid: typing.Optional[str] = OMIT,
+        recording: typing.Optional[bool] = OMIT,
+        enable_transcription: typing.Optional[bool] = OMIT,
+        pii_redaction: typing.Optional[bool] = OMIT,
+        pii_entity_types: typing.Optional[str] = OMIT,
         webhook_url: typing.Optional[str] = OMIT,
         webhook_method: typing.Optional[CreateTrunkRequestWebhookMethod] = OMIT,
+        recording_webhook_enabled: typing.Optional[bool] = OMIT,
+        username: typing.Optional[str] = OMIT,
+        password: typing.Optional[str] = OMIT,
+        ip_whitelist: typing.Optional[typing.Sequence[str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateTrunkResponse:
         """
@@ -356,18 +543,75 @@ class AsyncTrunksClient:
             Your account Auth ID
 
         name : str
+            Trunk name.
 
-        trunk_type : str
+        trunk_direction : typing.Optional[CreateTrunkRequestTrunkDirection]
+            Direction of the trunk — **`inbound` or `outbound` only** (a trunk is one direction, not both).
 
-        max_concurrent_calls : int
+        trunk_status : typing.Optional[CreateTrunkRequestTrunkStatus]
+            Trunk status — `enabled` or `disabled` (note: not `active`).
+
+        secure : typing.Optional[bool]
+
+        trunk_domain : typing.Optional[str]
+            SIP domain. Auto-generated as `{first8ofUUID}.sip.vobiz.ai` if omitted.
+
+        transport : typing.Optional[CreateTrunkRequestTransport]
+
+        inbound_destination : typing.Optional[str]
+
+        description : typing.Optional[str]
+
+        concurrent_calls_limit : typing.Optional[int]
+            Stored on the trunk. The **enforced** concurrency limit is account-level (account base + channel subscriptions), not this field.
+
+        cps_limit : typing.Optional[int]
+            Stored on the trunk. The **enforced** CPS is account-level, not this field.
+
+        credential_uuid : typing.Optional[str]
+            Attach an existing SIP credential (username / password / realm) by UUID.
+
+        ipacl_uuid : typing.Optional[str]
+            Attach an existing IP access-control list (IP-based auth) by UUID.
+
+        primary_uri_uuid : typing.Optional[str]
+            Primary origination URI UUID.
+
+        fallback_uri_uuid : typing.Optional[str]
+            Fallback origination URI UUID.
+
+        recording : typing.Optional[bool]
+            Enable call recording.
+
+        enable_transcription : typing.Optional[bool]
+            Auto-transcribe recordings when `recording=true`.
+
+        pii_redaction : typing.Optional[bool]
+            Redact PII from transcriptions.
+
+        pii_entity_types : typing.Optional[str]
+            Comma-separated list of entity types to redact.
 
         webhook_url : typing.Optional[str]
-            HTTPS URL to receive real-time call-event webhooks (`CallInitiated`
-            and `Hangup`) for this trunk. Max 500 characters; private, localhost,
-            and cloud-metadata IPs are blocked. See [Trunk Webhooks](/trunks/webhook).
+            Customer webhook for call-admission events (`CallInitiated` / `Hangup`).
+            Must be a valid **public** http/https URL. SSRF-validated — localhost,
+            private (RFC1918), and cloud-metadata (`169.254.169.254`) URLs are
+            rejected with `invalid webhook_url`. See [Trunk Webhooks](/trunks/webhook).
 
         webhook_method : typing.Optional[CreateTrunkRequestWebhookMethod]
-            HTTP method for the webhook callback. Defaults to `POST`.
+            HTTP method for the webhook callback.
+
+        recording_webhook_enabled : typing.Optional[bool]
+            Fire a `recording.completed` webhook to `webhook_url` after a recording is saved.
+
+        username : typing.Optional[str]
+            Deprecated — use `credential_uuid`.
+
+        password : typing.Optional[str]
+            Deprecated — use `credential_uuid`.
+
+        ip_whitelist : typing.Optional[typing.Sequence[str]]
+            Deprecated — use `ipacl_uuid`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -392,10 +636,16 @@ class AsyncTrunksClient:
         async def main() -> None:
             await client.trunks.create_trunk(
                 auth_id="MA_XXXXXX",
-                name="My Outbound Trunk",
-                trunk_type="OUTBOUND",
-                max_concurrent_calls=10,
-                webhook_url="https://your-app.example.com/trunk-webhook",
+                name="Retell AI SIP",
+                trunk_direction="outbound",
+                transport="udp",
+                concurrent_calls_limit=50,
+                cps_limit=15,
+                credential_uuid="b1e2...",
+                ipacl_uuid="c3d4...",
+                recording=True,
+                enable_transcription=True,
+                webhook_url="https://example.com/vobiz/webhook",
                 webhook_method="POST",
             )
 
@@ -405,10 +655,29 @@ class AsyncTrunksClient:
         _response = await self._raw_client.create_trunk(
             auth_id,
             name=name,
-            trunk_type=trunk_type,
-            max_concurrent_calls=max_concurrent_calls,
+            trunk_direction=trunk_direction,
+            trunk_status=trunk_status,
+            secure=secure,
+            trunk_domain=trunk_domain,
+            transport=transport,
+            inbound_destination=inbound_destination,
+            description=description,
+            concurrent_calls_limit=concurrent_calls_limit,
+            cps_limit=cps_limit,
+            credential_uuid=credential_uuid,
+            ipacl_uuid=ipacl_uuid,
+            primary_uri_uuid=primary_uri_uuid,
+            fallback_uri_uuid=fallback_uri_uuid,
+            recording=recording,
+            enable_transcription=enable_transcription,
+            pii_redaction=pii_redaction,
+            pii_entity_types=pii_entity_types,
             webhook_url=webhook_url,
             webhook_method=webhook_method,
+            recording_webhook_enabled=recording_webhook_enabled,
+            username=username,
+            password=password,
+            ip_whitelist=ip_whitelist,
             request_options=request_options,
         )
         return _response.data
@@ -463,11 +732,27 @@ class AsyncTrunksClient:
         auth_id: str,
         trunk_id: str,
         *,
-        name: str,
-        max_concurrent_calls: int,
-        enabled: bool,
+        name: typing.Optional[str] = OMIT,
+        trunk_direction: typing.Optional[UpdateTrunkRequestTrunkDirection] = OMIT,
+        trunk_status: typing.Optional[UpdateTrunkRequestTrunkStatus] = OMIT,
+        secure: typing.Optional[bool] = OMIT,
+        trunk_domain: typing.Optional[str] = OMIT,
+        transport: typing.Optional[UpdateTrunkRequestTransport] = OMIT,
+        inbound_destination: typing.Optional[str] = OMIT,
+        description: typing.Optional[str] = OMIT,
+        concurrent_calls_limit: typing.Optional[int] = OMIT,
+        cps_limit: typing.Optional[int] = OMIT,
+        credential_uuid: typing.Optional[str] = OMIT,
+        ipacl_uuid: typing.Optional[str] = OMIT,
+        primary_uri_uuid: typing.Optional[str] = OMIT,
+        fallback_uri_uuid: typing.Optional[str] = OMIT,
+        recording: typing.Optional[bool] = OMIT,
+        enable_transcription: typing.Optional[bool] = OMIT,
+        pii_redaction: typing.Optional[bool] = OMIT,
+        pii_entity_types: typing.Optional[str] = OMIT,
         webhook_url: typing.Optional[str] = OMIT,
         webhook_method: typing.Optional[UpdateTrunkRequestWebhookMethod] = OMIT,
+        recording_webhook_enabled: typing.Optional[bool] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> UpdateTrunkResponse:
         """
@@ -480,17 +765,49 @@ class AsyncTrunksClient:
 
         trunk_id : str
 
-        name : str
+        name : typing.Optional[str]
 
-        max_concurrent_calls : int
+        trunk_direction : typing.Optional[UpdateTrunkRequestTrunkDirection]
+            Direction of the trunk — `inbound` or `outbound` only.
 
-        enabled : bool
+        trunk_status : typing.Optional[UpdateTrunkRequestTrunkStatus]
+
+        secure : typing.Optional[bool]
+
+        trunk_domain : typing.Optional[str]
+
+        transport : typing.Optional[UpdateTrunkRequestTransport]
+
+        inbound_destination : typing.Optional[str]
+
+        description : typing.Optional[str]
+
+        concurrent_calls_limit : typing.Optional[int]
+
+        cps_limit : typing.Optional[int]
+
+        credential_uuid : typing.Optional[str]
+
+        ipacl_uuid : typing.Optional[str]
+
+        primary_uri_uuid : typing.Optional[str]
+
+        fallback_uri_uuid : typing.Optional[str]
+
+        recording : typing.Optional[bool]
+
+        enable_transcription : typing.Optional[bool]
+
+        pii_redaction : typing.Optional[bool]
+
+        pii_entity_types : typing.Optional[str]
 
         webhook_url : typing.Optional[str]
-            HTTPS URL for real-time call-event webhooks (`CallInitiated`, `Hangup`). See [Trunk Webhooks](/trunks/webhook).
+            Customer webhook for call-admission events (`CallInitiated` / `Hangup`). Public http/https URL; SSRF-validated. See [Trunk Webhooks](/trunks/webhook).
 
         webhook_method : typing.Optional[UpdateTrunkRequestWebhookMethod]
-            HTTP method for the webhook callback. Defaults to `POST`.
+
+        recording_webhook_enabled : typing.Optional[bool]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -516,9 +833,6 @@ class AsyncTrunksClient:
             await client.trunks.update_trunk(
                 auth_id="MA_XXXXXX",
                 trunk_id="trunk_id",
-                name="name",
-                max_concurrent_calls=1,
-                enabled=True,
             )
 
 
@@ -528,10 +842,26 @@ class AsyncTrunksClient:
             auth_id,
             trunk_id,
             name=name,
-            max_concurrent_calls=max_concurrent_calls,
-            enabled=enabled,
+            trunk_direction=trunk_direction,
+            trunk_status=trunk_status,
+            secure=secure,
+            trunk_domain=trunk_domain,
+            transport=transport,
+            inbound_destination=inbound_destination,
+            description=description,
+            concurrent_calls_limit=concurrent_calls_limit,
+            cps_limit=cps_limit,
+            credential_uuid=credential_uuid,
+            ipacl_uuid=ipacl_uuid,
+            primary_uri_uuid=primary_uri_uuid,
+            fallback_uri_uuid=fallback_uri_uuid,
+            recording=recording,
+            enable_transcription=enable_transcription,
+            pii_redaction=pii_redaction,
+            pii_entity_types=pii_entity_types,
             webhook_url=webhook_url,
             webhook_method=webhook_method,
+            recording_webhook_enabled=recording_webhook_enabled,
             request_options=request_options,
         )
         return _response.data

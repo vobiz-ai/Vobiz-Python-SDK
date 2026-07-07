@@ -4428,10 +4428,16 @@ client = Vobiz(
 
 client.trunks.create_trunk(
     auth_id="MA_XXXXXX",
-    name="My Outbound Trunk",
-    trunk_type="OUTBOUND",
-    max_concurrent_calls=10,
-    webhook_url="https://your-app.example.com/trunk-webhook",
+    name="Retell AI SIP",
+    trunk_direction="outbound",
+    transport="udp",
+    concurrent_calls_limit=50,
+    cps_limit=15,
+    credential_uuid="b1e2...",
+    ipacl_uuid="c3d4...",
+    recording=True,
+    enable_transcription=True,
+    webhook_url="https://example.com/vobiz/webhook",
     webhook_method="POST",
 )
 
@@ -4457,7 +4463,7 @@ client.trunks.create_trunk(
 <dl>
 <dd>
 
-**name:** `str` 
+**name:** `str` — Trunk name.
     
 </dd>
 </dl>
@@ -4465,7 +4471,7 @@ client.trunks.create_trunk(
 <dl>
 <dd>
 
-**trunk_type:** `str` 
+**trunk_direction:** `typing.Optional[CreateTrunkRequestTrunkDirection]` — Direction of the trunk — **`inbound` or `outbound` only** (a trunk is one direction, not both).
     
 </dd>
 </dl>
@@ -4473,7 +4479,127 @@ client.trunks.create_trunk(
 <dl>
 <dd>
 
-**max_concurrent_calls:** `int` 
+**trunk_status:** `typing.Optional[CreateTrunkRequestTrunkStatus]` — Trunk status — `enabled` or `disabled` (note: not `active`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**secure:** `typing.Optional[bool]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**trunk_domain:** `typing.Optional[str]` — SIP domain. Auto-generated as `{first8ofUUID}.sip.vobiz.ai` if omitted.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**transport:** `typing.Optional[CreateTrunkRequestTransport]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**inbound_destination:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**description:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**concurrent_calls_limit:** `typing.Optional[int]` — Stored on the trunk. The **enforced** concurrency limit is account-level (account base + channel subscriptions), not this field.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cps_limit:** `typing.Optional[int]` — Stored on the trunk. The **enforced** CPS is account-level, not this field.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**credential_uuid:** `typing.Optional[str]` — Attach an existing SIP credential (username / password / realm) by UUID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ipacl_uuid:** `typing.Optional[str]` — Attach an existing IP access-control list (IP-based auth) by UUID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**primary_uri_uuid:** `typing.Optional[str]` — Primary origination URI UUID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fallback_uri_uuid:** `typing.Optional[str]` — Fallback origination URI UUID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**recording:** `typing.Optional[bool]` — Enable call recording.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**enable_transcription:** `typing.Optional[bool]` — Auto-transcribe recordings when `recording=true`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pii_redaction:** `typing.Optional[bool]` — Redact PII from transcriptions.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pii_entity_types:** `typing.Optional[str]` — Comma-separated list of entity types to redact.
     
 </dd>
 </dl>
@@ -4483,9 +4609,10 @@ client.trunks.create_trunk(
 
 **webhook_url:** `typing.Optional[str]` 
 
-HTTPS URL to receive real-time call-event webhooks (`CallInitiated`
-and `Hangup`) for this trunk. Max 500 characters; private, localhost,
-and cloud-metadata IPs are blocked. See [Trunk Webhooks](/trunks/webhook).
+Customer webhook for call-admission events (`CallInitiated` / `Hangup`).
+Must be a valid **public** http/https URL. SSRF-validated — localhost,
+private (RFC1918), and cloud-metadata (`169.254.169.254`) URLs are
+rejected with `invalid webhook_url`. See [Trunk Webhooks](/trunks/webhook).
     
 </dd>
 </dl>
@@ -4493,7 +4620,39 @@ and cloud-metadata IPs are blocked. See [Trunk Webhooks](/trunks/webhook).
 <dl>
 <dd>
 
-**webhook_method:** `typing.Optional[CreateTrunkRequestWebhookMethod]` — HTTP method for the webhook callback. Defaults to `POST`.
+**webhook_method:** `typing.Optional[CreateTrunkRequestWebhookMethod]` — HTTP method for the webhook callback.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**recording_webhook_enabled:** `typing.Optional[bool]` — Fire a `recording.completed` webhook to `webhook_url` after a recording is saved.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**username:** `typing.Optional[str]` — Deprecated — use `credential_uuid`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**password:** `typing.Optional[str]` — Deprecated — use `credential_uuid`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ip_whitelist:** `typing.Optional[typing.List[str]]` — Deprecated — use `ipacl_uuid`.
     
 </dd>
 </dl>
@@ -4635,9 +4794,6 @@ client = Vobiz(
 client.trunks.update_trunk(
     auth_id="MA_XXXXXX",
     trunk_id="trunk_id",
-    name="name",
-    max_concurrent_calls=1,
-    enabled=True,
 )
 
 ```
@@ -4670,7 +4826,7 @@ client.trunks.update_trunk(
 <dl>
 <dd>
 
-**name:** `str` 
+**name:** `typing.Optional[str]` 
     
 </dd>
 </dl>
@@ -4678,7 +4834,7 @@ client.trunks.update_trunk(
 <dl>
 <dd>
 
-**max_concurrent_calls:** `int` 
+**trunk_direction:** `typing.Optional[UpdateTrunkRequestTrunkDirection]` — Direction of the trunk — `inbound` or `outbound` only.
     
 </dd>
 </dl>
@@ -4686,7 +4842,7 @@ client.trunks.update_trunk(
 <dl>
 <dd>
 
-**enabled:** `bool` 
+**trunk_status:** `typing.Optional[UpdateTrunkRequestTrunkStatus]` 
     
 </dd>
 </dl>
@@ -4694,7 +4850,7 @@ client.trunks.update_trunk(
 <dl>
 <dd>
 
-**webhook_url:** `typing.Optional[str]` — HTTPS URL for real-time call-event webhooks (`CallInitiated`, `Hangup`). See [Trunk Webhooks](/trunks/webhook).
+**secure:** `typing.Optional[bool]` 
     
 </dd>
 </dl>
@@ -4702,7 +4858,135 @@ client.trunks.update_trunk(
 <dl>
 <dd>
 
-**webhook_method:** `typing.Optional[UpdateTrunkRequestWebhookMethod]` — HTTP method for the webhook callback. Defaults to `POST`.
+**trunk_domain:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**transport:** `typing.Optional[UpdateTrunkRequestTransport]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**inbound_destination:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**description:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**concurrent_calls_limit:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cps_limit:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**credential_uuid:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ipacl_uuid:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**primary_uri_uuid:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fallback_uri_uuid:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**recording:** `typing.Optional[bool]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**enable_transcription:** `typing.Optional[bool]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pii_redaction:** `typing.Optional[bool]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pii_entity_types:** `typing.Optional[str]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**webhook_url:** `typing.Optional[str]` — Customer webhook for call-admission events (`CallInitiated` / `Hangup`). Public http/https URL; SSRF-validated. See [Trunk Webhooks](/trunks/webhook).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**webhook_method:** `typing.Optional[UpdateTrunkRequestWebhookMethod]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**recording_webhook_enabled:** `typing.Optional[bool]` 
     
 </dd>
 </dl>

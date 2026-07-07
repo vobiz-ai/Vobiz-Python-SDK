@@ -7,22 +7,34 @@ from importlib import import_module
 
 if typing.TYPE_CHECKING:
     from .types import (
+        CreateTrunkRequestTransport,
+        CreateTrunkRequestTrunkDirection,
+        CreateTrunkRequestTrunkStatus,
         CreateTrunkRequestWebhookMethod,
         CreateTrunkResponse,
         ListTrunksResponse,
         ListTrunksResponseMeta,
         ListTrunksResponseObjectsItem,
         RetrieveTrunkResponse,
+        UpdateTrunkRequestTransport,
+        UpdateTrunkRequestTrunkDirection,
+        UpdateTrunkRequestTrunkStatus,
         UpdateTrunkRequestWebhookMethod,
         UpdateTrunkResponse,
     )
 _dynamic_imports: typing.Dict[str, str] = {
+    "CreateTrunkRequestTransport": ".types",
+    "CreateTrunkRequestTrunkDirection": ".types",
+    "CreateTrunkRequestTrunkStatus": ".types",
     "CreateTrunkRequestWebhookMethod": ".types",
     "CreateTrunkResponse": ".types",
     "ListTrunksResponse": ".types",
     "ListTrunksResponseMeta": ".types",
     "ListTrunksResponseObjectsItem": ".types",
     "RetrieveTrunkResponse": ".types",
+    "UpdateTrunkRequestTransport": ".types",
+    "UpdateTrunkRequestTrunkDirection": ".types",
+    "UpdateTrunkRequestTrunkStatus": ".types",
     "UpdateTrunkRequestWebhookMethod": ".types",
     "UpdateTrunkResponse": ".types",
 }
@@ -50,12 +62,18 @@ def __dir__():
 
 
 __all__ = [
+    "CreateTrunkRequestTransport",
+    "CreateTrunkRequestTrunkDirection",
+    "CreateTrunkRequestTrunkStatus",
     "CreateTrunkRequestWebhookMethod",
     "CreateTrunkResponse",
     "ListTrunksResponse",
     "ListTrunksResponseMeta",
     "ListTrunksResponseObjectsItem",
     "RetrieveTrunkResponse",
+    "UpdateTrunkRequestTransport",
+    "UpdateTrunkRequestTrunkDirection",
+    "UpdateTrunkRequestTrunkStatus",
     "UpdateTrunkRequestWebhookMethod",
     "UpdateTrunkResponse",
 ]

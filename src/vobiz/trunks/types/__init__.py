@@ -6,21 +6,33 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
+    from .create_trunk_request_transport import CreateTrunkRequestTransport
+    from .create_trunk_request_trunk_direction import CreateTrunkRequestTrunkDirection
+    from .create_trunk_request_trunk_status import CreateTrunkRequestTrunkStatus
     from .create_trunk_request_webhook_method import CreateTrunkRequestWebhookMethod
     from .create_trunk_response import CreateTrunkResponse
     from .list_trunks_response import ListTrunksResponse
     from .list_trunks_response_meta import ListTrunksResponseMeta
     from .list_trunks_response_objects_item import ListTrunksResponseObjectsItem
     from .retrieve_trunk_response import RetrieveTrunkResponse
+    from .update_trunk_request_transport import UpdateTrunkRequestTransport
+    from .update_trunk_request_trunk_direction import UpdateTrunkRequestTrunkDirection
+    from .update_trunk_request_trunk_status import UpdateTrunkRequestTrunkStatus
     from .update_trunk_request_webhook_method import UpdateTrunkRequestWebhookMethod
     from .update_trunk_response import UpdateTrunkResponse
 _dynamic_imports: typing.Dict[str, str] = {
+    "CreateTrunkRequestTransport": ".create_trunk_request_transport",
+    "CreateTrunkRequestTrunkDirection": ".create_trunk_request_trunk_direction",
+    "CreateTrunkRequestTrunkStatus": ".create_trunk_request_trunk_status",
     "CreateTrunkRequestWebhookMethod": ".create_trunk_request_webhook_method",
     "CreateTrunkResponse": ".create_trunk_response",
     "ListTrunksResponse": ".list_trunks_response",
     "ListTrunksResponseMeta": ".list_trunks_response_meta",
     "ListTrunksResponseObjectsItem": ".list_trunks_response_objects_item",
     "RetrieveTrunkResponse": ".retrieve_trunk_response",
+    "UpdateTrunkRequestTransport": ".update_trunk_request_transport",
+    "UpdateTrunkRequestTrunkDirection": ".update_trunk_request_trunk_direction",
+    "UpdateTrunkRequestTrunkStatus": ".update_trunk_request_trunk_status",
     "UpdateTrunkRequestWebhookMethod": ".update_trunk_request_webhook_method",
     "UpdateTrunkResponse": ".update_trunk_response",
 }
@@ -48,12 +60,18 @@ def __dir__():
 
 
 __all__ = [
+    "CreateTrunkRequestTransport",
+    "CreateTrunkRequestTrunkDirection",
+    "CreateTrunkRequestTrunkStatus",
     "CreateTrunkRequestWebhookMethod",
     "CreateTrunkResponse",
     "ListTrunksResponse",
     "ListTrunksResponseMeta",
     "ListTrunksResponseObjectsItem",
     "RetrieveTrunkResponse",
+    "UpdateTrunkRequestTransport",
+    "UpdateTrunkRequestTrunkDirection",
+    "UpdateTrunkRequestTrunkStatus",
     "UpdateTrunkRequestWebhookMethod",
     "UpdateTrunkResponse",
 ]
