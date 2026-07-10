@@ -115,6 +115,7 @@ class PhoneNumbersClient:
         *,
         country: typing.Optional[str] = None,
         search: typing.Optional[str] = None,
+        exclude: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         page: typing.Optional[int] = None,
         per_page: typing.Optional[int] = None,
         request_options: typing.Optional[RequestOptions] = None,
@@ -134,6 +135,9 @@ class PhoneNumbersClient:
 
         search : typing.Optional[str]
             Substring match against the E.164 number (e.g., "80" matches "+918065...").
+
+        exclude : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            One or more E.164 prefixes to remove from results. Include the country code (e.g. "9180" for India +91 80-series, "1415" for US +1 415); a leading "+" is optional. Matched against the full E.164 form, so it works for any country. Accepts a comma-separated list ("9180,9192") or repeated params ("exclude=9180&exclude=9192"), and the two forms can be combined. It is ANDed with all other filters, so it takes priority over `search`; duplicates are de-duplicated silently and `total` reflects the filtered result set.
 
         page : typing.Optional[int]
 
@@ -161,7 +165,13 @@ class PhoneNumbersClient:
         )
         """
         _response = self._raw_client.list_inventory_numbers(
-            auth_id, country=country, search=search, page=page, per_page=per_page, request_options=request_options
+            auth_id,
+            country=country,
+            search=search,
+            exclude=exclude,
+            page=page,
+            per_page=per_page,
+            request_options=request_options,
         )
         return _response.data
 
@@ -584,6 +594,7 @@ class AsyncPhoneNumbersClient:
         *,
         country: typing.Optional[str] = None,
         search: typing.Optional[str] = None,
+        exclude: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         page: typing.Optional[int] = None,
         per_page: typing.Optional[int] = None,
         request_options: typing.Optional[RequestOptions] = None,
@@ -603,6 +614,9 @@ class AsyncPhoneNumbersClient:
 
         search : typing.Optional[str]
             Substring match against the E.164 number (e.g., "80" matches "+918065...").
+
+        exclude : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            One or more E.164 prefixes to remove from results. Include the country code (e.g. "9180" for India +91 80-series, "1415" for US +1 415); a leading "+" is optional. Matched against the full E.164 form, so it works for any country. Accepts a comma-separated list ("9180,9192") or repeated params ("exclude=9180&exclude=9192"), and the two forms can be combined. It is ANDed with all other filters, so it takes priority over `search`; duplicates are de-duplicated silently and `total` reflects the filtered result set.
 
         page : typing.Optional[int]
 
@@ -638,7 +652,13 @@ class AsyncPhoneNumbersClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.list_inventory_numbers(
-            auth_id, country=country, search=search, page=page, per_page=per_page, request_options=request_options
+            auth_id,
+            country=country,
+            search=search,
+            exclude=exclude,
+            page=page,
+            per_page=per_page,
+            request_options=request_options,
         )
         return _response.data
 
