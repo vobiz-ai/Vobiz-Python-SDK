@@ -34,8 +34,9 @@ class RawPhoneNumbersClient:
         self,
         auth_id: str,
         *,
-        limit: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
+        page: typing.Optional[int] = None,
+        per_page: typing.Optional[int] = None,
+        search: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[ListNumbersResponse]:
         """
@@ -46,9 +47,14 @@ class RawPhoneNumbersClient:
         auth_id : str
             Your account Auth ID
 
-        limit : typing.Optional[int]
+        page : typing.Optional[int]
+            Page number, starting at 1
 
-        offset : typing.Optional[int]
+        per_page : typing.Optional[int]
+            Number of phone numbers to return per page
+
+        search : typing.Optional[str]
+            Filter by phone number. Include the country code and URL-encode a leading plus sign.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -62,8 +68,9 @@ class RawPhoneNumbersClient:
             f"api/v1/Account/{encode_path_param(auth_id)}/numbers",
             method="GET",
             params={
-                "limit": limit,
-                "offset": offset,
+                "page": page,
+                "per_page": per_page,
+                "search": search,
             },
             request_options=request_options,
         )
@@ -651,8 +658,9 @@ class AsyncRawPhoneNumbersClient:
         self,
         auth_id: str,
         *,
-        limit: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
+        page: typing.Optional[int] = None,
+        per_page: typing.Optional[int] = None,
+        search: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[ListNumbersResponse]:
         """
@@ -663,9 +671,14 @@ class AsyncRawPhoneNumbersClient:
         auth_id : str
             Your account Auth ID
 
-        limit : typing.Optional[int]
+        page : typing.Optional[int]
+            Page number, starting at 1
 
-        offset : typing.Optional[int]
+        per_page : typing.Optional[int]
+            Number of phone numbers to return per page
+
+        search : typing.Optional[str]
+            Filter by phone number. Include the country code and URL-encode a leading plus sign.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -679,8 +692,9 @@ class AsyncRawPhoneNumbersClient:
             f"api/v1/Account/{encode_path_param(auth_id)}/numbers",
             method="GET",
             params={
-                "limit": limit,
-                "offset": offset,
+                "page": page,
+                "per_page": per_page,
+                "search": search,
             },
             request_options=request_options,
         )

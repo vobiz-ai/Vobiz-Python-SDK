@@ -3496,6 +3496,7 @@ client = Vobiz(
 
 client.phone_numbers.list_numbers(
     auth_id="MA_XXXXXX",
+    search="+919876543210",
 )
 
 ```
@@ -3520,7 +3521,7 @@ client.phone_numbers.list_numbers(
 <dl>
 <dd>
 
-**limit:** `typing.Optional[int]` 
+**page:** `typing.Optional[int]` — Page number, starting at 1
     
 </dd>
 </dl>
@@ -3528,7 +3529,15 @@ client.phone_numbers.list_numbers(
 <dl>
 <dd>
 
-**offset:** `typing.Optional[int]` 
+**per_page:** `typing.Optional[int]` — Number of phone numbers to return per page
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**search:** `typing.Optional[str]` — Filter by phone number. Include the country code and URL-encode a leading plus sign.
     
 </dd>
 </dl>

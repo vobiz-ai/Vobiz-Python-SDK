@@ -33,8 +33,9 @@ class PhoneNumbersClient:
         self,
         auth_id: str,
         *,
-        limit: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
+        page: typing.Optional[int] = None,
+        per_page: typing.Optional[int] = None,
+        search: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ListNumbersResponse:
         """
@@ -45,9 +46,14 @@ class PhoneNumbersClient:
         auth_id : str
             Your account Auth ID
 
-        limit : typing.Optional[int]
+        page : typing.Optional[int]
+            Page number, starting at 1
 
-        offset : typing.Optional[int]
+        per_page : typing.Optional[int]
+            Number of phone numbers to return per page
+
+        search : typing.Optional[str]
+            Filter by phone number. Include the country code and URL-encode a leading plus sign.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -67,9 +73,12 @@ class PhoneNumbersClient:
         )
         client.phone_numbers.list_numbers(
             auth_id="MA_XXXXXX",
+            search="+919876543210",
         )
         """
-        _response = self._raw_client.list_numbers(auth_id, limit=limit, offset=offset, request_options=request_options)
+        _response = self._raw_client.list_numbers(
+            auth_id, page=page, per_page=per_page, search=search, request_options=request_options
+        )
         return _response.data
 
     def unrent_number(
@@ -495,8 +504,9 @@ class AsyncPhoneNumbersClient:
         self,
         auth_id: str,
         *,
-        limit: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
+        page: typing.Optional[int] = None,
+        per_page: typing.Optional[int] = None,
+        search: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ListNumbersResponse:
         """
@@ -507,9 +517,14 @@ class AsyncPhoneNumbersClient:
         auth_id : str
             Your account Auth ID
 
-        limit : typing.Optional[int]
+        page : typing.Optional[int]
+            Page number, starting at 1
 
-        offset : typing.Optional[int]
+        per_page : typing.Optional[int]
+            Number of phone numbers to return per page
+
+        search : typing.Optional[str]
+            Filter by phone number. Include the country code and URL-encode a leading plus sign.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -534,13 +549,14 @@ class AsyncPhoneNumbersClient:
         async def main() -> None:
             await client.phone_numbers.list_numbers(
                 auth_id="MA_XXXXXX",
+                search="+919876543210",
             )
 
 
         asyncio.run(main())
         """
         _response = await self._raw_client.list_numbers(
-            auth_id, limit=limit, offset=offset, request_options=request_options
+            auth_id, page=page, per_page=per_page, search=search, request_options=request_options
         )
         return _response.data
 
