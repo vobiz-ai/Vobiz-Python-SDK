@@ -29,7 +29,7 @@ class ConferenceMembersClient:
         member_id: str,
         *,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> None:
+    ) -> typing.Any:
         """
         Prevent a member from speaking. Use `all` as member_id to mute everyone.
 
@@ -48,7 +48,8 @@ class ConferenceMembersClient:
 
         Returns
         -------
-        None
+        typing.Any
+            Mute request accepted
 
         Examples
         --------
@@ -134,7 +135,7 @@ class AsyncConferenceMembersClient:
         member_id: str,
         *,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> None:
+    ) -> typing.Any:
         """
         Prevent a member from speaking. Use `all` as member_id to mute everyone.
 
@@ -153,7 +154,8 @@ class AsyncConferenceMembersClient:
 
         Returns
         -------
-        None
+        typing.Any
+            Mute request accepted
 
         Examples
         --------

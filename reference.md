@@ -5111,7 +5111,7 @@ client.trunks.delete_trunk(
 <dl>
 <dd>
 
-Remove a specific participant from a conference call.
+Remove one or more participants from a conference while allowing their XML flow to continue.
 </dd>
 </dl>
 </dd>
@@ -5203,7 +5203,7 @@ client.conference.kick_member(
 <dl>
 <dd>
 
-Disconnect a specific member from a conference.
+Terminate one or more active conference member calls. A normal active-member request disconnects the member. If a member was kicked, continued its XML flow, and rejoined with the same numeric member ID, confirm removal through conference exit or call hangup callbacks.
 </dd>
 </dl>
 </dd>
@@ -5283,7 +5283,7 @@ client.conference.hangup_member(
 </dl>
 </details>
 
-<details><summary><code>client.conference.<a href="src/vobiz/conference/client.py">play_audio_member</a>(...)</code></summary>
+<details><summary><code>client.conference.<a href="src/vobiz/conference/client.py">play_audio_member</a>(...) -> typing.Any</code></summary>
 <dl>
 <dd>
 
@@ -5476,7 +5476,7 @@ client.conference.stop_audio_member(
 </dl>
 </details>
 
-<details><summary><code>client.conference.<a href="src/vobiz/conference/client.py">deaf_member</a>(...)</code></summary>
+<details><summary><code>client.conference.<a href="src/vobiz/conference/client.py">deaf_member</a>(...) -> typing.Any</code></summary>
 <dl>
 <dd>
 
@@ -6765,7 +6765,7 @@ client.audio_streams.stop_stream(
 <dl>
 <dd>
 
-Retrieve all active conference rooms on the account.
+Retrieve conference room names reported by the API. An empty array is inconclusive and can occur while conferences are active. Maintain your own room registry for authoritative discovery, billing, cleanup, and destructive workflows.
 </dd>
 </dl>
 </dd>
@@ -6901,7 +6901,7 @@ client.conferences.delete_all_conferences(
 </dl>
 </details>
 
-<details><summary><code>client.conferences.<a href="src/vobiz/conferences/client.py">get_conference</a>(...) -> typing.Any</code></summary>
+<details><summary><code>client.conferences.<a href="src/vobiz/conferences/client.py">get_conference</a>(...) -> GetConferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -6913,7 +6913,7 @@ client.conferences.delete_all_conferences(
 <dl>
 <dd>
 
-Get details and member list of a specific conference room.
+Retrieve a specific conference room. A live conference can currently return a 200 response with an error payload instead of conference details.
 </dd>
 </dl>
 </dd>
@@ -7068,7 +7068,7 @@ client.conferences.delete_conference(
 </details>
 
 ## ConferenceMembers
-<details><summary><code>client.conference_members.<a href="src/vobiz/conference_members/client.py">mute_member</a>(...)</code></summary>
+<details><summary><code>client.conference_members.<a href="src/vobiz/conference_members/client.py">mute_member</a>(...) -> typing.Any</code></summary>
 <dl>
 <dd>
 
@@ -7253,7 +7253,7 @@ client.conference_members.unmute_member(
 </details>
 
 ## ConferenceRecording
-<details><summary><code>client.conference_recording.<a href="src/vobiz/conference_recording/client.py">start_conference_recording</a>(...)</code></summary>
+<details><summary><code>client.conference_recording.<a href="src/vobiz/conference_recording/client.py">start_conference_recording</a>(...) -> typing.Any</code></summary>
 <dl>
 <dd>
 
@@ -7265,7 +7265,7 @@ client.conference_members.unmute_member(
 <dl>
 <dd>
 
-Begin recording all audio in a conference room.
+Queue recording for all audio in a conference room. The response does not include a recording ID or download URL.
 </dd>
 </dl>
 </dd>

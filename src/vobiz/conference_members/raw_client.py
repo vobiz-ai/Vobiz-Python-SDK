@@ -8,6 +8,7 @@ from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.http_response import AsyncHttpResponse, HttpResponse
 from ..core.jsonable_encoder import encode_path_param
 from ..core.parse_error import ParsingError
+from ..core.pydantic_utilities import parse_obj_as
 from ..core.request_options import RequestOptions
 from pydantic import ValidationError
 
@@ -23,7 +24,7 @@ class RawConferenceMembersClient:
         member_id: str,
         *,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[None]:
+    ) -> HttpResponse[typing.Any]:
         """
         Prevent a member from speaking. Use `all` as member_id to mute everyone.
 
@@ -42,7 +43,8 @@ class RawConferenceMembersClient:
 
         Returns
         -------
-        HttpResponse[None]
+        HttpResponse[typing.Any]
+            Mute request accepted
         """
         _response = self._client_wrapper.httpx_client.request(
             f"api/v1/Account/{encode_path_param(auth_id)}/Conference/{encode_path_param(conference_name)}/Member/{encode_path_param(member_id)}/Mute/",
@@ -50,8 +52,17 @@ class RawConferenceMembersClient:
             request_options=request_options,
         )
         try:
-            if 200 <= _response.status_code < 300:
+            if _response is None or not _response.text.strip():
                 return HttpResponse(response=_response, data=None)
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    typing.Any,
+                    parse_obj_as(
+                        type_=typing.Any,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
@@ -117,7 +128,7 @@ class AsyncRawConferenceMembersClient:
         member_id: str,
         *,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[None]:
+    ) -> AsyncHttpResponse[typing.Any]:
         """
         Prevent a member from speaking. Use `all` as member_id to mute everyone.
 
@@ -136,7 +147,8 @@ class AsyncRawConferenceMembersClient:
 
         Returns
         -------
-        AsyncHttpResponse[None]
+        AsyncHttpResponse[typing.Any]
+            Mute request accepted
         """
         _response = await self._client_wrapper.httpx_client.request(
             f"api/v1/Account/{encode_path_param(auth_id)}/Conference/{encode_path_param(conference_name)}/Member/{encode_path_param(member_id)}/Mute/",
@@ -144,8 +156,17 @@ class AsyncRawConferenceMembersClient:
             request_options=request_options,
         )
         try:
-            if 200 <= _response.status_code < 300:
+            if _response is None or not _response.text.strip():
                 return AsyncHttpResponse(response=_response, data=None)
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    typing.Any,
+                    parse_obj_as(
+                        type_=typing.Any,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)

@@ -4,14 +4,12 @@ import typing
 
 import pydantic
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
+from .get_conference_response_error_error import GetConferenceResponseErrorError
 
 
-class ListConferencesResponse(UniversalBaseModel):
+class GetConferenceResponseError(UniversalBaseModel):
+    error: GetConferenceResponseErrorError
     api_id: str
-    conferences: typing.List[str] = pydantic.Field()
-    """
-    Conference names reported by the API. An empty array is inconclusive.
-    """
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="forbid", frozen=True)  # type: ignore # Pydantic v2

@@ -3,15 +3,12 @@
 import typing
 
 import pydantic
-from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
+from ..core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 
 
-class ListConferencesResponse(UniversalBaseModel):
+class NotFoundErrorBody(UniversalBaseModel):
+    error: str
     api_id: str
-    conferences: typing.List[str] = pydantic.Field()
-    """
-    Conference names reported by the API. An empty array is inconclusive.
-    """
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="forbid", frozen=True)  # type: ignore # Pydantic v2

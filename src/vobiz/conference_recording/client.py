@@ -34,9 +34,9 @@ class ConferenceRecordingClient:
         file_format: typing.Optional[StartConferenceRecordingRequestFileFormat] = OMIT,
         callback_url: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> None:
+    ) -> typing.Any:
         """
-        Begin recording all audio in a conference room.
+        Queue recording for all audio in a conference room. The response does not include a recording ID or download URL.
 
         Parameters
         ----------
@@ -54,7 +54,8 @@ class ConferenceRecordingClient:
 
         Returns
         -------
-        None
+        typing.Any
+            Recording request queued
 
         Examples
         --------
@@ -140,9 +141,9 @@ class AsyncConferenceRecordingClient:
         file_format: typing.Optional[StartConferenceRecordingRequestFileFormat] = OMIT,
         callback_url: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> None:
+    ) -> typing.Any:
         """
-        Begin recording all audio in a conference room.
+        Queue recording for all audio in a conference room. The response does not include a recording ID or download URL.
 
         Parameters
         ----------
@@ -160,7 +161,8 @@ class AsyncConferenceRecordingClient:
 
         Returns
         -------
-        None
+        typing.Any
+            Recording request queued
 
         Examples
         --------

@@ -4,14 +4,21 @@ import typing
 
 import pydantic
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
+from .get_conference_response_conference_member_count_members_item import (
+    GetConferenceResponseConferenceMemberCountMembersItem,
+)
 
 
-class ListConferencesResponse(UniversalBaseModel):
+class GetConferenceResponseConferenceMemberCount(UniversalBaseModel):
+    conference_name: str
+    conference_run_time: str = pydantic.Field()
+    """
+    Conference runtime in seconds
+    """
+
+    conference_member_count: str
+    members: typing.List[GetConferenceResponseConferenceMemberCountMembersItem]
     api_id: str
-    conferences: typing.List[str] = pydantic.Field()
-    """
-    Conference names reported by the API. An empty array is inconclusive.
-    """
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="forbid", frozen=True)  # type: ignore # Pydantic v2

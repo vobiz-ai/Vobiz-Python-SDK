@@ -28,6 +28,7 @@ if typing.TYPE_CHECKING:
     from .kyc_verification_result import KycVerificationResult
     from .kyc_verification_result_status import KycVerificationResultStatus
     from .kyc_verification_result_verification_type import KycVerificationResultVerificationType
+    from .not_found_error_body import NotFoundErrorBody
     from .partner_analytics import PartnerAnalytics
     from .partner_analytics_by_direction import PartnerAnalyticsByDirection
     from .partner_analytics_by_direction_inbound import PartnerAnalyticsByDirectionInbound
@@ -80,6 +81,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "KycVerificationResult": ".kyc_verification_result",
     "KycVerificationResultStatus": ".kyc_verification_result_status",
     "KycVerificationResultVerificationType": ".kyc_verification_result_verification_type",
+    "NotFoundErrorBody": ".not_found_error_body",
     "PartnerAnalytics": ".partner_analytics",
     "PartnerAnalyticsByDirection": ".partner_analytics_by_direction",
     "PartnerAnalyticsByDirectionInbound": ".partner_analytics_by_direction_inbound",
@@ -156,6 +158,7 @@ __all__ = [
     "KycVerificationResult",
     "KycVerificationResultStatus",
     "KycVerificationResultVerificationType",
+    "NotFoundErrorBody",
     "PartnerAnalytics",
     "PartnerAnalyticsByDirection",
     "PartnerAnalyticsByDirectionInbound",

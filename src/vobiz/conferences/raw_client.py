@@ -10,6 +10,8 @@ from ..core.jsonable_encoder import encode_path_param
 from ..core.parse_error import ParsingError
 from ..core.pydantic_utilities import parse_obj_as
 from ..core.request_options import RequestOptions
+from ..errors.not_found_error import NotFoundError
+from .types.get_conference_response import GetConferenceResponse
 from .types.list_conferences_response import ListConferencesResponse
 from pydantic import ValidationError
 
@@ -22,7 +24,7 @@ class RawConferencesClient:
         self, auth_id: str, *, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[ListConferencesResponse]:
         """
-        Retrieve all active conference rooms on the account.
+        Retrieve conference room names reported by the API. An empty array is inconclusive and can occur while conferences are active. Maintain your own room registry for authoritative discovery, billing, cleanup, and destructive workflows.
 
         Parameters
         ----------
@@ -98,9 +100,9 @@ class RawConferencesClient:
 
     def get_conference(
         self, auth_id: str, conference_name: str, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[typing.Any]:
+    ) -> HttpResponse[GetConferenceResponse]:
         """
-        Get details and member list of a specific conference room.
+        Retrieve a specific conference room. A live conference can currently return a 200 response with an error payload instead of conference details.
 
         Parameters
         ----------
@@ -114,8 +116,8 @@ class RawConferencesClient:
 
         Returns
         -------
-        HttpResponse[typing.Any]
-            Conference details
+        HttpResponse[GetConferenceResponse]
+            Conference details or the current live-retrieval failure payload
         """
         _response = self._client_wrapper.httpx_client.request(
             f"api/v1/Account/{encode_path_param(auth_id)}/Conference/{encode_path_param(conference_name)}/",
@@ -123,17 +125,26 @@ class RawConferencesClient:
             request_options=request_options,
         )
         try:
-            if _response is None or not _response.text.strip():
-                return HttpResponse(response=_response, data=None)
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    typing.Any,
+                    GetConferenceResponse,
                     parse_obj_as(
-                        type_=typing.Any,  # type: ignore
+                        type_=GetConferenceResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
                 return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
@@ -189,7 +200,7 @@ class AsyncRawConferencesClient:
         self, auth_id: str, *, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[ListConferencesResponse]:
         """
-        Retrieve all active conference rooms on the account.
+        Retrieve conference room names reported by the API. An empty array is inconclusive and can occur while conferences are active. Maintain your own room registry for authoritative discovery, billing, cleanup, and destructive workflows.
 
         Parameters
         ----------
@@ -265,9 +276,9 @@ class AsyncRawConferencesClient:
 
     async def get_conference(
         self, auth_id: str, conference_name: str, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[typing.Any]:
+    ) -> AsyncHttpResponse[GetConferenceResponse]:
         """
-        Get details and member list of a specific conference room.
+        Retrieve a specific conference room. A live conference can currently return a 200 response with an error payload instead of conference details.
 
         Parameters
         ----------
@@ -281,8 +292,8 @@ class AsyncRawConferencesClient:
 
         Returns
         -------
-        AsyncHttpResponse[typing.Any]
-            Conference details
+        AsyncHttpResponse[GetConferenceResponse]
+            Conference details or the current live-retrieval failure payload
         """
         _response = await self._client_wrapper.httpx_client.request(
             f"api/v1/Account/{encode_path_param(auth_id)}/Conference/{encode_path_param(conference_name)}/",
@@ -290,17 +301,26 @@ class AsyncRawConferencesClient:
             request_options=request_options,
         )
         try:
-            if _response is None or not _response.text.strip():
-                return AsyncHttpResponse(response=_response, data=None)
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    typing.Any,
+                    GetConferenceResponse,
                     parse_obj_as(
-                        type_=typing.Any,  # type: ignore
+                        type_=GetConferenceResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
                 return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)

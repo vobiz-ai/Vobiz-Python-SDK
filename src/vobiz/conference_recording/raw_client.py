@@ -8,6 +8,7 @@ from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.http_response import AsyncHttpResponse, HttpResponse
 from ..core.jsonable_encoder import encode_path_param
 from ..core.parse_error import ParsingError
+from ..core.pydantic_utilities import parse_obj_as
 from ..core.request_options import RequestOptions
 from .types.start_conference_recording_request_file_format import StartConferenceRecordingRequestFileFormat
 from pydantic import ValidationError
@@ -28,9 +29,9 @@ class RawConferenceRecordingClient:
         file_format: typing.Optional[StartConferenceRecordingRequestFileFormat] = OMIT,
         callback_url: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[None]:
+    ) -> HttpResponse[typing.Any]:
         """
-        Begin recording all audio in a conference room.
+        Queue recording for all audio in a conference room. The response does not include a recording ID or download URL.
 
         Parameters
         ----------
@@ -48,7 +49,8 @@ class RawConferenceRecordingClient:
 
         Returns
         -------
-        HttpResponse[None]
+        HttpResponse[typing.Any]
+            Recording request queued
         """
         _response = self._client_wrapper.httpx_client.request(
             f"api/v1/Account/{encode_path_param(auth_id)}/Conference/{encode_path_param(conference_name)}/Record/",
@@ -64,8 +66,17 @@ class RawConferenceRecordingClient:
             omit=OMIT,
         )
         try:
-            if 200 <= _response.status_code < 300:
+            if _response is None or not _response.text.strip():
                 return HttpResponse(response=_response, data=None)
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    typing.Any,
+                    parse_obj_as(
+                        type_=typing.Any,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
@@ -125,9 +136,9 @@ class AsyncRawConferenceRecordingClient:
         file_format: typing.Optional[StartConferenceRecordingRequestFileFormat] = OMIT,
         callback_url: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[None]:
+    ) -> AsyncHttpResponse[typing.Any]:
         """
-        Begin recording all audio in a conference room.
+        Queue recording for all audio in a conference room. The response does not include a recording ID or download URL.
 
         Parameters
         ----------
@@ -145,7 +156,8 @@ class AsyncRawConferenceRecordingClient:
 
         Returns
         -------
-        AsyncHttpResponse[None]
+        AsyncHttpResponse[typing.Any]
+            Recording request queued
         """
         _response = await self._client_wrapper.httpx_client.request(
             f"api/v1/Account/{encode_path_param(auth_id)}/Conference/{encode_path_param(conference_name)}/Record/",
@@ -161,8 +173,17 @@ class AsyncRawConferenceRecordingClient:
             omit=OMIT,
         )
         try:
-            if 200 <= _response.status_code < 300:
+            if _response is None or not _response.text.strip():
                 return AsyncHttpResponse(response=_response, data=None)
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    typing.Any,
+                    parse_obj_as(
+                        type_=typing.Any,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)

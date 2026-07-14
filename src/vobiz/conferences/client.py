@@ -5,6 +5,7 @@ import typing
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawConferencesClient, RawConferencesClient
+from .types.get_conference_response import GetConferenceResponse
 from .types.list_conferences_response import ListConferencesResponse
 
 
@@ -27,7 +28,7 @@ class ConferencesClient:
         self, auth_id: str, *, request_options: typing.Optional[RequestOptions] = None
     ) -> ListConferencesResponse:
         """
-        Retrieve all active conference rooms on the account.
+        Retrieve conference room names reported by the API. An empty array is inconclusive and can occur while conferences are active. Maintain your own room registry for authoritative discovery, billing, cleanup, and destructive workflows.
 
         Parameters
         ----------
@@ -90,9 +91,9 @@ class ConferencesClient:
 
     def get_conference(
         self, auth_id: str, conference_name: str, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> typing.Any:
+    ) -> GetConferenceResponse:
         """
-        Get details and member list of a specific conference room.
+        Retrieve a specific conference room. A live conference can currently return a 200 response with an error payload instead of conference details.
 
         Parameters
         ----------
@@ -106,8 +107,8 @@ class ConferencesClient:
 
         Returns
         -------
-        typing.Any
-            Conference details
+        GetConferenceResponse
+            Conference details or the current live-retrieval failure payload
 
         Examples
         --------
@@ -181,7 +182,7 @@ class AsyncConferencesClient:
         self, auth_id: str, *, request_options: typing.Optional[RequestOptions] = None
     ) -> ListConferencesResponse:
         """
-        Retrieve all active conference rooms on the account.
+        Retrieve conference room names reported by the API. An empty array is inconclusive and can occur while conferences are active. Maintain your own room registry for authoritative discovery, billing, cleanup, and destructive workflows.
 
         Parameters
         ----------
@@ -262,9 +263,9 @@ class AsyncConferencesClient:
 
     async def get_conference(
         self, auth_id: str, conference_name: str, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> typing.Any:
+    ) -> GetConferenceResponse:
         """
-        Get details and member list of a specific conference room.
+        Retrieve a specific conference room. A live conference can currently return a 200 response with an error payload instead of conference details.
 
         Parameters
         ----------
@@ -278,8 +279,8 @@ class AsyncConferencesClient:
 
         Returns
         -------
-        typing.Any
-            Conference details
+        GetConferenceResponse
+            Conference details or the current live-retrieval failure payload
 
         Examples
         --------

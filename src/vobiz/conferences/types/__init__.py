@@ -6,8 +6,22 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
+    from .get_conference_response import GetConferenceResponse
+    from .get_conference_response_conference_member_count import GetConferenceResponseConferenceMemberCount
+    from .get_conference_response_conference_member_count_members_item import (
+        GetConferenceResponseConferenceMemberCountMembersItem,
+    )
+    from .get_conference_response_error import GetConferenceResponseError
+    from .get_conference_response_error_error import GetConferenceResponseErrorError
     from .list_conferences_response import ListConferencesResponse
-_dynamic_imports: typing.Dict[str, str] = {"ListConferencesResponse": ".list_conferences_response"}
+_dynamic_imports: typing.Dict[str, str] = {
+    "GetConferenceResponse": ".get_conference_response",
+    "GetConferenceResponseConferenceMemberCount": ".get_conference_response_conference_member_count",
+    "GetConferenceResponseConferenceMemberCountMembersItem": ".get_conference_response_conference_member_count_members_item",
+    "GetConferenceResponseError": ".get_conference_response_error",
+    "GetConferenceResponseErrorError": ".get_conference_response_error_error",
+    "ListConferencesResponse": ".list_conferences_response",
+}
 
 
 def __getattr__(attr_name: str) -> typing.Any:
@@ -31,4 +45,11 @@ def __dir__():
     return sorted(lazy_attrs)
 
 
-__all__ = ["ListConferencesResponse"]
+__all__ = [
+    "GetConferenceResponse",
+    "GetConferenceResponseConferenceMemberCount",
+    "GetConferenceResponseConferenceMemberCountMembersItem",
+    "GetConferenceResponseError",
+    "GetConferenceResponseErrorError",
+    "ListConferencesResponse",
+]

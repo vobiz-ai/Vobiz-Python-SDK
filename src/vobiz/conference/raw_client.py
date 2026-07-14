@@ -29,7 +29,7 @@ class RawConferenceClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[typing.Any]:
         """
-        Remove a specific participant from a conference call.
+        Remove one or more participants from a conference while allowing their XML flow to continue.
 
         Parameters
         ----------
@@ -46,7 +46,7 @@ class RawConferenceClient:
         Returns
         -------
         HttpResponse[typing.Any]
-            Member kicked
+            Kick request accepted
         """
         _response = self._client_wrapper.httpx_client.request(
             f"api/v1/Account/{encode_path_param(auth_id)}/Conference/{encode_path_param(conference_name)}/Member/{encode_path_param(member_id)}/Kick/",
@@ -83,7 +83,7 @@ class RawConferenceClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[None]:
         """
-        Disconnect a specific member from a conference.
+        Terminate one or more active conference member calls. A normal active-member request disconnects the member. If a member was kicked, continued its XML flow, and rejoined with the same numeric member ID, confirm removal through conference exit or call hangup callbacks.
 
         Parameters
         ----------
@@ -126,7 +126,7 @@ class RawConferenceClient:
         *,
         url: str,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[None]:
+    ) -> HttpResponse[typing.Any]:
         """
         Play an audio file to a specific conference member.
 
@@ -147,7 +147,8 @@ class RawConferenceClient:
 
         Returns
         -------
-        HttpResponse[None]
+        HttpResponse[typing.Any]
+            Audio playback queued
         """
         _response = self._client_wrapper.httpx_client.request(
             f"api/v1/Account/{encode_path_param(auth_id)}/Conference/{encode_path_param(conference_name)}/Member/{encode_path_param(member_id)}/Play/",
@@ -162,8 +163,17 @@ class RawConferenceClient:
             omit=OMIT,
         )
         try:
-            if 200 <= _response.status_code < 300:
+            if _response is None or not _response.text.strip():
                 return HttpResponse(response=_response, data=None)
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    typing.Any,
+                    parse_obj_as(
+                        type_=typing.Any,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
@@ -224,7 +234,7 @@ class RawConferenceClient:
         member_id: str,
         *,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[None]:
+    ) -> HttpResponse[typing.Any]:
         """
         Prevent a conference member from hearing other participants.
 
@@ -242,7 +252,8 @@ class RawConferenceClient:
 
         Returns
         -------
-        HttpResponse[None]
+        HttpResponse[typing.Any]
+            Deaf request accepted
         """
         _response = self._client_wrapper.httpx_client.request(
             f"api/v1/Account/{encode_path_param(auth_id)}/Conference/{encode_path_param(conference_name)}/Member/{encode_path_param(member_id)}/Deaf/",
@@ -250,8 +261,17 @@ class RawConferenceClient:
             request_options=request_options,
         )
         try:
-            if 200 <= _response.status_code < 300:
+            if _response is None or not _response.text.strip():
                 return HttpResponse(response=_response, data=None)
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    typing.Any,
+                    parse_obj_as(
+                        type_=typing.Any,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
@@ -319,7 +339,7 @@ class AsyncRawConferenceClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[typing.Any]:
         """
-        Remove a specific participant from a conference call.
+        Remove one or more participants from a conference while allowing their XML flow to continue.
 
         Parameters
         ----------
@@ -336,7 +356,7 @@ class AsyncRawConferenceClient:
         Returns
         -------
         AsyncHttpResponse[typing.Any]
-            Member kicked
+            Kick request accepted
         """
         _response = await self._client_wrapper.httpx_client.request(
             f"api/v1/Account/{encode_path_param(auth_id)}/Conference/{encode_path_param(conference_name)}/Member/{encode_path_param(member_id)}/Kick/",
@@ -373,7 +393,7 @@ class AsyncRawConferenceClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[None]:
         """
-        Disconnect a specific member from a conference.
+        Terminate one or more active conference member calls. A normal active-member request disconnects the member. If a member was kicked, continued its XML flow, and rejoined with the same numeric member ID, confirm removal through conference exit or call hangup callbacks.
 
         Parameters
         ----------
@@ -416,7 +436,7 @@ class AsyncRawConferenceClient:
         *,
         url: str,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[None]:
+    ) -> AsyncHttpResponse[typing.Any]:
         """
         Play an audio file to a specific conference member.
 
@@ -437,7 +457,8 @@ class AsyncRawConferenceClient:
 
         Returns
         -------
-        AsyncHttpResponse[None]
+        AsyncHttpResponse[typing.Any]
+            Audio playback queued
         """
         _response = await self._client_wrapper.httpx_client.request(
             f"api/v1/Account/{encode_path_param(auth_id)}/Conference/{encode_path_param(conference_name)}/Member/{encode_path_param(member_id)}/Play/",
@@ -452,8 +473,17 @@ class AsyncRawConferenceClient:
             omit=OMIT,
         )
         try:
-            if 200 <= _response.status_code < 300:
+            if _response is None or not _response.text.strip():
                 return AsyncHttpResponse(response=_response, data=None)
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    typing.Any,
+                    parse_obj_as(
+                        type_=typing.Any,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
@@ -514,7 +544,7 @@ class AsyncRawConferenceClient:
         member_id: str,
         *,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[None]:
+    ) -> AsyncHttpResponse[typing.Any]:
         """
         Prevent a conference member from hearing other participants.
 
@@ -532,7 +562,8 @@ class AsyncRawConferenceClient:
 
         Returns
         -------
-        AsyncHttpResponse[None]
+        AsyncHttpResponse[typing.Any]
+            Deaf request accepted
         """
         _response = await self._client_wrapper.httpx_client.request(
             f"api/v1/Account/{encode_path_param(auth_id)}/Conference/{encode_path_param(conference_name)}/Member/{encode_path_param(member_id)}/Deaf/",
@@ -540,8 +571,17 @@ class AsyncRawConferenceClient:
             request_options=request_options,
         )
         try:
-            if 200 <= _response.status_code < 300:
+            if _response is None or not _response.text.strip():
                 return AsyncHttpResponse(response=_response, data=None)
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    typing.Any,
+                    parse_obj_as(
+                        type_=typing.Any,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)

@@ -29,6 +29,7 @@ if typing.TYPE_CHECKING:
         KycVerificationResult,
         KycVerificationResultStatus,
         KycVerificationResultVerificationType,
+        NotFoundErrorBody,
         PartnerAnalytics,
         PartnerAnalyticsByDirection,
         PartnerAnalyticsByDirectionInbound,
@@ -141,7 +142,14 @@ if typing.TYPE_CHECKING:
     )
     from .client import AsyncVobiz, Vobiz
     from .conference_recording import StartConferenceRecordingRequestFileFormat
-    from .conferences import ListConferencesResponse
+    from .conferences import (
+        GetConferenceResponse,
+        GetConferenceResponseConferenceMemberCount,
+        GetConferenceResponseConferenceMemberCountMembersItem,
+        GetConferenceResponseError,
+        GetConferenceResponseErrorError,
+        ListConferencesResponse,
+    )
     from .credentials import (
         CreateCredentialResponse,
         ListCredentialsResponse,
@@ -335,6 +343,11 @@ _dynamic_imports: typing.Dict[str, str] = {
     "GetCdrResponse": ".cdr",
     "GetCdrResponseData": ".cdr",
     "GetConcurrencyResponse": ".account",
+    "GetConferenceResponse": ".conferences",
+    "GetConferenceResponseConferenceMemberCount": ".conferences",
+    "GetConferenceResponseConferenceMemberCountMembersItem": ".conferences",
+    "GetConferenceResponseError": ".conferences",
+    "GetConferenceResponseErrorError": ".conferences",
     "GetLiveCallRequestStatus": ".live_calls",
     "GetLiveCallResponse": ".live_calls",
     "GetNumberHealthRequestGranularity": ".phone_numbers",
@@ -439,6 +452,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "MockFinalizePendingKycRequestVerificationType": ".sub_account_kyc_test_mode",
     "MockSubaccountDigilockerVerifyRequestAccessRequestId": ".sub_account_kyc_test_mode",
     "NotFoundError": ".errors",
+    "NotFoundErrorBody": ".types",
     "PartnerAnalytics": ".types",
     "PartnerAnalyticsByDirection": ".types",
     "PartnerAnalyticsByDirectionInbound": ".types",
@@ -606,6 +620,11 @@ __all__ = [
     "GetCdrResponse",
     "GetCdrResponseData",
     "GetConcurrencyResponse",
+    "GetConferenceResponse",
+    "GetConferenceResponseConferenceMemberCount",
+    "GetConferenceResponseConferenceMemberCountMembersItem",
+    "GetConferenceResponseError",
+    "GetConferenceResponseErrorError",
     "GetLiveCallRequestStatus",
     "GetLiveCallResponse",
     "GetNumberHealthRequestGranularity",
@@ -710,6 +729,7 @@ __all__ = [
     "MockFinalizePendingKycRequestVerificationType",
     "MockSubaccountDigilockerVerifyRequestAccessRequestId",
     "NotFoundError",
+    "NotFoundErrorBody",
     "PartnerAnalytics",
     "PartnerAnalyticsByDirection",
     "PartnerAnalyticsByDirectionInbound",

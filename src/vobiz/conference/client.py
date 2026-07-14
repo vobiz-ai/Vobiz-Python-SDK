@@ -34,7 +34,7 @@ class ConferenceClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> typing.Any:
         """
-        Remove a specific participant from a conference call.
+        Remove one or more participants from a conference while allowing their XML flow to continue.
 
         Parameters
         ----------
@@ -51,7 +51,7 @@ class ConferenceClient:
         Returns
         -------
         typing.Any
-            Member kicked
+            Kick request accepted
 
         Examples
         --------
@@ -79,7 +79,7 @@ class ConferenceClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> None:
         """
-        Disconnect a specific member from a conference.
+        Terminate one or more active conference member calls. A normal active-member request disconnects the member. If a member was kicked, continued its XML flow, and rejoined with the same numeric member ID, confirm removal through conference exit or call hangup callbacks.
 
         Parameters
         ----------
@@ -122,7 +122,7 @@ class ConferenceClient:
         *,
         url: str,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> None:
+    ) -> typing.Any:
         """
         Play an audio file to a specific conference member.
 
@@ -143,7 +143,8 @@ class ConferenceClient:
 
         Returns
         -------
-        None
+        typing.Any
+            Audio playback queued
 
         Examples
         --------
@@ -218,7 +219,7 @@ class ConferenceClient:
         member_id: str,
         *,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> None:
+    ) -> typing.Any:
         """
         Prevent a conference member from hearing other participants.
 
@@ -236,7 +237,8 @@ class ConferenceClient:
 
         Returns
         -------
-        None
+        typing.Any
+            Deaf request accepted
 
         Examples
         --------
@@ -324,7 +326,7 @@ class AsyncConferenceClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> typing.Any:
         """
-        Remove a specific participant from a conference call.
+        Remove one or more participants from a conference while allowing their XML flow to continue.
 
         Parameters
         ----------
@@ -341,7 +343,7 @@ class AsyncConferenceClient:
         Returns
         -------
         typing.Any
-            Member kicked
+            Kick request accepted
 
         Examples
         --------
@@ -379,7 +381,7 @@ class AsyncConferenceClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> None:
         """
-        Disconnect a specific member from a conference.
+        Terminate one or more active conference member calls. A normal active-member request disconnects the member. If a member was kicked, continued its XML flow, and rejoined with the same numeric member ID, confirm removal through conference exit or call hangup callbacks.
 
         Parameters
         ----------
@@ -432,7 +434,7 @@ class AsyncConferenceClient:
         *,
         url: str,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> None:
+    ) -> typing.Any:
         """
         Play an audio file to a specific conference member.
 
@@ -453,7 +455,8 @@ class AsyncConferenceClient:
 
         Returns
         -------
-        None
+        typing.Any
+            Audio playback queued
 
         Examples
         --------
@@ -544,7 +547,7 @@ class AsyncConferenceClient:
         member_id: str,
         *,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> None:
+    ) -> typing.Any:
         """
         Prevent a conference member from hearing other participants.
 
@@ -562,7 +565,8 @@ class AsyncConferenceClient:
 
         Returns
         -------
-        None
+        typing.Any
+            Deaf request accepted
 
         Examples
         --------
