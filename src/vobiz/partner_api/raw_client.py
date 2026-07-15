@@ -555,6 +555,10 @@ class RawPartnerApiClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[ListKycSessionsResponse]:
         """
+        Returns the authenticated partner's KYC sessions. Filter the list by
+        session status or customer account, and use `page` and `size` to
+        paginate the results.
+
         Parameters
         ----------
         status : typing.Optional[ListKycSessionsRequestStatus]
@@ -727,6 +731,9 @@ class RawPartnerApiClient:
         self, session_id: str, *, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[None]:
         """
+        Returns the current status and available details for one KYC session
+        owned by the authenticated partner.
+
         Parameters
         ----------
         session_id : str
@@ -1410,6 +1417,10 @@ class AsyncRawPartnerApiClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[ListKycSessionsResponse]:
         """
+        Returns the authenticated partner's KYC sessions. Filter the list by
+        session status or customer account, and use `page` and `size` to
+        paginate the results.
+
         Parameters
         ----------
         status : typing.Optional[ListKycSessionsRequestStatus]
@@ -1582,6 +1593,9 @@ class AsyncRawPartnerApiClient:
         self, session_id: str, *, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[None]:
         """
+        Returns the current status and available details for one KYC session
+        owned by the authenticated partner.
+
         Parameters
         ----------
         session_id : str

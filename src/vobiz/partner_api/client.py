@@ -461,6 +461,10 @@ class PartnerApiClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ListKycSessionsResponse:
         """
+        Returns the authenticated partner's KYC sessions. Filter the list by
+        session status or customer account, and use `page` and `size` to
+        paginate the results.
+
         Parameters
         ----------
         status : typing.Optional[ListKycSessionsRequestStatus]
@@ -575,6 +579,9 @@ class PartnerApiClient:
 
     def get_kyc_session(self, session_id: str, *, request_options: typing.Optional[RequestOptions] = None) -> None:
         """
+        Returns the current status and available details for one KYC session
+        owned by the authenticated partner.
+
         Parameters
         ----------
         session_id : str
@@ -1171,6 +1178,10 @@ class AsyncPartnerApiClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ListKycSessionsResponse:
         """
+        Returns the authenticated partner's KYC sessions. Filter the list by
+        session status or customer account, and use `page` and `size` to
+        paginate the results.
+
         Parameters
         ----------
         status : typing.Optional[ListKycSessionsRequestStatus]
@@ -1303,6 +1314,9 @@ class AsyncPartnerApiClient:
         self, session_id: str, *, request_options: typing.Optional[RequestOptions] = None
     ) -> None:
         """
+        Returns the current status and available details for one KYC session
+        owned by the authenticated partner.
+
         Parameters
         ----------
         session_id : str
