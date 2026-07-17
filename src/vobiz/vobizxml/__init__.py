@@ -1,4 +1,4 @@
-"""vobizxml — build VobizXML call-control documents in Python.
+"""vobizxml - build VobizXML call-control documents in Python.
 
 Mirrors Plivo's ``plivoxml`` API so migrating code only changes the import and the
 ``GetDigits``/``GetInput`` -> ``Gather`` rename (aliases are provided so even that

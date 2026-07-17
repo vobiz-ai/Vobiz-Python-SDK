@@ -30,7 +30,7 @@ class RawSubAccountKycTestModeClient:
         self, sub_auth_id: str, *, pan: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[KycVerificationResult]:
         """
-        Mock PAN verification — never hits the provider. Magic `pan` inputs:
+        Mock PAN verification - never hits the provider. Magic `pan` inputs:
 
         | Input | Outcome |
         |---|---|
@@ -374,7 +374,7 @@ class RawSubAccountKycTestModeClient:
     ) -> HttpResponse[KycVerificationResult]:
         """
         Promotes the most recent **pending** mock verification of the given
-        type to a terminal outcome — this drives the async (`TESTPENDING…`)
+        type to a terminal outcome - this drives the async (`TESTPENDING…`)
         path without webhooks. `verification_type` ∈ `pan | aadhaar | gst | cin`;
         `outcome` ∈ `verified | failed`.
 
@@ -436,7 +436,7 @@ class AsyncRawSubAccountKycTestModeClient:
         self, sub_auth_id: str, *, pan: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[KycVerificationResult]:
         """
-        Mock PAN verification — never hits the provider. Magic `pan` inputs:
+        Mock PAN verification - never hits the provider. Magic `pan` inputs:
 
         | Input | Outcome |
         |---|---|
@@ -780,7 +780,7 @@ class AsyncRawSubAccountKycTestModeClient:
     ) -> AsyncHttpResponse[KycVerificationResult]:
         """
         Promotes the most recent **pending** mock verification of the given
-        type to a terminal outcome — this drives the async (`TESTPENDING…`)
+        type to a terminal outcome - this drives the async (`TESTPENDING…`)
         path without webhooks. `verification_type` ∈ `pan | aadhaar | gst | cin`;
         `outcome` ∈ `verified | failed`.
 

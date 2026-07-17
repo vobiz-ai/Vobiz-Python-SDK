@@ -113,10 +113,10 @@ class TrunksClient:
             Trunk name.
 
         trunk_direction : typing.Optional[CreateTrunkRequestTrunkDirection]
-            Direction of the trunk — **`inbound` or `outbound` only** (a trunk is one direction, not both).
+            Direction of the trunk - **`inbound` or `outbound` only** (a trunk is one direction, not both).
 
         trunk_status : typing.Optional[CreateTrunkRequestTrunkStatus]
-            Trunk status — `enabled` or `disabled` (note: not `active`).
+            Trunk status - `enabled` or `disabled` (note: not `active`).
 
         secure : typing.Optional[bool]
 
@@ -161,7 +161,7 @@ class TrunksClient:
 
         webhook_url : typing.Optional[str]
             Customer webhook for call-admission events (`CallInitiated` / `Hangup`).
-            Must be a valid **public** http/https URL. SSRF-validated — localhost,
+            Must be a valid **public** http/https URL. SSRF-validated - localhost,
             private (RFC1918), and cloud-metadata (`169.254.169.254`) URLs are
             rejected with `invalid webhook_url`. See [Trunk Webhooks](/trunks/webhook).
 
@@ -172,13 +172,13 @@ class TrunksClient:
             Fire a `recording.completed` webhook to `webhook_url` after a recording is saved.
 
         username : typing.Optional[str]
-            Deprecated — use `credential_uuid`.
+            Deprecated - use `credential_uuid`.
 
         password : typing.Optional[str]
-            Deprecated — use `credential_uuid`.
+            Deprecated - use `credential_uuid`.
 
         ip_whitelist : typing.Optional[typing.Sequence[str]]
-            Deprecated — use `ipacl_uuid`.
+            Deprecated - use `ipacl_uuid`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -319,7 +319,7 @@ class TrunksClient:
         name : typing.Optional[str]
 
         trunk_direction : typing.Optional[UpdateTrunkRequestTrunkDirection]
-            Direction of the trunk — `inbound` or `outbound` only.
+            Direction of the trunk - `inbound` or `outbound` only.
 
         trunk_status : typing.Optional[UpdateTrunkRequestTrunkStatus]
 
@@ -546,10 +546,10 @@ class AsyncTrunksClient:
             Trunk name.
 
         trunk_direction : typing.Optional[CreateTrunkRequestTrunkDirection]
-            Direction of the trunk — **`inbound` or `outbound` only** (a trunk is one direction, not both).
+            Direction of the trunk - **`inbound` or `outbound` only** (a trunk is one direction, not both).
 
         trunk_status : typing.Optional[CreateTrunkRequestTrunkStatus]
-            Trunk status — `enabled` or `disabled` (note: not `active`).
+            Trunk status - `enabled` or `disabled` (note: not `active`).
 
         secure : typing.Optional[bool]
 
@@ -594,7 +594,7 @@ class AsyncTrunksClient:
 
         webhook_url : typing.Optional[str]
             Customer webhook for call-admission events (`CallInitiated` / `Hangup`).
-            Must be a valid **public** http/https URL. SSRF-validated — localhost,
+            Must be a valid **public** http/https URL. SSRF-validated - localhost,
             private (RFC1918), and cloud-metadata (`169.254.169.254`) URLs are
             rejected with `invalid webhook_url`. See [Trunk Webhooks](/trunks/webhook).
 
@@ -605,13 +605,13 @@ class AsyncTrunksClient:
             Fire a `recording.completed` webhook to `webhook_url` after a recording is saved.
 
         username : typing.Optional[str]
-            Deprecated — use `credential_uuid`.
+            Deprecated - use `credential_uuid`.
 
         password : typing.Optional[str]
-            Deprecated — use `credential_uuid`.
+            Deprecated - use `credential_uuid`.
 
         ip_whitelist : typing.Optional[typing.Sequence[str]]
-            Deprecated — use `ipacl_uuid`.
+            Deprecated - use `ipacl_uuid`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -768,7 +768,7 @@ class AsyncTrunksClient:
         name : typing.Optional[str]
 
         trunk_direction : typing.Optional[UpdateTrunkRequestTrunkDirection]
-            Direction of the trunk — `inbound` or `outbound` only.
+            Direction of the trunk - `inbound` or `outbound` only.
 
         trunk_status : typing.Optional[UpdateTrunkRequestTrunkStatus]
 

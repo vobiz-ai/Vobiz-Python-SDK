@@ -1,4 +1,4 @@
-# Vobiz Python SDK — Usage Sheet
+# Vobiz Python SDK - Usage Sheet
 
 A practical cheat-sheet of the most common operations. For the exhaustive list of
 every method and parameter, see [`reference.md`](./reference.md).
