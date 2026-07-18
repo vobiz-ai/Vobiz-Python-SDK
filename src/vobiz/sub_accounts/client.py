@@ -57,8 +57,9 @@ class SubAccountsClient:
         from vobiz import Vobiz
 
         client = Vobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
         client.sub_accounts.list_subaccounts(
             auth_id="MA_XXXXXX",
@@ -126,8 +127,9 @@ class SubAccountsClient:
         from vobiz import Vobiz
 
         client = Vobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
         client.sub_accounts.create_subaccount(
             auth_id="MA_XXXXXX",
@@ -176,8 +178,9 @@ class SubAccountsClient:
         from vobiz import Vobiz
 
         client = Vobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
         client.sub_accounts.retrieve_subaccount(
             auth_id="MA_XXXXXX",
@@ -232,8 +235,9 @@ class SubAccountsClient:
         from vobiz import Vobiz
 
         client = Vobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
         client.sub_accounts.update_subaccount(
             auth_id="MA_XXXXXX",
@@ -272,8 +276,9 @@ class SubAccountsClient:
         from vobiz import Vobiz
 
         client = Vobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
         client.sub_accounts.delete_subaccount(
             auth_id="MA_XXXXXX",
@@ -325,8 +330,9 @@ class AsyncSubAccountsClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
 
 
@@ -402,8 +408,9 @@ class AsyncSubAccountsClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
 
 
@@ -460,8 +467,9 @@ class AsyncSubAccountsClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
 
 
@@ -524,8 +532,9 @@ class AsyncSubAccountsClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
 
 
@@ -572,8 +581,9 @@ class AsyncSubAccountsClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
 
 

@@ -10,10 +10,18 @@ from ..core.jsonable_encoder import encode_path_param
 from ..core.parse_error import ParsingError
 from ..core.pydantic_utilities import parse_obj_as
 from ..core.request_options import RequestOptions
+from ..errors.bad_request_error import BadRequestError
+from ..errors.forbidden_error import ForbiddenError
 from ..errors.unauthorized_error import UnauthorizedError
+from ..types.capacity_resource_type import CapacityResourceType
+from ..types.channel_pricing_preview import ChannelPricingPreview
+from ..types.channel_subscription import ChannelSubscription
 from .types.get_concurrency_response import GetConcurrencyResponse
 from .types.retrieve_account_response import RetrieveAccountResponse
 from pydantic import ValidationError
+
+# this is used as the default value for optional parameters
+OMIT = typing.cast(typing.Any, ...)
 
 
 class RawAccountClient:
@@ -114,6 +122,191 @@ class RawAccountClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
+    def preview_channel_pricing(
+        self,
+        auth_id: str,
+        *,
+        resource_type: CapacityResourceType,
+        quantity: int,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[ChannelPricingPreview]:
+        """
+        Calculate the monthly price for CPS or concurrent-call capacity without purchasing capacity or debiting the account.
+
+        Parameters
+        ----------
+        auth_id : str
+            Target account Auth ID. An account can preview only its own pricing; administrators may act for another account.
+
+        resource_type : CapacityResourceType
+            Capacity type to price.
+
+        quantity : int
+            Capacity quantity to price. Pricing-tier block and quantity rules also apply.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[ChannelPricingPreview]
+            Calculated monthly capacity price. No balance is debited.
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            f"api/v1/accounts/{encode_path_param(auth_id)}/channel-pricing-preview",
+            method="GET",
+            params={
+                "resource_type": resource_type,
+                "quantity": quantity,
+            },
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    ChannelPricingPreview,
+                    parse_obj_as(
+                        type_=ChannelPricingPreview,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def create_channel_subscription(
+        self,
+        auth_id: str,
+        *,
+        resource_type: CapacityResourceType,
+        quantity: int,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[ChannelSubscription]:
+        """
+        Purchase recurring CPS or concurrent-call capacity. A successful request immediately debits the first monthly charge and activates a subscription that renews every 30 days.
+
+        Parameters
+        ----------
+        auth_id : str
+            Target account Auth ID. An account can purchase only for itself; administrators may act for another account.
+
+        resource_type : CapacityResourceType
+
+        quantity : int
+            Capacity quantity to purchase. Pricing-tier block and quantity rules also apply.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[ChannelSubscription]
+            Capacity subscription purchased and activated.
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            f"api/v1/accounts/{encode_path_param(auth_id)}/channel-subscriptions",
+            method="POST",
+            json={
+                "resource_type": resource_type,
+                "quantity": quantity,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    ChannelSubscription,
+                    parse_obj_as(
+                        type_=ChannelSubscription,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
 
 class AsyncRawAccountClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
@@ -204,6 +397,191 @@ class AsyncRawAccountClient:
                     ),
                 )
                 return AsyncHttpResponse(response=_response, data=_data)
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def preview_channel_pricing(
+        self,
+        auth_id: str,
+        *,
+        resource_type: CapacityResourceType,
+        quantity: int,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[ChannelPricingPreview]:
+        """
+        Calculate the monthly price for CPS or concurrent-call capacity without purchasing capacity or debiting the account.
+
+        Parameters
+        ----------
+        auth_id : str
+            Target account Auth ID. An account can preview only its own pricing; administrators may act for another account.
+
+        resource_type : CapacityResourceType
+            Capacity type to price.
+
+        quantity : int
+            Capacity quantity to price. Pricing-tier block and quantity rules also apply.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[ChannelPricingPreview]
+            Calculated monthly capacity price. No balance is debited.
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            f"api/v1/accounts/{encode_path_param(auth_id)}/channel-pricing-preview",
+            method="GET",
+            params={
+                "resource_type": resource_type,
+                "quantity": quantity,
+            },
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    ChannelPricingPreview,
+                    parse_obj_as(
+                        type_=ChannelPricingPreview,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def create_channel_subscription(
+        self,
+        auth_id: str,
+        *,
+        resource_type: CapacityResourceType,
+        quantity: int,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[ChannelSubscription]:
+        """
+        Purchase recurring CPS or concurrent-call capacity. A successful request immediately debits the first monthly charge and activates a subscription that renews every 30 days.
+
+        Parameters
+        ----------
+        auth_id : str
+            Target account Auth ID. An account can purchase only for itself; administrators may act for another account.
+
+        resource_type : CapacityResourceType
+
+        quantity : int
+            Capacity quantity to purchase. Pricing-tier block and quantity rules also apply.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[ChannelSubscription]
+            Capacity subscription purchased and activated.
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            f"api/v1/accounts/{encode_path_param(auth_id)}/channel-subscriptions",
+            method="POST",
+            json={
+                "resource_type": resource_type,
+                "quantity": quantity,
+            },
+            headers={
+                "content-type": "application/json",
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    ChannelSubscription,
+                    parse_obj_as(
+                        type_=ChannelSubscription,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)

@@ -64,8 +64,9 @@ class OriginationUriClient:
         from vobiz import Vobiz
 
         client = Vobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
         client.origination_uri.create_origination_uri(
             auth_id="MA_XXXXXX",
@@ -103,8 +104,9 @@ class OriginationUriClient:
         from vobiz import Vobiz
 
         client = Vobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
         client.origination_uri.list_origination_uris(
             auth_id="MA_XXXXXX",
@@ -149,8 +151,9 @@ class OriginationUriClient:
         from vobiz import Vobiz
 
         client = Vobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
         client.origination_uri.update_origination_uri(
             auth_id="MA_XXXXXX",
@@ -190,8 +193,9 @@ class OriginationUriClient:
         from vobiz import Vobiz
 
         client = Vobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
         client.origination_uri.delete_origination_uri(
             auth_id="MA_XXXXXX",
@@ -255,8 +259,9 @@ class AsyncOriginationUriClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
 
 
@@ -302,8 +307,9 @@ class AsyncOriginationUriClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
 
 
@@ -356,8 +362,9 @@ class AsyncOriginationUriClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
 
 
@@ -405,8 +412,9 @@ class AsyncOriginationUriClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
 
 

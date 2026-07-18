@@ -60,8 +60,9 @@ class LiveCallsClient:
         from vobiz import Vobiz
 
         client = Vobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
         client.live_calls.list_queued_calls(
             auth_id="MA_XXXXXX",
@@ -101,8 +102,9 @@ class LiveCallsClient:
         from vobiz import Vobiz
 
         client = Vobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
         client.live_calls.list_live_calls(
             auth_id="MA_XXXXXX",
@@ -145,8 +147,9 @@ class LiveCallsClient:
         from vobiz import Vobiz
 
         client = Vobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
         client.live_calls.get_live_call(
             auth_id="MA_XXXXXX",
@@ -182,8 +185,9 @@ class LiveCallsClient:
         from vobiz import Vobiz
 
         client = Vobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
         client.live_calls.hangup_call(
             auth_id="MA_XXXXXX",
@@ -226,8 +230,9 @@ class LiveCallsClient:
         from vobiz import Vobiz
 
         client = Vobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
         client.live_calls.get_queued_call(
             auth_id="MA_XXXXXX",
@@ -286,8 +291,9 @@ class AsyncLiveCallsClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
 
 
@@ -335,8 +341,9 @@ class AsyncLiveCallsClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
 
 
@@ -387,8 +394,9 @@ class AsyncLiveCallsClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
 
 
@@ -434,8 +442,9 @@ class AsyncLiveCallsClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
 
 
@@ -486,8 +495,9 @@ class AsyncLiveCallsClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
 
 

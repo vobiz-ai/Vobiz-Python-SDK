@@ -14,7 +14,6 @@ from ..errors.bad_request_error import BadRequestError
 from ..errors.forbidden_error import ForbiddenError
 from ..errors.not_found_error import NotFoundError
 from ..errors.unprocessable_entity_error import UnprocessableEntityError
-from ..types.error import Error
 from ..types.kyc_verification_result import KycVerificationResult
 from ..types.sub_account_kyc_status import SubAccountKycStatus
 from .types.create_subaccount_kyc_session_request_flow_type import CreateSubaccountKycSessionRequestFlowType
@@ -69,9 +68,9 @@ class RawSubAccountKycClient:
                 raise ForbiddenError(
                     headers=dict(_response.headers),
                     body=typing.cast(
-                        Error,
+                        typing.Any,
                         parse_obj_as(
-                            type_=Error,  # type: ignore
+                            type_=typing.Any,  # type: ignore
                             object_=_response.json(),
                         ),
                     ),
@@ -614,9 +613,9 @@ class AsyncRawSubAccountKycClient:
                 raise ForbiddenError(
                     headers=dict(_response.headers),
                     body=typing.cast(
-                        Error,
+                        typing.Any,
                         parse_obj_as(
-                            type_=Error,  # type: ignore
+                            type_=typing.Any,  # type: ignore
                             object_=_response.json(),
                         ),
                     ),

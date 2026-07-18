@@ -4,9 +4,15 @@ import typing
 
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
+from ..types.capacity_resource_type import CapacityResourceType
+from ..types.channel_pricing_preview import ChannelPricingPreview
+from ..types.channel_subscription import ChannelSubscription
 from .raw_client import AsyncRawAccountClient, RawAccountClient
 from .types.get_concurrency_response import GetConcurrencyResponse
 from .types.retrieve_account_response import RetrieveAccountResponse
+
+# this is used as the default value for optional parameters
+OMIT = typing.cast(typing.Any, ...)
 
 
 class AccountClient:
@@ -43,8 +49,9 @@ class AccountClient:
         from vobiz import Vobiz
 
         client = Vobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
         client.account.retrieve_account()
         """
@@ -75,14 +82,114 @@ class AccountClient:
         from vobiz import Vobiz
 
         client = Vobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
         client.account.get_concurrency(
             auth_id="MA_XXXXXX",
         )
         """
         _response = self._raw_client.get_concurrency(auth_id, request_options=request_options)
+        return _response.data
+
+    def preview_channel_pricing(
+        self,
+        auth_id: str,
+        *,
+        resource_type: CapacityResourceType,
+        quantity: int,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ChannelPricingPreview:
+        """
+        Calculate the monthly price for CPS or concurrent-call capacity without purchasing capacity or debiting the account.
+
+        Parameters
+        ----------
+        auth_id : str
+            Target account Auth ID. An account can preview only its own pricing; administrators may act for another account.
+
+        resource_type : CapacityResourceType
+            Capacity type to price.
+
+        quantity : int
+            Capacity quantity to price. Pricing-tier block and quantity rules also apply.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ChannelPricingPreview
+            Calculated monthly capacity price. No balance is debited.
+
+        Examples
+        --------
+        from vobiz import Vobiz
+
+        client = Vobiz(
+            auth_id="YOUR_AUTH_ID",
+            auth_token="YOUR_AUTH_TOKEN",
+            token="YOUR_TOKEN",
+        )
+        client.account.preview_channel_pricing(
+            auth_id="MA_XXXX",
+            resource_type="concurrent_calls",
+            quantity=30,
+        )
+        """
+        _response = self._raw_client.preview_channel_pricing(
+            auth_id, resource_type=resource_type, quantity=quantity, request_options=request_options
+        )
+        return _response.data
+
+    def create_channel_subscription(
+        self,
+        auth_id: str,
+        *,
+        resource_type: CapacityResourceType,
+        quantity: int,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ChannelSubscription:
+        """
+        Purchase recurring CPS or concurrent-call capacity. A successful request immediately debits the first monthly charge and activates a subscription that renews every 30 days.
+
+        Parameters
+        ----------
+        auth_id : str
+            Target account Auth ID. An account can purchase only for itself; administrators may act for another account.
+
+        resource_type : CapacityResourceType
+
+        quantity : int
+            Capacity quantity to purchase. Pricing-tier block and quantity rules also apply.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ChannelSubscription
+            Capacity subscription purchased and activated.
+
+        Examples
+        --------
+        from vobiz import Vobiz
+
+        client = Vobiz(
+            auth_id="YOUR_AUTH_ID",
+            auth_token="YOUR_AUTH_TOKEN",
+            token="YOUR_TOKEN",
+        )
+        client.account.create_channel_subscription(
+            auth_id="MA_XXXX",
+            resource_type="concurrent_calls",
+            quantity=30,
+        )
+        """
+        _response = self._raw_client.create_channel_subscription(
+            auth_id, resource_type=resource_type, quantity=quantity, request_options=request_options
+        )
         return _response.data
 
 
@@ -124,8 +231,9 @@ class AsyncAccountClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
 
 
@@ -164,8 +272,9 @@ class AsyncAccountClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
 
 
@@ -178,4 +287,119 @@ class AsyncAccountClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.get_concurrency(auth_id, request_options=request_options)
+        return _response.data
+
+    async def preview_channel_pricing(
+        self,
+        auth_id: str,
+        *,
+        resource_type: CapacityResourceType,
+        quantity: int,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ChannelPricingPreview:
+        """
+        Calculate the monthly price for CPS or concurrent-call capacity without purchasing capacity or debiting the account.
+
+        Parameters
+        ----------
+        auth_id : str
+            Target account Auth ID. An account can preview only its own pricing; administrators may act for another account.
+
+        resource_type : CapacityResourceType
+            Capacity type to price.
+
+        quantity : int
+            Capacity quantity to price. Pricing-tier block and quantity rules also apply.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ChannelPricingPreview
+            Calculated monthly capacity price. No balance is debited.
+
+        Examples
+        --------
+        import asyncio
+
+        from vobiz import AsyncVobiz
+
+        client = AsyncVobiz(
+            auth_id="YOUR_AUTH_ID",
+            auth_token="YOUR_AUTH_TOKEN",
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.account.preview_channel_pricing(
+                auth_id="MA_XXXX",
+                resource_type="concurrent_calls",
+                quantity=30,
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.preview_channel_pricing(
+            auth_id, resource_type=resource_type, quantity=quantity, request_options=request_options
+        )
+        return _response.data
+
+    async def create_channel_subscription(
+        self,
+        auth_id: str,
+        *,
+        resource_type: CapacityResourceType,
+        quantity: int,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ChannelSubscription:
+        """
+        Purchase recurring CPS or concurrent-call capacity. A successful request immediately debits the first monthly charge and activates a subscription that renews every 30 days.
+
+        Parameters
+        ----------
+        auth_id : str
+            Target account Auth ID. An account can purchase only for itself; administrators may act for another account.
+
+        resource_type : CapacityResourceType
+
+        quantity : int
+            Capacity quantity to purchase. Pricing-tier block and quantity rules also apply.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ChannelSubscription
+            Capacity subscription purchased and activated.
+
+        Examples
+        --------
+        import asyncio
+
+        from vobiz import AsyncVobiz
+
+        client = AsyncVobiz(
+            auth_id="YOUR_AUTH_ID",
+            auth_token="YOUR_AUTH_TOKEN",
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.account.create_channel_subscription(
+                auth_id="MA_XXXX",
+                resource_type="concurrent_calls",
+                quantity=30,
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.create_channel_subscription(
+            auth_id, resource_type=resource_type, quantity=quantity, request_options=request_options
+        )
         return _response.data

@@ -20,6 +20,9 @@ if typing.TYPE_CHECKING:
     from .call import Call
     from .call_record import CallRecord
     from .call_record_call_status import CallRecordCallStatus
+    from .capacity_resource_type import CapacityResourceType
+    from .channel_pricing_preview import ChannelPricingPreview
+    from .channel_subscription import ChannelSubscription
     from .endpoint import Endpoint
     from .endpoint_application import EndpointApplication
     from .endpoint_sip_registered import EndpointSipRegistered
@@ -73,6 +76,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "Call": ".call",
     "CallRecord": ".call_record",
     "CallRecordCallStatus": ".call_record_call_status",
+    "CapacityResourceType": ".capacity_resource_type",
+    "ChannelPricingPreview": ".channel_pricing_preview",
+    "ChannelSubscription": ".channel_subscription",
     "Endpoint": ".endpoint",
     "EndpointApplication": ".endpoint_application",
     "EndpointSipRegistered": ".endpoint_sip_registered",
@@ -150,6 +156,9 @@ __all__ = [
     "Call",
     "CallRecord",
     "CallRecordCallStatus",
+    "CapacityResourceType",
+    "ChannelPricingPreview",
+    "ChannelSubscription",
     "Endpoint",
     "EndpointApplication",
     "EndpointSipRegistered",

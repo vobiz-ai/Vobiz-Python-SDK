@@ -38,16 +38,15 @@ Instantiate and use the client with the following:
 from vobiz import Vobiz
 
 client = Vobiz(
-    api_key="<value>",
+    token="<token>",
+    auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
 )
 
-client.calls.make_call(
-    auth_id="MA_XXXXXX",
-    from_="14155551234",
-    to="+919876543210",
-    answer_url="https://example.com/answer",
-    answer_method="POST",
+client.account.create_channel_subscription(
+    auth_id="MA_XXXX",
+    resource_type="concurrent_calls",
+    quantity=30,
 )
 ```
 
@@ -74,18 +73,17 @@ import asyncio
 from vobiz import AsyncVobiz
 
 client = AsyncVobiz(
-    api_key="<value>",
+    token="<token>",
+    auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
 )
 
 
 async def main() -> None:
-    await client.calls.make_call(
-        auth_id="MA_XXXXXX",
-        from_="14155551234",
-        to="+919876543210",
-        answer_url="https://example.com/answer",
-        answer_method="POST",
+    await client.account.create_channel_subscription(
+        auth_id="MA_XXXX",
+        resource_type="concurrent_calls",
+        quantity=30,
     )
 
 
@@ -101,7 +99,7 @@ will be thrown.
 from vobiz.core.api_error import ApiError
 
 try:
-    client.calls.make_call(...)
+    client.account.create_channel_subscription(...)
 except ApiError as e:
     print(e.status_code)
     print(e.body)
@@ -118,7 +116,7 @@ The `.with_raw_response` property returns a "raw" client that can be used to acc
 from vobiz import Vobiz
 
 client = Vobiz(...)
-response = client.calls.with_raw_response.make_call(...)
+response = client.account.with_raw_response.create_channel_subscription(...)
 print(response.headers)  # access the response headers
 print(response.status_code)  # access the response status code
 print(response.data)  # access the underlying object
@@ -149,7 +147,7 @@ Which status codes are retried depends on the `retryStatusCodes` generator confi
 Use the `max_retries` request option to configure this behavior.
 
 ```python
-client.calls.make_call(..., request_options={
+client.account.create_channel_subscription(..., request_options={
     "max_retries": 1
 })
 ```
@@ -164,7 +162,7 @@ from vobiz import Vobiz
 client = Vobiz(..., timeout=20.0)
 
 # Override timeout for a specific method
-client.calls.make_call(..., request_options={
+client.account.create_channel_subscription(..., request_options={
     "timeout_in_seconds": 1
 })
 ```

@@ -61,8 +61,9 @@ class TrunksClient:
         from vobiz import Vobiz
 
         client = Vobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
         client.trunks.list_trunks(
             auth_id="MA_XXXXXX",
@@ -193,8 +194,9 @@ class TrunksClient:
         from vobiz import Vobiz
 
         client = Vobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
         client.trunks.create_trunk(
             auth_id="MA_XXXXXX",
@@ -267,8 +269,9 @@ class TrunksClient:
         from vobiz import Vobiz
 
         client = Vobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
         client.trunks.retrieve_trunk(
             auth_id="MA_XXXXXX",
@@ -373,8 +376,9 @@ class TrunksClient:
         from vobiz import Vobiz
 
         client = Vobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
         client.trunks.update_trunk(
             auth_id="MA_XXXXXX",
@@ -435,8 +439,9 @@ class TrunksClient:
         from vobiz import Vobiz
 
         client = Vobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
         client.trunks.delete_trunk(
             auth_id="MA_XXXXXX",
@@ -488,8 +493,9 @@ class AsyncTrunksClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
 
 
@@ -628,8 +634,9 @@ class AsyncTrunksClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
 
 
@@ -710,8 +717,9 @@ class AsyncTrunksClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
 
 
@@ -824,8 +832,9 @@ class AsyncTrunksClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
 
 
@@ -894,8 +903,9 @@ class AsyncTrunksClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
+            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            api_key="YOUR_API_KEY",
+            token="YOUR_TOKEN",
         )
 
 

@@ -56,8 +56,9 @@ class Vobiz:
 
 
 
+    auth_id : str
     auth_token : str
-    api_key : str
+    token : typing.Union[str, typing.Callable[[], str]]
     headers : typing.Optional[typing.Dict[str, str]]
         Additional headers to send with every request.
 
@@ -81,8 +82,9 @@ class Vobiz:
     from vobiz import Vobiz
 
     client = Vobiz(
+        auth_id="YOUR_AUTH_ID",
         auth_token="YOUR_AUTH_TOKEN",
-        api_key="YOUR_API_KEY",
+        token="YOUR_TOKEN",
     )
     """
 
@@ -91,8 +93,9 @@ class Vobiz:
         *,
         base_url: typing.Optional[str] = None,
         environment: VobizEnvironment = VobizEnvironment.PRODUCTION,
+        auth_id: str,
         auth_token: str,
-        api_key: str,
+        token: typing.Union[str, typing.Callable[[], str]],
         headers: typing.Optional[typing.Dict[str, str]] = None,
         timeout: typing.Optional[float] = None,
         max_retries: typing.Optional[int] = None,
@@ -106,8 +109,9 @@ class Vobiz:
         _defaulted_max_retries = max_retries if max_retries is not None else 2
         self._client_wrapper = SyncClientWrapper(
             base_url=_get_base_url(base_url=base_url, environment=environment),
+            auth_id=auth_id,
             auth_token=auth_token,
-            api_key=api_key,
+            token=token,
             headers=headers,
             httpx_client=httpx_client
             if httpx_client is not None
@@ -390,10 +394,14 @@ class AsyncVobiz:
 
 
 
+    auth_id : str
     auth_token : str
-    api_key : str
+    token : typing.Union[str, typing.Callable[[], str]]
     headers : typing.Optional[typing.Dict[str, str]]
         Additional headers to send with every request.
+
+    async_token : typing.Optional[typing.Callable[[], typing.Awaitable[str]]]
+        An async callable that returns a bearer token. Use this when token acquisition involves async I/O (e.g., refreshing tokens via an async HTTP client). When provided, this is used instead of the synchronous token for async requests.
 
     timeout : typing.Optional[float]
         The timeout to be used, in seconds, for requests. By default the timeout is 60 seconds, unless a custom httpx client is used, in which case this default is not enforced.
@@ -415,8 +423,9 @@ class AsyncVobiz:
     from vobiz import AsyncVobiz
 
     client = AsyncVobiz(
+        auth_id="YOUR_AUTH_ID",
         auth_token="YOUR_AUTH_TOKEN",
-        api_key="YOUR_API_KEY",
+        token="YOUR_TOKEN",
     )
     """
 
@@ -425,9 +434,11 @@ class AsyncVobiz:
         *,
         base_url: typing.Optional[str] = None,
         environment: VobizEnvironment = VobizEnvironment.PRODUCTION,
+        auth_id: str,
         auth_token: str,
-        api_key: str,
+        token: typing.Union[str, typing.Callable[[], str]],
         headers: typing.Optional[typing.Dict[str, str]] = None,
+        async_token: typing.Optional[typing.Callable[[], typing.Awaitable[str]]] = None,
         timeout: typing.Optional[float] = None,
         max_retries: typing.Optional[int] = None,
         follow_redirects: typing.Optional[bool] = True,
@@ -440,9 +451,11 @@ class AsyncVobiz:
         _defaulted_max_retries = max_retries if max_retries is not None else 2
         self._client_wrapper = AsyncClientWrapper(
             base_url=_get_base_url(base_url=base_url, environment=environment),
+            auth_id=auth_id,
             auth_token=auth_token,
-            api_key=api_key,
+            token=token,
             headers=headers,
+            async_token=async_token,
             httpx_client=httpx_client
             if httpx_client is not None
             else _make_default_async_client(timeout=_defaulted_timeout, follow_redirects=follow_redirects),
