@@ -58,8 +58,7 @@ class CredentialsClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
         client.credentials.create_credential(
             auth_id="MA_XXXXXX",
@@ -98,8 +97,7 @@ class CredentialsClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
         client.credentials.list_credentials(
             auth_id="MA_XXXXXX",
@@ -143,8 +141,7 @@ class CredentialsClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
         client.credentials.update_credential(
             auth_id="MA_XXXXXX",
@@ -185,8 +182,7 @@ class CredentialsClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
         client.credentials.delete_credential(
             auth_id="MA_XXXXXX",
@@ -244,8 +240,7 @@ class AsyncCredentialsClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
 
 
@@ -292,8 +287,7 @@ class AsyncCredentialsClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
 
 
@@ -345,8 +339,7 @@ class AsyncCredentialsClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
 
 
@@ -395,8 +388,7 @@ class AsyncCredentialsClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
 
 

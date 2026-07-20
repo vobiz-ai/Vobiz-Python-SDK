@@ -53,8 +53,7 @@ class BalanceClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
         client.balance.get_balance(
             auth_id="MA_XXXXXX",
@@ -99,8 +98,7 @@ class BalanceClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
         client.balance.list_transactions(
             auth_id="MA_XXXXXX",
@@ -158,8 +156,7 @@ class AsyncBalanceClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
 
 
@@ -212,8 +209,7 @@ class AsyncBalanceClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
 
 

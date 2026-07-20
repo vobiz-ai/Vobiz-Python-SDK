@@ -50,8 +50,7 @@ class ConferencesClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
         client.conferences.list_conferences(
             auth_id="MA_XXXXXX",
@@ -83,8 +82,7 @@ class ConferencesClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
         client.conferences.delete_all_conferences(
             auth_id="MA_XXXXXX",
@@ -121,8 +119,7 @@ class ConferencesClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
         client.conferences.get_conference(
             auth_id="MA_XXXXXX",
@@ -159,8 +156,7 @@ class ConferencesClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
         client.conferences.delete_conference(
             auth_id="MA_XXXXXX",
@@ -214,8 +210,7 @@ class AsyncConferencesClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
 
 
@@ -257,8 +252,7 @@ class AsyncConferencesClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
 
 
@@ -303,8 +297,7 @@ class AsyncConferencesClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
 
 
@@ -349,8 +342,7 @@ class AsyncConferencesClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
 
 

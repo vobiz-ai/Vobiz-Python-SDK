@@ -64,8 +64,7 @@ class ConferenceRecordingClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
         client.conference_recording.start_conference_recording(
             auth_id="MA_XXXXXX",
@@ -108,8 +107,7 @@ class ConferenceRecordingClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
         client.conference_recording.stop_conference_recording(
             auth_id="MA_XXXXXX",
@@ -177,8 +175,7 @@ class AsyncConferenceRecordingClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
 
 
@@ -229,8 +226,7 @@ class AsyncConferenceRecordingClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
 
 

@@ -60,8 +60,7 @@ class ConferenceClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
         client.conference.kick_member(
             auth_id="MA_XXXXXX",
@@ -106,8 +105,7 @@ class ConferenceClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
         client.conference.hangup_member(
             auth_id="MA_XXXXXX",
@@ -157,8 +155,7 @@ class ConferenceClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
         client.conference.play_audio_member(
             auth_id="MA_XXXXXX",
@@ -206,8 +203,7 @@ class ConferenceClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
         client.conference.stop_audio_member(
             auth_id="MA_XXXXXX",
@@ -255,8 +251,7 @@ class ConferenceClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
         client.conference.deaf_member(
             auth_id="MA_XXXXXX",
@@ -301,8 +296,7 @@ class ConferenceClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
         client.conference.undeaf_member(
             auth_id="MA_XXXXXX",
@@ -366,8 +360,7 @@ class AsyncConferenceClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
 
 
@@ -422,8 +415,7 @@ class AsyncConferenceClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
 
 
@@ -483,8 +475,7 @@ class AsyncConferenceClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
 
 
@@ -540,8 +531,7 @@ class AsyncConferenceClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
 
 
@@ -597,8 +587,7 @@ class AsyncConferenceClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
 
 
@@ -653,8 +642,7 @@ class AsyncConferenceClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            username="YOUR_USERNAME",
-            password="YOUR_PASSWORD",
+            token="YOUR_TOKEN",
         )
 
 

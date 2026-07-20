@@ -31,8 +31,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -97,8 +96,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -173,8 +171,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -267,8 +264,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -362,8 +358,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -447,8 +442,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -540,8 +534,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -625,8 +618,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -710,8 +702,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -804,8 +795,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -889,8 +879,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -985,8 +974,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -1100,8 +1088,7 @@ from vobiz.environment import VobizEnvironment
 import datetime
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -1308,8 +1295,7 @@ from vobiz.environment import VobizEnvironment
 import datetime
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -1515,8 +1501,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -1769,8 +1754,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -1855,8 +1839,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -1939,8 +1922,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -2071,8 +2053,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -2161,8 +2142,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -2271,8 +2251,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -2360,8 +2339,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -2438,8 +2416,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -2523,8 +2500,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -2609,8 +2585,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -2694,8 +2669,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -2791,8 +2765,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -2884,8 +2857,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -2985,8 +2957,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -3128,8 +3099,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -3213,8 +3183,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -3298,8 +3267,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -3383,8 +3351,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -3477,8 +3444,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -3562,8 +3528,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -3650,8 +3615,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -3745,8 +3709,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -3849,8 +3812,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -3945,8 +3907,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -4032,8 +3993,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -4152,8 +4112,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -4249,8 +4208,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -4346,8 +4304,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -4434,8 +4391,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -4536,8 +4492,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -4640,8 +4595,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -4738,8 +4692,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -4814,8 +4767,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -5098,8 +5050,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -5183,8 +5134,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -5436,8 +5386,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -5522,8 +5471,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -5616,8 +5564,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -5710,8 +5657,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -5813,8 +5759,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -5907,8 +5852,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -6001,8 +5945,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -6096,8 +6039,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -6223,8 +6165,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -6309,8 +6250,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -6420,8 +6360,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -6506,8 +6445,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -6626,8 +6564,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -6712,8 +6649,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -6816,8 +6752,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -6901,8 +6836,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -7021,8 +6955,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -7115,8 +7048,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -7210,8 +7142,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -7286,8 +7217,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -7362,8 +7292,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -7447,8 +7376,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -7533,8 +7461,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -7627,8 +7554,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -7722,8 +7648,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -7823,8 +7748,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -7909,8 +7833,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -8001,8 +7924,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -8086,8 +8008,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -8172,8 +8093,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -8266,8 +8186,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -8342,8 +8261,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -8436,8 +8354,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -8522,8 +8439,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -8616,8 +8532,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -8692,8 +8607,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -8795,8 +8709,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -8881,8 +8794,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -8984,8 +8896,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -9060,8 +8971,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -9163,8 +9073,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -9249,8 +9158,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -9343,8 +9251,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -9446,8 +9353,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -9532,8 +9438,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -9637,8 +9542,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -9723,8 +9627,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -9881,8 +9784,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -9995,8 +9897,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -10083,8 +9984,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -10188,8 +10088,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -10274,8 +10173,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -10341,8 +10239,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -10407,8 +10304,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -10499,8 +10395,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -10621,8 +10516,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -10725,8 +10619,7 @@ from vobiz.environment import VobizEnvironment
 import datetime
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -10844,8 +10737,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -10977,8 +10869,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -11079,8 +10970,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -11179,8 +11069,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -11318,8 +11207,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -11394,8 +11282,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
@@ -11478,8 +11365,7 @@ from vobiz import Vobiz
 from vobiz.environment import VobizEnvironment
 
 client = Vobiz(
-    username="<username>",
-    password="<password>",
+    token="<token>",
     auth_id="<X-Auth-ID>",
     auth_token="<X-Auth-Token>",
     environment=VobizEnvironment.PRODUCTION,
