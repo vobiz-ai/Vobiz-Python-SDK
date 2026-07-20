@@ -62,7 +62,8 @@ class PartnerApiClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
         client.partner_api.get_partner_profile()
         """
@@ -93,7 +94,8 @@ class PartnerApiClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
         client.partner_api.get_partner_dashboard()
         """
@@ -135,7 +137,8 @@ class PartnerApiClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
         client.partner_api.list_customer_accounts()
         """
@@ -195,7 +198,8 @@ class PartnerApiClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
         client.partner_api.create_customer_account(
             name="John Doe",
@@ -258,7 +262,8 @@ class PartnerApiClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
         client.partner_api.partner_transfer_balance(
             customer_auth_id="MA_ZKITB8Z2",
@@ -317,7 +322,8 @@ class PartnerApiClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
         client.partner_api.list_customer_transactions(
             customer_auth_id="customer_auth_id",
@@ -390,7 +396,8 @@ class PartnerApiClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
         client.partner_api.list_customer_cdrs(
             customer_auth_id="customer_auth_id",
@@ -448,7 +455,8 @@ class PartnerApiClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
         client.partner_api.list_customer_numbers(
             customer_auth_id="customer_auth_id",
@@ -498,7 +506,8 @@ class PartnerApiClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
         client.partner_api.list_kyc_sessions()
         """
@@ -568,7 +577,8 @@ class PartnerApiClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
         client.partner_api.create_kyc_session(
             account_auth_id="MA_ZKITB8Z2",
@@ -610,7 +620,8 @@ class PartnerApiClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
         client.partner_api.get_kyc_session(
             session_id="session_id",
@@ -650,7 +661,8 @@ class PartnerApiClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
         client.partner_api.revoke_kyc_session(
             session_id="session_id",
@@ -681,7 +693,8 @@ class PartnerApiClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
         client.partner_api.resend_kyc_session(
             session_id="session_id",
@@ -731,7 +744,8 @@ class AsyncPartnerApiClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
 
 
@@ -770,7 +784,8 @@ class AsyncPartnerApiClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
 
 
@@ -820,7 +835,8 @@ class AsyncPartnerApiClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
 
 
@@ -888,7 +904,8 @@ class AsyncPartnerApiClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
 
 
@@ -959,7 +976,8 @@ class AsyncPartnerApiClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
 
 
@@ -1025,7 +1043,8 @@ class AsyncPartnerApiClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
 
 
@@ -1106,7 +1125,8 @@ class AsyncPartnerApiClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
 
 
@@ -1172,7 +1192,8 @@ class AsyncPartnerApiClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
 
 
@@ -1230,7 +1251,8 @@ class AsyncPartnerApiClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
 
 
@@ -1308,7 +1330,8 @@ class AsyncPartnerApiClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
 
 
@@ -1360,7 +1383,8 @@ class AsyncPartnerApiClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
 
 
@@ -1408,7 +1432,8 @@ class AsyncPartnerApiClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
 
 
@@ -1451,7 +1476,8 @@ class AsyncPartnerApiClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
 
 

@@ -5,6 +5,7 @@ import typing
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawPhoneNumbersClient, RawPhoneNumbersClient
+from .types.cancel_number_release_response import CancelNumberReleaseResponse
 from .types.get_number_health_request_granularity import GetNumberHealthRequestGranularity
 from .types.get_number_health_response import GetNumberHealthResponse
 from .types.list_inventory_numbers_response import ListInventoryNumbersResponse
@@ -70,7 +71,8 @@ class PhoneNumbersClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
         client.phone_numbers.list_numbers(
             auth_id="MA_XXXXXX",
@@ -83,10 +85,18 @@ class PhoneNumbersClient:
         return _response.data
 
     def unrent_number(
-        self, auth_id: str, e164: str, *, request_options: typing.Optional[RequestOptions] = None
+        self,
+        auth_id: str,
+        e164: str,
+        *,
+        immediate: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> None:
         """
-        Release a phone number from your account.
+        Release a phone number from your account. By default, the number enters
+        `pending_release` for a 24-hour cooldown. You can cancel the release during
+        that window. Set `immediate=true` to skip the cooldown; an immediate release
+        cannot be cancelled.
 
         Parameters
         ----------
@@ -95,6 +105,9 @@ class PhoneNumbersClient:
 
         e164 : str
             Phone number in E.164 format (without the +)
+
+        immediate : typing.Optional[bool]
+            Skip the 24-hour cooldown and release the number immediately.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -110,14 +123,58 @@ class PhoneNumbersClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
         client.phone_numbers.unrent_number(
             auth_id="MA_XXXXXX",
             e164="919876543210",
         )
         """
-        _response = self._raw_client.unrent_number(auth_id, e164, request_options=request_options)
+        _response = self._raw_client.unrent_number(auth_id, e164, immediate=immediate, request_options=request_options)
+        return _response.data
+
+    def cancel_number_release(
+        self, account_id: str, e164: str, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> CancelNumberReleaseResponse:
+        """
+        Cancel a pending number release during the 24-hour cooldown. The number is
+        restored to `active`, the cooldown timer is cleared, and the release fee is
+        refunded. Any trunk or voice application detached by the release is not
+        re-attached automatically.
+
+        Parameters
+        ----------
+        account_id : str
+            Your account Auth ID.
+
+        e164 : str
+            The URL-encoded phone number in E.164 format. Encode `+` as `%2B`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        CancelNumberReleaseResponse
+            Release cancelled and number restored to active
+
+        Examples
+        --------
+        from vobiz import Vobiz
+
+        client = Vobiz(
+            auth_id="YOUR_AUTH_ID",
+            auth_token="YOUR_AUTH_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
+        )
+        client.phone_numbers.cancel_number_release(
+            account_id="MA_XXXXXX",
+            e164="%2B919876543210",
+        )
+        """
+        _response = self._raw_client.cancel_number_release(account_id, e164, request_options=request_options)
         return _response.data
 
     def list_inventory_numbers(
@@ -169,7 +226,8 @@ class PhoneNumbersClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
         client.phone_numbers.list_inventory_numbers(
             auth_id="MA_XXXXXX",
@@ -227,7 +285,8 @@ class PhoneNumbersClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
         client.phone_numbers.purchase_from_inventory(
             auth_id="MA_XXXXXX",
@@ -279,7 +338,8 @@ class PhoneNumbersClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
         client.phone_numbers.assign_number_to_trunk(
             auth_id="MA_XXXXXX",
@@ -323,7 +383,8 @@ class PhoneNumbersClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
         client.phone_numbers.unassign_number_from_trunk(
             auth_id="MA_XXXXXX",
@@ -377,7 +438,8 @@ class PhoneNumbersClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
         client.phone_numbers.get_number_health(
             auth_id="MA_XXXXXX",
@@ -420,7 +482,8 @@ class PhoneNumbersClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
         client.phone_numbers.assign_did_to_subaccount(
             auth_id="MA_XXXXXX",
@@ -480,7 +543,8 @@ class PhoneNumbersClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
         client.phone_numbers.unassign_did_from_subaccount(
             auth_id="MA_XXXXXX",
@@ -552,7 +616,8 @@ class AsyncPhoneNumbersClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
 
 
@@ -571,10 +636,18 @@ class AsyncPhoneNumbersClient:
         return _response.data
 
     async def unrent_number(
-        self, auth_id: str, e164: str, *, request_options: typing.Optional[RequestOptions] = None
+        self,
+        auth_id: str,
+        e164: str,
+        *,
+        immediate: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> None:
         """
-        Release a phone number from your account.
+        Release a phone number from your account. By default, the number enters
+        `pending_release` for a 24-hour cooldown. You can cancel the release during
+        that window. Set `immediate=true` to skip the cooldown; an immediate release
+        cannot be cancelled.
 
         Parameters
         ----------
@@ -583,6 +656,9 @@ class AsyncPhoneNumbersClient:
 
         e164 : str
             Phone number in E.164 format (without the +)
+
+        immediate : typing.Optional[bool]
+            Skip the 24-hour cooldown and release the number immediately.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -600,7 +676,8 @@ class AsyncPhoneNumbersClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
 
 
@@ -613,7 +690,60 @@ class AsyncPhoneNumbersClient:
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.unrent_number(auth_id, e164, request_options=request_options)
+        _response = await self._raw_client.unrent_number(
+            auth_id, e164, immediate=immediate, request_options=request_options
+        )
+        return _response.data
+
+    async def cancel_number_release(
+        self, account_id: str, e164: str, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> CancelNumberReleaseResponse:
+        """
+        Cancel a pending number release during the 24-hour cooldown. The number is
+        restored to `active`, the cooldown timer is cleared, and the release fee is
+        refunded. Any trunk or voice application detached by the release is not
+        re-attached automatically.
+
+        Parameters
+        ----------
+        account_id : str
+            Your account Auth ID.
+
+        e164 : str
+            The URL-encoded phone number in E.164 format. Encode `+` as `%2B`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        CancelNumberReleaseResponse
+            Release cancelled and number restored to active
+
+        Examples
+        --------
+        import asyncio
+
+        from vobiz import AsyncVobiz
+
+        client = AsyncVobiz(
+            auth_id="YOUR_AUTH_ID",
+            auth_token="YOUR_AUTH_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
+        )
+
+
+        async def main() -> None:
+            await client.phone_numbers.cancel_number_release(
+                account_id="MA_XXXXXX",
+                e164="%2B919876543210",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.cancel_number_release(account_id, e164, request_options=request_options)
         return _response.data
 
     async def list_inventory_numbers(
@@ -667,7 +797,8 @@ class AsyncPhoneNumbersClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
 
 
@@ -733,7 +864,8 @@ class AsyncPhoneNumbersClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
 
 
@@ -793,7 +925,8 @@ class AsyncPhoneNumbersClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
 
 
@@ -845,7 +978,8 @@ class AsyncPhoneNumbersClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
 
 
@@ -909,7 +1043,8 @@ class AsyncPhoneNumbersClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
 
 
@@ -960,7 +1095,8 @@ class AsyncPhoneNumbersClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
 
 
@@ -1028,7 +1164,8 @@ class AsyncPhoneNumbersClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
 
 

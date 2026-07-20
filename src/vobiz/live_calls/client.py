@@ -62,7 +62,8 @@ class LiveCallsClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
         client.live_calls.list_queued_calls(
             auth_id="MA_XXXXXX",
@@ -104,7 +105,8 @@ class LiveCallsClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
         client.live_calls.list_live_calls(
             auth_id="MA_XXXXXX",
@@ -149,7 +151,8 @@ class LiveCallsClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
         client.live_calls.get_live_call(
             auth_id="MA_XXXXXX",
@@ -187,7 +190,8 @@ class LiveCallsClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
         client.live_calls.hangup_call(
             auth_id="MA_XXXXXX",
@@ -232,7 +236,8 @@ class LiveCallsClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
         client.live_calls.get_queued_call(
             auth_id="MA_XXXXXX",
@@ -293,7 +298,8 @@ class AsyncLiveCallsClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
 
 
@@ -343,7 +349,8 @@ class AsyncLiveCallsClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
 
 
@@ -396,7 +403,8 @@ class AsyncLiveCallsClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
 
 
@@ -444,7 +452,8 @@ class AsyncLiveCallsClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
 
 
@@ -497,7 +506,8 @@ class AsyncLiveCallsClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
 
 

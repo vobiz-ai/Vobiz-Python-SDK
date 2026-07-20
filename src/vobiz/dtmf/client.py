@@ -63,7 +63,8 @@ class DtmfClient:
         client = Vobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
         client.dtmf.send_dtmf(
             auth_id="MA_XXXXXX",
@@ -132,7 +133,8 @@ class AsyncDtmfClient:
         client = AsyncVobiz(
             auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            username="YOUR_USERNAME",
+            password="YOUR_PASSWORD",
         )
 
 

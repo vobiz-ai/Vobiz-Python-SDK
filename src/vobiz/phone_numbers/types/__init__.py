@@ -6,6 +6,9 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
+    from .cancel_number_release_response import CancelNumberReleaseResponse
+    from .cancel_number_release_response_refund_status import CancelNumberReleaseResponseRefundStatus
+    from .cancel_number_release_response_status import CancelNumberReleaseResponseStatus
     from .get_number_health_request_granularity import GetNumberHealthRequestGranularity
     from .get_number_health_response import GetNumberHealthResponse
     from .get_number_health_response_snapshots_item import GetNumberHealthResponseSnapshotsItem
@@ -19,6 +22,9 @@ if typing.TYPE_CHECKING:
     from .list_numbers_response_items_item import ListNumbersResponseItemsItem
     from .list_numbers_response_items_item_capabilities import ListNumbersResponseItemsItemCapabilities
 _dynamic_imports: typing.Dict[str, str] = {
+    "CancelNumberReleaseResponse": ".cancel_number_release_response",
+    "CancelNumberReleaseResponseRefundStatus": ".cancel_number_release_response_refund_status",
+    "CancelNumberReleaseResponseStatus": ".cancel_number_release_response_status",
     "GetNumberHealthRequestGranularity": ".get_number_health_request_granularity",
     "GetNumberHealthResponse": ".get_number_health_response",
     "GetNumberHealthResponseSnapshotsItem": ".get_number_health_response_snapshots_item",
@@ -54,6 +60,9 @@ def __dir__():
 
 
 __all__ = [
+    "CancelNumberReleaseResponse",
+    "CancelNumberReleaseResponseRefundStatus",
+    "CancelNumberReleaseResponseStatus",
     "GetNumberHealthRequestGranularity",
     "GetNumberHealthResponse",
     "GetNumberHealthResponseSnapshotsItem",

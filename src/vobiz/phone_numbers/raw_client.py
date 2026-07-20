@@ -15,7 +15,9 @@ from ..errors.conflict_error import ConflictError
 from ..errors.forbidden_error import ForbiddenError
 from ..errors.internal_server_error import InternalServerError
 from ..errors.not_found_error import NotFoundError
+from ..errors.unauthorized_error import UnauthorizedError
 from ..types.error import Error
+from .types.cancel_number_release_response import CancelNumberReleaseResponse
 from .types.get_number_health_request_granularity import GetNumberHealthRequestGranularity
 from .types.get_number_health_response import GetNumberHealthResponse
 from .types.list_inventory_numbers_response import ListInventoryNumbersResponse
@@ -94,10 +96,18 @@ class RawPhoneNumbersClient:
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
     def unrent_number(
-        self, auth_id: str, e164: str, *, request_options: typing.Optional[RequestOptions] = None
+        self,
+        auth_id: str,
+        e164: str,
+        *,
+        immediate: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[None]:
         """
-        Release a phone number from your account.
+        Release a phone number from your account. By default, the number enters
+        `pending_release` for a 24-hour cooldown. You can cancel the release during
+        that window. Set `immediate=true` to skip the cooldown; an immediate release
+        cannot be cancelled.
 
         Parameters
         ----------
@@ -106,6 +116,9 @@ class RawPhoneNumbersClient:
 
         e164 : str
             Phone number in E.164 format (without the +)
+
+        immediate : typing.Optional[bool]
+            Skip the 24-hour cooldown and release the number immediately.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -117,11 +130,107 @@ class RawPhoneNumbersClient:
         _response = self._client_wrapper.httpx_client.request(
             f"api/v1/Account/{encode_path_param(auth_id)}/numbers/{encode_path_param(e164)}",
             method="DELETE",
+            params={
+                "immediate": immediate,
+            },
             request_options=request_options,
         )
         try:
             if 200 <= _response.status_code < 300:
                 return HttpResponse(response=_response, data=None)
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def cancel_number_release(
+        self, account_id: str, e164: str, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[CancelNumberReleaseResponse]:
+        """
+        Cancel a pending number release during the 24-hour cooldown. The number is
+        restored to `active`, the cooldown timer is cleared, and the release fee is
+        refunded. Any trunk or voice application detached by the release is not
+        re-attached automatically.
+
+        Parameters
+        ----------
+        account_id : str
+            Your account Auth ID.
+
+        e164 : str
+            The URL-encoded phone number in E.164 format. Encode `+` as `%2B`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[CancelNumberReleaseResponse]
+            Release cancelled and number restored to active
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            f"api/v1/account/{encode_path_param(account_id)}/numbers/{encode_path_param(e164)}/cancel-release",
+            method="POST",
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    CancelNumberReleaseResponse,
+                    parse_obj_as(
+                        type_=CancelNumberReleaseResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
@@ -718,10 +827,18 @@ class AsyncRawPhoneNumbersClient:
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
     async def unrent_number(
-        self, auth_id: str, e164: str, *, request_options: typing.Optional[RequestOptions] = None
+        self,
+        auth_id: str,
+        e164: str,
+        *,
+        immediate: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[None]:
         """
-        Release a phone number from your account.
+        Release a phone number from your account. By default, the number enters
+        `pending_release` for a 24-hour cooldown. You can cancel the release during
+        that window. Set `immediate=true` to skip the cooldown; an immediate release
+        cannot be cancelled.
 
         Parameters
         ----------
@@ -730,6 +847,9 @@ class AsyncRawPhoneNumbersClient:
 
         e164 : str
             Phone number in E.164 format (without the +)
+
+        immediate : typing.Optional[bool]
+            Skip the 24-hour cooldown and release the number immediately.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -741,11 +861,107 @@ class AsyncRawPhoneNumbersClient:
         _response = await self._client_wrapper.httpx_client.request(
             f"api/v1/Account/{encode_path_param(auth_id)}/numbers/{encode_path_param(e164)}",
             method="DELETE",
+            params={
+                "immediate": immediate,
+            },
             request_options=request_options,
         )
         try:
             if 200 <= _response.status_code < 300:
                 return AsyncHttpResponse(response=_response, data=None)
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def cancel_number_release(
+        self, account_id: str, e164: str, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[CancelNumberReleaseResponse]:
+        """
+        Cancel a pending number release during the 24-hour cooldown. The number is
+        restored to `active`, the cooldown timer is cleared, and the release fee is
+        refunded. Any trunk or voice application detached by the release is not
+        re-attached automatically.
+
+        Parameters
+        ----------
+        account_id : str
+            Your account Auth ID.
+
+        e164 : str
+            The URL-encoded phone number in E.164 format. Encode `+` as `%2B`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[CancelNumberReleaseResponse]
+            Release cancelled and number restored to active
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            f"api/v1/account/{encode_path_param(account_id)}/numbers/{encode_path_param(e164)}/cancel-release",
+            method="POST",
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    CancelNumberReleaseResponse,
+                    parse_obj_as(
+                        type_=CancelNumberReleaseResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
