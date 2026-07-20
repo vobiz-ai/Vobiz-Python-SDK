@@ -3778,7 +3778,7 @@ client.phone_numbers.list_numbers(
 </dl>
 </details>
 
-<details><summary><code>client.phone_numbers.<a href="src/vobiz/phone_numbers/client.py">unrent_number</a>(...)</code></summary>
+<details><summary><code>client.phone_numbers.<a href="src/vobiz/phone_numbers/client.py">unrent_number</a>(...) -> UnrentNumberResponse</code></summary>
 <dl>
 <dd>
 
@@ -3820,7 +3820,7 @@ client = Vobiz(
 
 client.phone_numbers.unrent_number(
     auth_id="MA_XXXXXX",
-    e164="919876543210",
+    e164="%2B919876543210",
 )
 
 ```
@@ -3845,7 +3845,7 @@ client.phone_numbers.unrent_number(
 <dl>
 <dd>
 
-**e164:** `str` — Phone number in E.164 format (without the +)
+**e164:** `str` — The URL-encoded phone number in E.164 format. Encode `+` as `%2B`.
     
 </dd>
 </dl>
@@ -3887,8 +3887,8 @@ client.phone_numbers.unrent_number(
 
 Cancel a pending number release during the 24-hour cooldown. The number is
 restored to `active`, the cooldown timer is cleared, and the release fee is
-refunded. Any trunk or voice application detached by the release is not
-re-attached automatically.
+refunded in full to the account balance. Any trunk or voice application
+detached by the release is not re-attached automatically.
 </dd>
 </dl>
 </dd>

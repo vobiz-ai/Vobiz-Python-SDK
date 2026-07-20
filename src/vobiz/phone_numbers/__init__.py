@@ -20,6 +20,7 @@ if typing.TYPE_CHECKING:
         ListNumbersResponse,
         ListNumbersResponseItemsItem,
         ListNumbersResponseItemsItemCapabilities,
+        UnrentNumberResponse,
     )
 _dynamic_imports: typing.Dict[str, str] = {
     "CancelNumberReleaseResponse": ".types",
@@ -35,6 +36,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ListNumbersResponse": ".types",
     "ListNumbersResponseItemsItem": ".types",
     "ListNumbersResponseItemsItemCapabilities": ".types",
+    "UnrentNumberResponse": ".types",
 }
 
 
@@ -73,4 +75,5 @@ __all__ = [
     "ListNumbersResponse",
     "ListNumbersResponseItemsItem",
     "ListNumbersResponseItemsItemCapabilities",
+    "UnrentNumberResponse",
 ]

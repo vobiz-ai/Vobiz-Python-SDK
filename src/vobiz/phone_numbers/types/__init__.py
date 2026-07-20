@@ -21,6 +21,7 @@ if typing.TYPE_CHECKING:
     from .list_numbers_response import ListNumbersResponse
     from .list_numbers_response_items_item import ListNumbersResponseItemsItem
     from .list_numbers_response_items_item_capabilities import ListNumbersResponseItemsItemCapabilities
+    from .unrent_number_response import UnrentNumberResponse
 _dynamic_imports: typing.Dict[str, str] = {
     "CancelNumberReleaseResponse": ".cancel_number_release_response",
     "CancelNumberReleaseResponseRefundStatus": ".cancel_number_release_response_refund_status",
@@ -35,6 +36,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ListNumbersResponse": ".list_numbers_response",
     "ListNumbersResponseItemsItem": ".list_numbers_response_items_item",
     "ListNumbersResponseItemsItemCapabilities": ".list_numbers_response_items_item_capabilities",
+    "UnrentNumberResponse": ".unrent_number_response",
 }
 
 
@@ -73,4 +75,5 @@ __all__ = [
     "ListNumbersResponse",
     "ListNumbersResponseItemsItem",
     "ListNumbersResponseItemsItemCapabilities",
+    "UnrentNumberResponse",
 ]

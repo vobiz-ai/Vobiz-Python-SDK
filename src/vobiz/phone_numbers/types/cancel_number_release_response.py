@@ -11,7 +11,9 @@ from .cancel_number_release_response_status import CancelNumberReleaseResponseSt
 class CancelNumberReleaseResponse(UniversalBaseModel):
     message: str
     status: CancelNumberReleaseResponseStatus
-    refund_status: CancelNumberReleaseResponseRefundStatus
+    currency: typing.Optional[str] = None
+    refund_amount: typing.Optional[float] = None
+    refund_status: typing.Optional[CancelNumberReleaseResponseRefundStatus] = None
     refund_error: typing.Optional[str] = pydantic.Field(default=None)
     """
     Present when the refund could not be processed.

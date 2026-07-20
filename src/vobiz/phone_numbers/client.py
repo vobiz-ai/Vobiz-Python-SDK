@@ -10,6 +10,7 @@ from .types.get_number_health_request_granularity import GetNumberHealthRequestG
 from .types.get_number_health_response import GetNumberHealthResponse
 from .types.list_inventory_numbers_response import ListInventoryNumbersResponse
 from .types.list_numbers_response import ListNumbersResponse
+from .types.unrent_number_response import UnrentNumberResponse
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
@@ -90,7 +91,7 @@ class PhoneNumbersClient:
         *,
         immediate: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> None:
+    ) -> UnrentNumberResponse:
         """
         Release a phone number from your account. By default, the number enters
         `pending_release` for a 24-hour cooldown. You can cancel the release during
@@ -103,7 +104,7 @@ class PhoneNumbersClient:
             Your account Auth ID
 
         e164 : str
-            Phone number in E.164 format (without the +)
+            The URL-encoded phone number in E.164 format. Encode `+` as `%2B`.
 
         immediate : typing.Optional[bool]
             Skip the 24-hour cooldown and release the number immediately.
@@ -113,7 +114,8 @@ class PhoneNumbersClient:
 
         Returns
         -------
-        None
+        UnrentNumberResponse
+            Release initiated
 
         Examples
         --------
@@ -126,7 +128,7 @@ class PhoneNumbersClient:
         )
         client.phone_numbers.unrent_number(
             auth_id="MA_XXXXXX",
-            e164="919876543210",
+            e164="%2B919876543210",
         )
         """
         _response = self._raw_client.unrent_number(auth_id, e164, immediate=immediate, request_options=request_options)
@@ -138,8 +140,8 @@ class PhoneNumbersClient:
         """
         Cancel a pending number release during the 24-hour cooldown. The number is
         restored to `active`, the cooldown timer is cleared, and the release fee is
-        refunded. Any trunk or voice application detached by the release is not
-        re-attached automatically.
+        refunded in full to the account balance. Any trunk or voice application
+        detached by the release is not re-attached automatically.
 
         Parameters
         ----------
@@ -631,7 +633,7 @@ class AsyncPhoneNumbersClient:
         *,
         immediate: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> None:
+    ) -> UnrentNumberResponse:
         """
         Release a phone number from your account. By default, the number enters
         `pending_release` for a 24-hour cooldown. You can cancel the release during
@@ -644,7 +646,7 @@ class AsyncPhoneNumbersClient:
             Your account Auth ID
 
         e164 : str
-            Phone number in E.164 format (without the +)
+            The URL-encoded phone number in E.164 format. Encode `+` as `%2B`.
 
         immediate : typing.Optional[bool]
             Skip the 24-hour cooldown and release the number immediately.
@@ -654,7 +656,8 @@ class AsyncPhoneNumbersClient:
 
         Returns
         -------
-        None
+        UnrentNumberResponse
+            Release initiated
 
         Examples
         --------
@@ -672,7 +675,7 @@ class AsyncPhoneNumbersClient:
         async def main() -> None:
             await client.phone_numbers.unrent_number(
                 auth_id="MA_XXXXXX",
-                e164="919876543210",
+                e164="%2B919876543210",
             )
 
 
@@ -689,8 +692,8 @@ class AsyncPhoneNumbersClient:
         """
         Cancel a pending number release during the 24-hour cooldown. The number is
         restored to `active`, the cooldown timer is cleared, and the release fee is
-        refunded. Any trunk or voice application detached by the release is not
-        re-attached automatically.
+        refunded in full to the account balance. Any trunk or voice application
+        detached by the release is not re-attached automatically.
 
         Parameters
         ----------

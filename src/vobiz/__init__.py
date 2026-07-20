@@ -250,6 +250,7 @@ if typing.TYPE_CHECKING:
         ListNumbersResponse,
         ListNumbersResponseItemsItem,
         ListNumbersResponseItemsItemCapabilities,
+        UnrentNumberResponse,
     )
     from .play_audio import PlayAudioCallRequestLegs
     from .record_calls import StartRecordingRequestFileFormat, StartRecordingRequestRecordChannelType
@@ -518,6 +519,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "TrunkTrunkType": ".types",
     "UnauthorizedError": ".errors",
     "UnprocessableEntityError": ".errors",
+    "UnrentNumberResponse": ".phone_numbers",
     "UpdateApplicationResponse": ".applications",
     "UpdateCredentialResponse": ".credentials",
     "UpdateIpAclResponse": ".ip_access_control_list",
@@ -801,6 +803,7 @@ __all__ = [
     "TrunkTrunkType",
     "UnauthorizedError",
     "UnprocessableEntityError",
+    "UnrentNumberResponse",
     "UpdateApplicationResponse",
     "UpdateCredentialResponse",
     "UpdateIpAclResponse",

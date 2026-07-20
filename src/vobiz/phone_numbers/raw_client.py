@@ -22,6 +22,7 @@ from .types.get_number_health_request_granularity import GetNumberHealthRequestG
 from .types.get_number_health_response import GetNumberHealthResponse
 from .types.list_inventory_numbers_response import ListInventoryNumbersResponse
 from .types.list_numbers_response import ListNumbersResponse
+from .types.unrent_number_response import UnrentNumberResponse
 from pydantic import ValidationError
 
 # this is used as the default value for optional parameters
@@ -102,7 +103,7 @@ class RawPhoneNumbersClient:
         *,
         immediate: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[None]:
+    ) -> HttpResponse[UnrentNumberResponse]:
         """
         Release a phone number from your account. By default, the number enters
         `pending_release` for a 24-hour cooldown. You can cancel the release during
@@ -115,7 +116,7 @@ class RawPhoneNumbersClient:
             Your account Auth ID
 
         e164 : str
-            Phone number in E.164 format (without the +)
+            The URL-encoded phone number in E.164 format. Encode `+` as `%2B`.
 
         immediate : typing.Optional[bool]
             Skip the 24-hour cooldown and release the number immediately.
@@ -125,7 +126,8 @@ class RawPhoneNumbersClient:
 
         Returns
         -------
-        HttpResponse[None]
+        HttpResponse[UnrentNumberResponse]
+            Release initiated
         """
         _response = self._client_wrapper.httpx_client.request(
             f"api/v1/Account/{encode_path_param(auth_id)}/numbers/{encode_path_param(e164)}",
@@ -137,7 +139,14 @@ class RawPhoneNumbersClient:
         )
         try:
             if 200 <= _response.status_code < 300:
-                return HttpResponse(response=_response, data=None)
+                _data = typing.cast(
+                    UnrentNumberResponse,
+                    parse_obj_as(
+                        type_=UnrentNumberResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
@@ -153,8 +162,8 @@ class RawPhoneNumbersClient:
         """
         Cancel a pending number release during the 24-hour cooldown. The number is
         restored to `active`, the cooldown timer is cleared, and the release fee is
-        refunded. Any trunk or voice application detached by the release is not
-        re-attached automatically.
+        refunded in full to the account balance. Any trunk or voice application
+        detached by the release is not re-attached automatically.
 
         Parameters
         ----------
@@ -833,7 +842,7 @@ class AsyncRawPhoneNumbersClient:
         *,
         immediate: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[None]:
+    ) -> AsyncHttpResponse[UnrentNumberResponse]:
         """
         Release a phone number from your account. By default, the number enters
         `pending_release` for a 24-hour cooldown. You can cancel the release during
@@ -846,7 +855,7 @@ class AsyncRawPhoneNumbersClient:
             Your account Auth ID
 
         e164 : str
-            Phone number in E.164 format (without the +)
+            The URL-encoded phone number in E.164 format. Encode `+` as `%2B`.
 
         immediate : typing.Optional[bool]
             Skip the 24-hour cooldown and release the number immediately.
@@ -856,7 +865,8 @@ class AsyncRawPhoneNumbersClient:
 
         Returns
         -------
-        AsyncHttpResponse[None]
+        AsyncHttpResponse[UnrentNumberResponse]
+            Release initiated
         """
         _response = await self._client_wrapper.httpx_client.request(
             f"api/v1/Account/{encode_path_param(auth_id)}/numbers/{encode_path_param(e164)}",
@@ -868,7 +878,14 @@ class AsyncRawPhoneNumbersClient:
         )
         try:
             if 200 <= _response.status_code < 300:
-                return AsyncHttpResponse(response=_response, data=None)
+                _data = typing.cast(
+                    UnrentNumberResponse,
+                    parse_obj_as(
+                        type_=UnrentNumberResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
@@ -884,8 +901,8 @@ class AsyncRawPhoneNumbersClient:
         """
         Cancel a pending number release during the 24-hour cooldown. The number is
         restored to `active`, the cooldown timer is cleared, and the release fee is
-        refunded. Any trunk or voice application detached by the release is not
-        re-attached automatically.
+        refunded in full to the account balance. Any trunk or voice application
+        detached by the release is not re-attached automatically.
 
         Parameters
         ----------
