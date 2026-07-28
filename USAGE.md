@@ -125,5 +125,5 @@ client.sub_account_kyc.verify_subaccount_pan(sub_auth_id="SUB_AUTH_ID", ...)
 ---
 
 > Exact required parameters per method are documented in [`reference.md`](./reference.md)
-> and at https://docs.vobiz.ai. Most write methods accept the same fields shown in the
+> and at https://vobiz.ai/docs. Most write methods accept the same fields shown in the
 > REST API reference.

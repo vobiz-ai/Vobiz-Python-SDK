@@ -19,7 +19,7 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://vobiz.ai"
-Documentation = "https://docs.vobiz.ai"
+Documentation = "https://vobiz.ai/docs"
 Repository = "https://github.com/vobiz-ai/vobiz-python"
 
 [tool.setuptools.packages.find]
