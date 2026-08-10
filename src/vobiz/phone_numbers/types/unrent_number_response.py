@@ -12,7 +12,11 @@ class UnrentNumberResponse(UniversalBaseModel):
     cooldown_ends_at: dt.datetime
     message: str
     note: typing.Optional[str] = None
-    release_fee: float
+    release_fee: float = pydantic.Field()
+    """
+    The account-specific fee charged for releasing the number.
+    """
+
     status: str
 
     if IS_PYDANTIC_V2:

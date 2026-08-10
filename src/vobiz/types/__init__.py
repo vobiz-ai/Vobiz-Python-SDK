@@ -14,6 +14,7 @@ if typing.TYPE_CHECKING:
     from .application_hangup_method import ApplicationHangupMethod
     from .application_message_method import ApplicationMessageMethod
     from .application_sip_transfer_method import ApplicationSipTransferMethod
+    from .bad_request_error_body import BadRequestErrorBody
     from .balance import Balance
     from .balance_transfer_result import BalanceTransferResult
     from .balance_transfer_result_status import BalanceTransferResultStatus
@@ -27,6 +28,7 @@ if typing.TYPE_CHECKING:
     from .endpoint_application import EndpointApplication
     from .endpoint_sip_registered import EndpointSipRegistered
     from .error import Error
+    from .forbidden_error_body import ForbiddenErrorBody
     from .inventory_number import InventoryNumber
     from .kyc_verification_result import KycVerificationResult
     from .kyc_verification_result_status import KycVerificationResultStatus
@@ -70,6 +72,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ApplicationHangupMethod": ".application_hangup_method",
     "ApplicationMessageMethod": ".application_message_method",
     "ApplicationSipTransferMethod": ".application_sip_transfer_method",
+    "BadRequestErrorBody": ".bad_request_error_body",
     "Balance": ".balance",
     "BalanceTransferResult": ".balance_transfer_result",
     "BalanceTransferResultStatus": ".balance_transfer_result_status",
@@ -83,6 +86,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "EndpointApplication": ".endpoint_application",
     "EndpointSipRegistered": ".endpoint_sip_registered",
     "Error": ".error",
+    "ForbiddenErrorBody": ".forbidden_error_body",
     "InventoryNumber": ".inventory_number",
     "KycVerificationResult": ".kyc_verification_result",
     "KycVerificationResultStatus": ".kyc_verification_result_status",
@@ -150,6 +154,7 @@ __all__ = [
     "ApplicationHangupMethod",
     "ApplicationMessageMethod",
     "ApplicationSipTransferMethod",
+    "BadRequestErrorBody",
     "Balance",
     "BalanceTransferResult",
     "BalanceTransferResultStatus",
@@ -163,6 +168,7 @@ __all__ = [
     "EndpointApplication",
     "EndpointSipRegistered",
     "Error",
+    "ForbiddenErrorBody",
     "InventoryNumber",
     "KycVerificationResult",
     "KycVerificationResultStatus",

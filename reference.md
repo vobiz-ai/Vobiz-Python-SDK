@@ -1019,6 +1019,10 @@ client.calls.make_call(
 <dd>
 
 **to:** `str` 
+
+Destination PSTN number or SIP endpoint. Separate multiple destinations with
+the `<` character to fan out a single request to up to 1000 destinations,
+for example `+919876543210<+919876543211`.
     
 </dd>
 </dl>
@@ -3790,10 +3794,12 @@ client.phone_numbers.list_numbers(
 <dl>
 <dd>
 
-Release a phone number from your account. By default, the number enters
-`pending_release` for a 24-hour cooldown. You can cancel the release during
-that window. Set `immediate=true` to skip the cooldown; an immediate release
-cannot be cancelled.
+Release a phone number from your account. Releasing a number incurs the
+number-release fee configured for the account; the response returns the
+charged amount in `release_fee`. By default, the number enters
+`pending_release` for a 24-hour cooldown. Cancelling during that window
+refunds the release fee. Set `immediate=true` to skip the cooldown; an
+immediate release cannot be cancelled.
 </dd>
 </dl>
 </dd>
@@ -8042,6 +8048,219 @@ client.recordings.delete_recording(
 <dd>
 
 **recording_id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Bulk Operations
+<details><summary><code>client.bulk_operations.<a href="src/vobiz/bulk_operations/client.py">bulk_export_recordings</a>(...) -> BulkExportRecordingsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Queue a bulk export of the recordings matching your filter criteria. The request is
+validated and accepted for background processing, and the resulting archive is emailed
+as a download link to every address in `recipient.customer_account`. The archive is
+typically available within 15-60 minutes depending on volume.
+
+Results are delivered by email only; the export runs to completion in the background
+after the `202` response.
+
+One export runs at a time per account. While an export is in progress, further requests
+return `403`.
+
+Filter rules:
+- Use either `from`/`to` or the `recording_storage_duration*` filters, not both.
+- Use one of `__gt` or `__gte`, and one of `__lt` or `__lte`.
+- When using range filters (`__gte`/`__lte`), provide both.
+- Maximum date range is 1 year (366 days); maximum storage duration range is 30 days.
+- The additional filters (`from_number`, `to_number`, `call_uuid`, `conference_name`,
+  `recording_format`, `recording_id`) apply when the range is 30 days or less.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from vobiz import Vobiz
+from vobiz.environment import VobizEnvironment
+from vobiz.bulk_operations import BulkExportRecordingsRequestRecipient
+
+client = Vobiz(
+    token="<token>",
+    auth_id="<X-Auth-ID>",
+    auth_token="<X-Auth-Token>",
+    environment=VobizEnvironment.PRODUCTION,
+)
+
+client.bulk_operations.bulk_export_recordings(
+    auth_id="MA_XXXXXX",
+    recipient=BulkExportRecordingsRequestRecipient(
+        customer_account=[
+            "admin@example.com"
+        ],
+    ),
+    from_="2025-01-23 00:00:00",
+    to="2025-01-30 23:59:59",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**auth_id:** `str` — Your account Auth ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**recipient:** `BulkExportRecordingsRequestRecipient` — Email delivery targets for the export archive.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**from:** `typing.Optional[str]` — Start date for the export. Format: YYYY-MM-DD HH:MM:SS. Defaults to 7 days ago.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**to:** `typing.Optional[str]` — End date for the export. Format: YYYY-MM-DD HH:MM:SS. Defaults to the current time.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**recording_storage_duration:** `typing.Optional[str]` — Export recordings exactly N days old. `"7"` exports recordings from exactly 7 days ago.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**recording_storage_duration_gte:** `typing.Optional[str]` — Export recordings N days old or older. `"7"` exports recordings 7 days old and older.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**recording_storage_duration_gt:** `typing.Optional[str]` — Export recordings older than N days. `"7"` exports recordings 8 days old and older.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**recording_storage_duration_lte:** `typing.Optional[str]` — Export recordings N days old or newer. `"30"` exports recordings 0-30 days old.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**recording_storage_duration_lt:** `typing.Optional[str]` — Export recordings newer than N days. `"30"` exports recordings 0-29 days old.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**from_number:** `typing.Optional[str]` — Filter by caller phone number. Applies when the range is 30 days or less.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**to_number:** `typing.Optional[str]` — Filter by destination phone number. Applies when the range is 30 days or less.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**call_uuid:** `typing.Optional[str]` — Filter by call UUID. Also use this field for a conference_uuid or mpc_uuid. Applies when the range is 30 days or less.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**conference_name:** `typing.Optional[str]` — Filter by conference name. Also use this field for an mpc_name. Applies when the range is 30 days or less.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**recording_format:** `typing.Optional[BulkExportRecordingsRequestRecordingFormat]` — Filter by recording format. Applies when the range is 30 days or less.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**recording_id:** `typing.Optional[str]` — Filter by a specific recording ID. Applies when the range is 30 days or less.
     
 </dd>
 </dl>

@@ -14,6 +14,7 @@ if typing.TYPE_CHECKING:
     from .applications.client import ApplicationsClient, AsyncApplicationsClient
     from .audio_streams.client import AsyncAudioStreamsClient, AudioStreamsClient
     from .balance.client import AsyncBalanceClient, BalanceClient
+    from .bulk_operations.client import AsyncBulkOperationsClient, BulkOperationsClient
     from .calls.client import AsyncCallsClient, CallsClient
     from .cdr.client import AsyncCdrClient, CdrClient
     from .conference.client import AsyncConferenceClient, ConferenceClient
@@ -142,6 +143,7 @@ class Vobiz:
         self._conference_members: typing.Optional[ConferenceMembersClient] = None
         self._conference_recording: typing.Optional[ConferenceRecordingClient] = None
         self._recordings: typing.Optional[RecordingsClient] = None
+        self._bulk_operations: typing.Optional[BulkOperationsClient] = None
         self._credentials: typing.Optional[CredentialsClient] = None
         self._ip_access_control_list: typing.Optional[IpAccessControlListClient] = None
         self._origination_uri: typing.Optional[OriginationUriClient] = None
@@ -308,6 +310,14 @@ class Vobiz:
 
             self._recordings = RecordingsClient(client_wrapper=self._client_wrapper)
         return self._recordings
+
+    @property
+    def bulk_operations(self):
+        if self._bulk_operations is None:
+            from .bulk_operations.client import BulkOperationsClient  # noqa: E402
+
+            self._bulk_operations = BulkOperationsClient(client_wrapper=self._client_wrapper)
+        return self._bulk_operations
 
     @property
     def credentials(self):
@@ -483,6 +493,7 @@ class AsyncVobiz:
         self._conference_members: typing.Optional[AsyncConferenceMembersClient] = None
         self._conference_recording: typing.Optional[AsyncConferenceRecordingClient] = None
         self._recordings: typing.Optional[AsyncRecordingsClient] = None
+        self._bulk_operations: typing.Optional[AsyncBulkOperationsClient] = None
         self._credentials: typing.Optional[AsyncCredentialsClient] = None
         self._ip_access_control_list: typing.Optional[AsyncIpAccessControlListClient] = None
         self._origination_uri: typing.Optional[AsyncOriginationUriClient] = None
@@ -649,6 +660,14 @@ class AsyncVobiz:
 
             self._recordings = AsyncRecordingsClient(client_wrapper=self._client_wrapper)
         return self._recordings
+
+    @property
+    def bulk_operations(self):
+        if self._bulk_operations is None:
+            from .bulk_operations.client import AsyncBulkOperationsClient  # noqa: E402
+
+            self._bulk_operations = AsyncBulkOperationsClient(client_wrapper=self._client_wrapper)
+        return self._bulk_operations
 
     @property
     def credentials(self):
