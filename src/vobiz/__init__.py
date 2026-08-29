@@ -122,6 +122,8 @@ if typing.TYPE_CHECKING:
     from .audio_streams import StartStreamRequestAudioFormat, StartStreamRequestAudioTrack
     from .balance import (
         GetBalanceResponse,
+        ListTransactionReferenceTypesResponse,
+        ListTransactionsRequestStatus,
         ListTransactionsResponse,
         ListTransactionsResponseSummary,
         ListTransactionsResponseSummaryByReferenceTypeItem,
@@ -466,6 +468,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ListSubaccountsResponseSubAccountsItem": ".sub_accounts",
     "ListSubaccountsResponseSubAccountsItemPermissions": ".sub_accounts",
     "ListSubaccountsResponseSubAccountsItemPermissionsCalls": ".sub_accounts",
+    "ListTransactionReferenceTypesResponse": ".balance",
+    "ListTransactionsRequestStatus": ".balance",
     "ListTransactionsResponse": ".balance",
     "ListTransactionsResponseSummary": ".balance",
     "ListTransactionsResponseSummaryByReferenceTypeItem": ".balance",
@@ -756,6 +760,8 @@ __all__ = [
     "ListSubaccountsResponseSubAccountsItem",
     "ListSubaccountsResponseSubAccountsItemPermissions",
     "ListSubaccountsResponseSubAccountsItemPermissionsCalls",
+    "ListTransactionReferenceTypesResponse",
+    "ListTransactionsRequestStatus",
     "ListTransactionsResponse",
     "ListTransactionsResponseSummary",
     "ListTransactionsResponseSummaryByReferenceTypeItem",

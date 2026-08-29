@@ -8,11 +8,7 @@ All snippets assume:
 ```python
 from vobiz import Vobiz
 
-client = Vobiz(
-    auth_id="YOUR_AUTH_ID",
-    auth_token="YOUR_AUTH_TOKEN",
-    token="YOUR_TOKEN",
-)
+client = Vobiz(api_key="YOUR_AUTH_ID", auth_token="YOUR_AUTH_TOKEN")
 AUTH_ID = "YOUR_AUTH_ID"
 ```
 
@@ -25,7 +21,7 @@ AUTH_ID = "YOUR_AUTH_ID"
 client.calls.make_call(
     auth_id=AUTH_ID,
     from_="14155551234",
-    to="+15550003333",
+    to="+919876543210",
     answer_url="https://example.com/answer",
     answer_method="POST",
 )
@@ -129,5 +125,5 @@ client.sub_account_kyc.verify_subaccount_pan(sub_auth_id="SUB_AUTH_ID", ...)
 ---
 
 > Exact required parameters per method are documented in [`reference.md`](./reference.md)
-> and at https://docs.vobiz.ai. Most write methods accept the same fields shown in the
+> and at https://vobiz.ai/docs. Most write methods accept the same fields shown in the
 > REST API reference.

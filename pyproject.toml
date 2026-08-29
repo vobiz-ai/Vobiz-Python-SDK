@@ -19,8 +19,8 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://vobiz.ai"
-Documentation = "https://docs.vobiz.ai"
-Repository = "https://github.com/vobiz-ai/Vobiz-Python-SDK"
+Documentation = "https://vobiz.ai/docs"
+Repository = "https://github.com/vobiz-ai/vobiz-python"
 
 [tool.setuptools.packages.find]
 where = ["src"]

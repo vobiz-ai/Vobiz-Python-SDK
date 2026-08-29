@@ -11,6 +11,8 @@ from ..core.parse_error import ParsingError
 from ..core.pydantic_utilities import parse_obj_as
 from ..core.request_options import RequestOptions
 from .types.get_balance_response import GetBalanceResponse
+from .types.list_transaction_reference_types_response import ListTransactionReferenceTypesResponse
+from .types.list_transactions_request_status import ListTransactionsRequestStatus
 from .types.list_transactions_response import ListTransactionsResponse
 from pydantic import ValidationError
 
@@ -69,21 +71,68 @@ class RawBalanceClient:
         self,
         auth_id: str,
         *,
-        limit: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
+        page: typing.Optional[int] = None,
+        per_page: typing.Optional[int] = None,
+        from_date: typing.Optional[str] = None,
+        to_date: typing.Optional[str] = None,
+        type: typing.Optional[str] = None,
+        status: typing.Optional[ListTransactionsRequestStatus] = None,
+        currency: typing.Optional[str] = None,
+        reference_type: typing.Optional[str] = None,
+        description: typing.Optional[str] = None,
+        reference: typing.Optional[str] = None,
+        transaction_id: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[ListTransactionsResponse]:
         """
-        Retrieve paginated transaction history for the account.
+        Retrieve paginated transaction history for the account, ordered by
+        `created_at` descending. Filter to a single day by setting `from_date`
+        and `to_date` to the same date - a bare `YYYY-MM-DD` in `to_date` is
+        expanded to `23:59:59`, so both bounds are inclusive. Bare dates resolve
+        in the server timezone (UTC); send an explicit offset such as
+        `2026-08-28T00:00:00+05:30` to pin a local calendar day.
+
+        `limit` and `offset` are not supported - unknown parameters are silently
+        dropped. `total` and `summary` are computed over the whole filtered set
+        and ignore pagination, so `per_page=1` returns full-window totals.
 
         Parameters
         ----------
         auth_id : str
             Your account Auth ID
 
-        limit : typing.Optional[int]
+        page : typing.Optional[int]
+            Page number, 1-indexed.
 
-        offset : typing.Optional[int]
+        per_page : typing.Optional[int]
+            Records per page. A value above the maximum falls back to the default of 50 rather than clamping.
+
+        from_date : typing.Optional[str]
+            Start of the window, inclusive. Date-only or full ISO 8601 timestamp. Day boundaries are UTC.
+
+        to_date : typing.Optional[str]
+            End of the window, inclusive. A date-only value covers the whole day.
+
+        type : typing.Optional[str]
+            `credit` or `debit` act as broad classifications and sweep in legacy entry types such as `did_rental`; any other value is an exact match on `transactions[].type`.
+
+        status : typing.Optional[ListTransactionsRequestStatus]
+            Exact match on transaction status.
+
+        currency : typing.Optional[str]
+            Currency code. Uppercased server-side, exact match.
+
+        reference_type : typing.Optional[str]
+            Spend source, matching `transactions[].reference_type`.
+
+        description : typing.Optional[str]
+            Case-insensitive substring match on the description.
+
+        reference : typing.Optional[str]
+            Case-insensitive substring match on the reference.
+
+        transaction_id : typing.Optional[str]
+            Fetch a single ledger entry by its UUID.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -97,8 +146,17 @@ class RawBalanceClient:
             f"api/v1/Account/{encode_path_param(auth_id)}/transactions",
             method="GET",
             params={
-                "limit": limit,
-                "offset": offset,
+                "page": page,
+                "per_page": per_page,
+                "from_date": from_date,
+                "to_date": to_date,
+                "type": type,
+                "status": status,
+                "currency": currency,
+                "reference_type": reference_type,
+                "description": description,
+                "reference": reference,
+                "transaction_id": transaction_id,
             },
             request_options=request_options,
         )
@@ -108,6 +166,49 @@ class RawBalanceClient:
                     ListTransactionsResponse,
                     parse_obj_as(
                         type_=ListTransactionsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def list_transaction_reference_types(
+        self, auth_id: str, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[ListTransactionReferenceTypesResponse]:
+        """
+        Returns the distinct `reference_type` values present on the account's ledger. Use it to discover valid values for the `reference_type` filter on the transactions endpoint.
+
+        Parameters
+        ----------
+        auth_id : str
+            Your account Auth ID
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[ListTransactionReferenceTypesResponse]
+            Reference type list
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            f"api/v1/Account/{encode_path_param(auth_id)}/transactions/reference-types",
+            method="GET",
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    ListTransactionReferenceTypesResponse,
+                    parse_obj_as(
+                        type_=ListTransactionReferenceTypesResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -176,21 +277,68 @@ class AsyncRawBalanceClient:
         self,
         auth_id: str,
         *,
-        limit: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
+        page: typing.Optional[int] = None,
+        per_page: typing.Optional[int] = None,
+        from_date: typing.Optional[str] = None,
+        to_date: typing.Optional[str] = None,
+        type: typing.Optional[str] = None,
+        status: typing.Optional[ListTransactionsRequestStatus] = None,
+        currency: typing.Optional[str] = None,
+        reference_type: typing.Optional[str] = None,
+        description: typing.Optional[str] = None,
+        reference: typing.Optional[str] = None,
+        transaction_id: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[ListTransactionsResponse]:
         """
-        Retrieve paginated transaction history for the account.
+        Retrieve paginated transaction history for the account, ordered by
+        `created_at` descending. Filter to a single day by setting `from_date`
+        and `to_date` to the same date - a bare `YYYY-MM-DD` in `to_date` is
+        expanded to `23:59:59`, so both bounds are inclusive. Bare dates resolve
+        in the server timezone (UTC); send an explicit offset such as
+        `2026-08-28T00:00:00+05:30` to pin a local calendar day.
+
+        `limit` and `offset` are not supported - unknown parameters are silently
+        dropped. `total` and `summary` are computed over the whole filtered set
+        and ignore pagination, so `per_page=1` returns full-window totals.
 
         Parameters
         ----------
         auth_id : str
             Your account Auth ID
 
-        limit : typing.Optional[int]
+        page : typing.Optional[int]
+            Page number, 1-indexed.
 
-        offset : typing.Optional[int]
+        per_page : typing.Optional[int]
+            Records per page. A value above the maximum falls back to the default of 50 rather than clamping.
+
+        from_date : typing.Optional[str]
+            Start of the window, inclusive. Date-only or full ISO 8601 timestamp. Day boundaries are UTC.
+
+        to_date : typing.Optional[str]
+            End of the window, inclusive. A date-only value covers the whole day.
+
+        type : typing.Optional[str]
+            `credit` or `debit` act as broad classifications and sweep in legacy entry types such as `did_rental`; any other value is an exact match on `transactions[].type`.
+
+        status : typing.Optional[ListTransactionsRequestStatus]
+            Exact match on transaction status.
+
+        currency : typing.Optional[str]
+            Currency code. Uppercased server-side, exact match.
+
+        reference_type : typing.Optional[str]
+            Spend source, matching `transactions[].reference_type`.
+
+        description : typing.Optional[str]
+            Case-insensitive substring match on the description.
+
+        reference : typing.Optional[str]
+            Case-insensitive substring match on the reference.
+
+        transaction_id : typing.Optional[str]
+            Fetch a single ledger entry by its UUID.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -204,8 +352,17 @@ class AsyncRawBalanceClient:
             f"api/v1/Account/{encode_path_param(auth_id)}/transactions",
             method="GET",
             params={
-                "limit": limit,
-                "offset": offset,
+                "page": page,
+                "per_page": per_page,
+                "from_date": from_date,
+                "to_date": to_date,
+                "type": type,
+                "status": status,
+                "currency": currency,
+                "reference_type": reference_type,
+                "description": description,
+                "reference": reference,
+                "transaction_id": transaction_id,
             },
             request_options=request_options,
         )
@@ -215,6 +372,49 @@ class AsyncRawBalanceClient:
                     ListTransactionsResponse,
                     parse_obj_as(
                         type_=ListTransactionsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def list_transaction_reference_types(
+        self, auth_id: str, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[ListTransactionReferenceTypesResponse]:
+        """
+        Returns the distinct `reference_type` values present on the account's ledger. Use it to discover valid values for the `reference_type` filter on the transactions endpoint.
+
+        Parameters
+        ----------
+        auth_id : str
+            Your account Auth ID
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[ListTransactionReferenceTypesResponse]
+            Reference type list
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            f"api/v1/Account/{encode_path_param(auth_id)}/transactions/reference-types",
+            method="GET",
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    ListTransactionReferenceTypesResponse,
+                    parse_obj_as(
+                        type_=ListTransactionReferenceTypesResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
