@@ -62,9 +62,8 @@ class ApplicationsClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.applications.list_applications(
             auth_id="MA_XXXXXX",
@@ -113,9 +112,8 @@ class ApplicationsClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.applications.create_application(
             auth_id="MA_XXXXXX",
@@ -160,9 +158,8 @@ class ApplicationsClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.applications.retrieve_application(
             auth_id="MA_XXXXXX",
@@ -209,9 +206,8 @@ class ApplicationsClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.applications.update_application(
             auth_id="MA_XXXXXX",
@@ -253,9 +249,8 @@ class ApplicationsClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.applications.delete_application(
             auth_id="MA_XXXXXX",
@@ -316,9 +311,8 @@ class AsyncApplicationsClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -375,9 +369,8 @@ class AsyncApplicationsClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -430,9 +423,8 @@ class AsyncApplicationsClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -487,9 +479,8 @@ class AsyncApplicationsClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -539,9 +530,8 @@ class AsyncApplicationsClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 

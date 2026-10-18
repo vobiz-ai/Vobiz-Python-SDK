@@ -60,9 +60,8 @@ class PartnerApiClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.partner_api.get_partner_profile()
         """
@@ -91,9 +90,8 @@ class PartnerApiClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.partner_api.get_partner_dashboard()
         """
@@ -133,9 +131,8 @@ class PartnerApiClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.partner_api.list_customer_accounts()
         """
@@ -193,9 +190,8 @@ class PartnerApiClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.partner_api.create_customer_account(
             name="John Doe",
@@ -256,9 +252,8 @@ class PartnerApiClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.partner_api.partner_transfer_balance(
             customer_auth_id="MA_ZKITB8Z2",
@@ -315,9 +310,8 @@ class PartnerApiClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.partner_api.list_customer_transactions(
             customer_auth_id="customer_auth_id",
@@ -388,9 +382,8 @@ class PartnerApiClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.partner_api.list_customer_cdrs(
             customer_auth_id="customer_auth_id",
@@ -446,9 +439,8 @@ class PartnerApiClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.partner_api.list_customer_numbers(
             customer_auth_id="customer_auth_id",
@@ -496,9 +488,8 @@ class PartnerApiClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.partner_api.list_kyc_sessions()
         """
@@ -566,9 +557,8 @@ class PartnerApiClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.partner_api.create_kyc_session(
             account_auth_id="MA_ZKITB8Z2",
@@ -608,9 +598,8 @@ class PartnerApiClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.partner_api.get_kyc_session(
             session_id="session_id",
@@ -648,9 +637,8 @@ class PartnerApiClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.partner_api.revoke_kyc_session(
             session_id="session_id",
@@ -679,9 +667,8 @@ class PartnerApiClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.partner_api.resend_kyc_session(
             session_id="session_id",
@@ -729,9 +716,8 @@ class AsyncPartnerApiClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -768,9 +754,8 @@ class AsyncPartnerApiClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -818,9 +803,8 @@ class AsyncPartnerApiClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -886,9 +870,8 @@ class AsyncPartnerApiClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -957,9 +940,8 @@ class AsyncPartnerApiClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1023,9 +1005,8 @@ class AsyncPartnerApiClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1104,9 +1085,8 @@ class AsyncPartnerApiClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1170,9 +1150,8 @@ class AsyncPartnerApiClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1228,9 +1207,8 @@ class AsyncPartnerApiClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1306,9 +1284,8 @@ class AsyncPartnerApiClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1358,9 +1335,8 @@ class AsyncPartnerApiClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1406,9 +1382,8 @@ class AsyncPartnerApiClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1449,9 +1424,8 @@ class AsyncPartnerApiClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 

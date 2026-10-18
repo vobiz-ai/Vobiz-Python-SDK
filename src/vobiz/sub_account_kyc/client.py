@@ -55,9 +55,8 @@ class SubAccountKycClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.sub_account_kyc.get_subaccount_kyc_status(
             sub_auth_id="SA_XXXXXX",
@@ -94,9 +93,8 @@ class SubAccountKycClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.sub_account_kyc.verify_subaccount_pan(
             sub_auth_id="SA_XXXXXX",
@@ -132,9 +130,8 @@ class SubAccountKycClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.sub_account_kyc.verify_subaccount_gst(
             sub_auth_id="SA_XXXXXX",
@@ -171,9 +168,8 @@ class SubAccountKycClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.sub_account_kyc.search_subaccount_cin(
             sub_auth_id="SA_XXXXXX",
@@ -218,9 +214,8 @@ class SubAccountKycClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.sub_account_kyc.confirm_subaccount_cin(
             sub_auth_id="SA_XXXXXX",
@@ -270,9 +265,8 @@ class SubAccountKycClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.sub_account_kyc.subaccount_digilocker_initiate(
             sub_auth_id="SA_XXXXXX",
@@ -318,9 +312,8 @@ class SubAccountKycClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.sub_account_kyc.subaccount_digilocker_verify(
             sub_auth_id="SA_XXXXXX",
@@ -393,9 +386,8 @@ class SubAccountKycClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.sub_account_kyc.create_subaccount_kyc_session(
             sub_auth_id="SA_XXXXXX",
@@ -463,9 +455,8 @@ class AsyncSubAccountKycClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -510,9 +501,8 @@ class AsyncSubAccountKycClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -556,9 +546,8 @@ class AsyncSubAccountKycClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -605,9 +594,8 @@ class AsyncSubAccountKycClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -660,9 +648,8 @@ class AsyncSubAccountKycClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -720,9 +707,8 @@ class AsyncSubAccountKycClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -776,9 +762,8 @@ class AsyncSubAccountKycClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -859,9 +844,8 @@ class AsyncSubAccountKycClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 

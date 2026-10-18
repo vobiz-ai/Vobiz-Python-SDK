@@ -52,9 +52,8 @@ class AudioStreamsClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.audio_streams.list_streams(
             auth_id="MA_XXXXXX",
@@ -106,9 +105,8 @@ class AudioStreamsClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.audio_streams.start_stream(
             auth_id="MA_XXXXXX",
@@ -156,9 +154,8 @@ class AudioStreamsClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.audio_streams.get_stream(
             auth_id="MA_XXXXXX",
@@ -196,9 +193,8 @@ class AudioStreamsClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.audio_streams.stop_stream(
             auth_id="MA_XXXXXX",
@@ -252,9 +248,8 @@ class AsyncAudioStreamsClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -314,9 +309,8 @@ class AsyncAudioStreamsClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -372,9 +366,8 @@ class AsyncAudioStreamsClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -420,9 +413,8 @@ class AsyncAudioStreamsClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 

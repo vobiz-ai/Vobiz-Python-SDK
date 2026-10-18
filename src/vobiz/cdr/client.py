@@ -120,9 +120,8 @@ class CdrClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.cdr.list_cdrs(
             auth_id="MA_XXXXXX",
@@ -253,9 +252,8 @@ class CdrClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.cdr.search_cdrs(
             auth_id="MA_XXXXXX",
@@ -328,9 +326,8 @@ class CdrClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.cdr.list_recent_cdrs(
             auth_id="MA_XXXXXX",
@@ -463,9 +460,8 @@ class CdrClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.cdr.get_cdr(
             auth_id="MA_XXXXXX",
@@ -582,9 +578,8 @@ class AsyncCdrClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -722,9 +717,8 @@ class AsyncCdrClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -805,9 +799,8 @@ class AsyncCdrClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -949,9 +942,8 @@ class AsyncCdrClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 

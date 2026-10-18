@@ -11,18 +11,16 @@ class BaseClientWrapper:
     def __init__(
         self,
         *,
-        auth_id: str,
         auth_token: str,
-        token: typing.Union[str, typing.Callable[[], str]],
+        api_key: str,
         headers: typing.Optional[typing.Dict[str, str]] = None,
         base_url: str,
         timeout: typing.Optional[float] = None,
         max_retries: int = 2,
         logging: typing.Optional[typing.Union[LogConfig, Logger]] = None,
     ):
-        self._auth_id = auth_id
         self._auth_token = auth_token
-        self._token = token
+        self.api_key = api_key
         self._headers = headers
         self._base_url = base_url
         self._timeout = timeout
@@ -38,16 +36,9 @@ class BaseClientWrapper:
             "X-Fern-Platform": f"{platform.system().lower()}/{platform.release()}",
             **(self.get_custom_headers() or {}),
         }
-        headers["X-Auth-ID"] = self._auth_id
         headers["X-Auth-Token"] = self._auth_token
-        headers["Authorization"] = f"Bearer {self._get_token()}"
+        headers["X-Auth-ID"] = self.api_key
         return headers
-
-    def _get_token(self) -> str:
-        if isinstance(self._token, str):
-            return self._token
-        else:
-            return self._token()
 
     def get_custom_headers(self) -> typing.Optional[typing.Dict[str, str]]:
         return self._headers
@@ -66,9 +57,8 @@ class SyncClientWrapper(BaseClientWrapper):
     def __init__(
         self,
         *,
-        auth_id: str,
         auth_token: str,
-        token: typing.Union[str, typing.Callable[[], str]],
+        api_key: str,
         headers: typing.Optional[typing.Dict[str, str]] = None,
         base_url: str,
         timeout: typing.Optional[float] = None,
@@ -77,9 +67,8 @@ class SyncClientWrapper(BaseClientWrapper):
         httpx_client: httpx.Client,
     ):
         super().__init__(
-            auth_id=auth_id,
             auth_token=auth_token,
-            token=token,
+            api_key=api_key,
             headers=headers,
             base_url=base_url,
             timeout=timeout,
@@ -100,9 +89,8 @@ class AsyncClientWrapper(BaseClientWrapper):
     def __init__(
         self,
         *,
-        auth_id: str,
         auth_token: str,
-        token: typing.Union[str, typing.Callable[[], str]],
+        api_key: str,
         headers: typing.Optional[typing.Dict[str, str]] = None,
         base_url: str,
         timeout: typing.Optional[float] = None,
@@ -112,9 +100,8 @@ class AsyncClientWrapper(BaseClientWrapper):
         httpx_client: httpx.AsyncClient,
     ):
         super().__init__(
-            auth_id=auth_id,
             auth_token=auth_token,
-            token=token,
+            api_key=api_key,
             headers=headers,
             base_url=base_url,
             timeout=timeout,

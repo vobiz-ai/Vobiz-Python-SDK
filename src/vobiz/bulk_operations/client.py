@@ -129,9 +129,8 @@ class BulkOperationsClient:
         from vobiz.bulk_operations import BulkExportRecordingsRequestRecipient
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.bulk_operations.bulk_export_recordings(
             auth_id="MA_XXXXXX",
@@ -281,9 +280,8 @@ class AsyncBulkOperationsClient:
         from vobiz.bulk_operations import BulkExportRecordingsRequestRecipient
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 

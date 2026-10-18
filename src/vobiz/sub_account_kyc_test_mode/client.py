@@ -67,9 +67,8 @@ class SubAccountKycTestModeClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.sub_account_kyc_test_mode.mock_verify_subaccount_pan(
             sub_auth_id="SA_XXXXXX",
@@ -105,9 +104,8 @@ class SubAccountKycTestModeClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.sub_account_kyc_test_mode.mock_verify_subaccount_gst(
             sub_auth_id="SA_XXXXXX",
@@ -145,9 +143,8 @@ class SubAccountKycTestModeClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.sub_account_kyc_test_mode.mock_search_subaccount_cin(
             sub_auth_id="SA_XXXXXX",
@@ -192,9 +189,8 @@ class SubAccountKycTestModeClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.sub_account_kyc_test_mode.mock_confirm_subaccount_cin(
             sub_auth_id="SA_XXXXXX",
@@ -233,9 +229,8 @@ class SubAccountKycTestModeClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.sub_account_kyc_test_mode.mock_subaccount_digilocker_initiate(
             sub_auth_id="SA_XXXXXX",
@@ -277,9 +272,8 @@ class SubAccountKycTestModeClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.sub_account_kyc_test_mode.mock_subaccount_digilocker_verify(
             sub_auth_id="SA_XXXXXX",
@@ -327,9 +321,8 @@ class SubAccountKycTestModeClient:
         from vobiz import Vobiz
 
         client = Vobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
         client.sub_account_kyc_test_mode.mock_finalize_pending_kyc(
             sub_auth_id="SA_XXXXXX",
@@ -396,9 +389,8 @@ class AsyncSubAccountKycTestModeClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -444,9 +436,8 @@ class AsyncSubAccountKycTestModeClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -492,9 +483,8 @@ class AsyncSubAccountKycTestModeClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -547,9 +537,8 @@ class AsyncSubAccountKycTestModeClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -596,9 +585,8 @@ class AsyncSubAccountKycTestModeClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -648,9 +636,8 @@ class AsyncSubAccountKycTestModeClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -706,9 +693,8 @@ class AsyncSubAccountKycTestModeClient:
         from vobiz import AsyncVobiz
 
         client = AsyncVobiz(
-            auth_id="YOUR_AUTH_ID",
             auth_token="YOUR_AUTH_TOKEN",
-            token="YOUR_TOKEN",
+            api_key="YOUR_API_KEY",
         )
 
 

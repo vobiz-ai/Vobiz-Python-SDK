@@ -38,8 +38,7 @@ Instantiate and use the client with the following:
 from vobiz import Vobiz
 
 client = Vobiz(
-    token="<token>",
-    auth_id="<X-Auth-ID>",
+    api_key="<value>",
     auth_token="<X-Auth-Token>",
 )
 
@@ -73,8 +72,7 @@ import asyncio
 from vobiz import AsyncVobiz
 
 client = AsyncVobiz(
-    token="<token>",
-    auth_id="<X-Auth-ID>",
+    api_key="<value>",
     auth_token="<X-Auth-Token>",
 )
 
