@@ -156,7 +156,7 @@ class PartnerApiClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> typing.Any:
         """
-        Creates a new customer sub-account under your partner account. VoBiz
+        Creates a new customer sub-account under your partner account. Vobiz
         emails the customer their login credentials and (separately) a KYC link
         via the kyc-sessions endpoint.
 
@@ -521,7 +521,7 @@ class PartnerApiClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> typing.Any:
         """
-        Triggers VoBiz to email a KYC link to the customer. KYC is OTP-based
+        Triggers Vobiz to email a KYC link to the customer. KYC is OTP-based
         (PAN + Aadhaar via DigiLocker for individuals, PAN + GSTIN for
         companies). No document uploads required.
 
@@ -542,7 +542,7 @@ class PartnerApiClient:
             browser is sent to this URL with query params `session_id`, `status`, `auth_id`.
 
         webhook_url : typing.Optional[str]
-            VoBiz POSTs the KYC result here.
+            Vobiz POSTs the KYC result here.
 
         expires_in_days : typing.Optional[int]
             Days before the KYC link expires.
@@ -847,7 +847,7 @@ class AsyncPartnerApiClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> typing.Any:
         """
-        Creates a new customer sub-account under your partner account. VoBiz
+        Creates a new customer sub-account under your partner account. Vobiz
         emails the customer their login credentials and (separately) a KYC link
         via the kyc-sessions endpoint.
 
@@ -1259,7 +1259,7 @@ class AsyncPartnerApiClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> typing.Any:
         """
-        Triggers VoBiz to email a KYC link to the customer. KYC is OTP-based
+        Triggers Vobiz to email a KYC link to the customer. KYC is OTP-based
         (PAN + Aadhaar via DigiLocker for individuals, PAN + GSTIN for
         companies). No document uploads required.
 
@@ -1280,7 +1280,7 @@ class AsyncPartnerApiClient:
             browser is sent to this URL with query params `session_id`, `status`, `auth_id`.
 
         webhook_url : typing.Optional[str]
-            VoBiz POSTs the KYC result here.
+            Vobiz POSTs the KYC result here.
 
         expires_in_days : typing.Optional[int]
             Days before the KYC link expires.

@@ -376,7 +376,7 @@ class SubAccountKycClient:
             browser is sent to this URL.
 
         webhook_url : typing.Optional[str]
-            HTTPS endpoint VoBiz POSTs the KYC result to. Omit it and no callbacks are sent.
+            HTTPS endpoint Vobiz POSTs the KYC result to. Omit it and no callbacks are sent.
 
         expires_in_days : typing.Optional[int]
 
@@ -840,7 +840,7 @@ class AsyncSubAccountKycClient:
             browser is sent to this URL.
 
         webhook_url : typing.Optional[str]
-            HTTPS endpoint VoBiz POSTs the KYC result to. Omit it and no callbacks are sent.
+            HTTPS endpoint Vobiz POSTs the KYC result to. Omit it and no callbacks are sent.
 
         expires_in_days : typing.Optional[int]
 
