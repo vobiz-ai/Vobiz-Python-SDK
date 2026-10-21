@@ -4,12 +4,12 @@ import typing
 
 import pydantic
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
-from .list_credentials_response_meta import ListCredentialsResponseMeta
+from ...types.trunk_list_meta import TrunkListMeta
 from .list_credentials_response_objects_item import ListCredentialsResponseObjectsItem
 
 
 class ListCredentialsResponse(UniversalBaseModel):
-    meta: ListCredentialsResponseMeta
+    meta: TrunkListMeta
     objects: typing.List[ListCredentialsResponseObjectsItem]
 
     if IS_PYDANTIC_V2:

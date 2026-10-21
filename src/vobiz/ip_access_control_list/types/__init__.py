@@ -8,13 +8,11 @@ from importlib import import_module
 if typing.TYPE_CHECKING:
     from .create_ip_acl_response import CreateIpAclResponse
     from .list_ip_acls_response import ListIpAclsResponse
-    from .list_ip_acls_response_meta import ListIpAclsResponseMeta
     from .list_ip_acls_response_objects_item import ListIpAclsResponseObjectsItem
     from .update_ip_acl_response import UpdateIpAclResponse
 _dynamic_imports: typing.Dict[str, str] = {
     "CreateIpAclResponse": ".create_ip_acl_response",
     "ListIpAclsResponse": ".list_ip_acls_response",
-    "ListIpAclsResponseMeta": ".list_ip_acls_response_meta",
     "ListIpAclsResponseObjectsItem": ".list_ip_acls_response_objects_item",
     "UpdateIpAclResponse": ".update_ip_acl_response",
 }
@@ -41,10 +39,4 @@ def __dir__():
     return sorted(lazy_attrs)
 
 
-__all__ = [
-    "CreateIpAclResponse",
-    "ListIpAclsResponse",
-    "ListIpAclsResponseMeta",
-    "ListIpAclsResponseObjectsItem",
-    "UpdateIpAclResponse",
-]
+__all__ = ["CreateIpAclResponse", "ListIpAclsResponse", "ListIpAclsResponseObjectsItem", "UpdateIpAclResponse"]

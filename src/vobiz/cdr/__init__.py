@@ -13,7 +13,6 @@ if typing.TYPE_CHECKING:
         ListCdrsRequestCallDirection,
         ListCdrsResponse,
         ListCdrsResponseDataItem,
-        ListCdrsResponsePagination,
         ListCdrsResponseSummary,
         ListRecentCdrsResponse,
         ListRecentCdrsResponseDataItem,
@@ -21,7 +20,6 @@ if typing.TYPE_CHECKING:
         SearchCdrsResponse,
         SearchCdrsResponseDataItem,
         SearchCdrsResponseFilters,
-        SearchCdrsResponsePagination,
         SearchCdrsResponseSummary,
     )
 _dynamic_imports: typing.Dict[str, str] = {
@@ -31,7 +29,6 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ListCdrsRequestCallDirection": ".types",
     "ListCdrsResponse": ".types",
     "ListCdrsResponseDataItem": ".types",
-    "ListCdrsResponsePagination": ".types",
     "ListCdrsResponseSummary": ".types",
     "ListRecentCdrsResponse": ".types",
     "ListRecentCdrsResponseDataItem": ".types",
@@ -39,7 +36,6 @@ _dynamic_imports: typing.Dict[str, str] = {
     "SearchCdrsResponse": ".types",
     "SearchCdrsResponseDataItem": ".types",
     "SearchCdrsResponseFilters": ".types",
-    "SearchCdrsResponsePagination": ".types",
     "SearchCdrsResponseSummary": ".types",
 }
 
@@ -72,7 +68,6 @@ __all__ = [
     "ListCdrsRequestCallDirection",
     "ListCdrsResponse",
     "ListCdrsResponseDataItem",
-    "ListCdrsResponsePagination",
     "ListCdrsResponseSummary",
     "ListRecentCdrsResponse",
     "ListRecentCdrsResponseDataItem",
@@ -80,6 +75,5 @@ __all__ = [
     "SearchCdrsResponse",
     "SearchCdrsResponseDataItem",
     "SearchCdrsResponseFilters",
-    "SearchCdrsResponsePagination",
     "SearchCdrsResponseSummary",
 ]

@@ -8,13 +8,11 @@ from importlib import import_module
 if typing.TYPE_CHECKING:
     from .create_credential_response import CreateCredentialResponse
     from .list_credentials_response import ListCredentialsResponse
-    from .list_credentials_response_meta import ListCredentialsResponseMeta
     from .list_credentials_response_objects_item import ListCredentialsResponseObjectsItem
     from .update_credential_response import UpdateCredentialResponse
 _dynamic_imports: typing.Dict[str, str] = {
     "CreateCredentialResponse": ".create_credential_response",
     "ListCredentialsResponse": ".list_credentials_response",
-    "ListCredentialsResponseMeta": ".list_credentials_response_meta",
     "ListCredentialsResponseObjectsItem": ".list_credentials_response_objects_item",
     "UpdateCredentialResponse": ".update_credential_response",
 }
@@ -44,7 +42,6 @@ def __dir__():
 __all__ = [
     "CreateCredentialResponse",
     "ListCredentialsResponse",
-    "ListCredentialsResponseMeta",
     "ListCredentialsResponseObjectsItem",
     "UpdateCredentialResponse",
 ]

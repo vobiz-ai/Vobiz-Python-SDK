@@ -4,7 +4,7 @@ import typing
 
 import pydantic
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
-from .list_customer_cdrs_response_pagination import ListCustomerCdrsResponsePagination
+from ...types.cdr_pagination import CdrPagination
 from .list_customer_cdrs_response_summary import ListCustomerCdrsResponseSummary
 
 
@@ -12,7 +12,7 @@ class ListCustomerCdrsResponse(UniversalBaseModel):
     account_id: str
     count: int
     data: typing.List[typing.Any]
-    pagination: ListCustomerCdrsResponsePagination
+    pagination: CdrPagination
     success: bool
     summary: ListCustomerCdrsResponseSummary
     account_auth_id: str

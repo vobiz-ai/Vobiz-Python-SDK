@@ -4,12 +4,12 @@ import typing
 
 import pydantic
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
-from .list_origination_uris_response_meta import ListOriginationUrisResponseMeta
+from ...types.trunk_list_meta import TrunkListMeta
 from .list_origination_uris_response_objects_item import ListOriginationUrisResponseObjectsItem
 
 
 class ListOriginationUrisResponse(UniversalBaseModel):
-    meta: ListOriginationUrisResponseMeta
+    meta: TrunkListMeta
     objects: typing.List[ListOriginationUrisResponseObjectsItem]
 
     if IS_PYDANTIC_V2:

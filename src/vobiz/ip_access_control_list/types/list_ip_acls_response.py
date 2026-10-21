@@ -4,12 +4,12 @@ import typing
 
 import pydantic
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
-from .list_ip_acls_response_meta import ListIpAclsResponseMeta
+from ...types.trunk_list_meta import TrunkListMeta
 from .list_ip_acls_response_objects_item import ListIpAclsResponseObjectsItem
 
 
 class ListIpAclsResponse(UniversalBaseModel):
-    meta: ListIpAclsResponseMeta
+    meta: TrunkListMeta
     objects: typing.List[ListIpAclsResponseObjectsItem]
 
     if IS_PYDANTIC_V2:

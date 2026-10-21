@@ -4,13 +4,13 @@ import typing
 
 import pydantic
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
-from .list_applications_response_meta import ListApplicationsResponseMeta
+from ...types.pagination_meta import PaginationMeta
 from .list_applications_response_objects_item import ListApplicationsResponseObjectsItem
 
 
 class ListApplicationsResponse(UniversalBaseModel):
     api_id: str
-    meta: ListApplicationsResponseMeta
+    meta: PaginationMeta
     objects: typing.List[ListApplicationsResponseObjectsItem]
 
     if IS_PYDANTIC_V2:

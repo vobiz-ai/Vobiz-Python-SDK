@@ -8,13 +8,11 @@ from importlib import import_module
 if typing.TYPE_CHECKING:
     from .create_endpoint_response import CreateEndpointResponse
     from .list_endpoints_response import ListEndpointsResponse
-    from .list_endpoints_response_meta import ListEndpointsResponseMeta
     from .list_endpoints_response_objects_item import ListEndpointsResponseObjectsItem
     from .retrieve_endpoint_response import RetrieveEndpointResponse
 _dynamic_imports: typing.Dict[str, str] = {
     "CreateEndpointResponse": ".create_endpoint_response",
     "ListEndpointsResponse": ".list_endpoints_response",
-    "ListEndpointsResponseMeta": ".list_endpoints_response_meta",
     "ListEndpointsResponseObjectsItem": ".list_endpoints_response_objects_item",
     "RetrieveEndpointResponse": ".retrieve_endpoint_response",
 }
@@ -44,7 +42,6 @@ def __dir__():
 __all__ = [
     "CreateEndpointResponse",
     "ListEndpointsResponse",
-    "ListEndpointsResponseMeta",
     "ListEndpointsResponseObjectsItem",
     "RetrieveEndpointResponse",
 ]

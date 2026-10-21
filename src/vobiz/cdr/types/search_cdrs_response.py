@@ -4,9 +4,9 @@ import typing
 
 import pydantic
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
+from ...types.cdr_pagination import CdrPagination
 from .search_cdrs_response_data_item import SearchCdrsResponseDataItem
 from .search_cdrs_response_filters import SearchCdrsResponseFilters
-from .search_cdrs_response_pagination import SearchCdrsResponsePagination
 from .search_cdrs_response_summary import SearchCdrsResponseSummary
 
 
@@ -15,7 +15,7 @@ class SearchCdrsResponse(UniversalBaseModel):
     count: int
     data: typing.List[SearchCdrsResponseDataItem]
     filters: SearchCdrsResponseFilters
-    pagination: SearchCdrsResponsePagination
+    pagination: CdrPagination
     success: bool
     summary: SearchCdrsResponseSummary
 

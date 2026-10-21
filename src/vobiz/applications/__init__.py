@@ -9,7 +9,6 @@ if typing.TYPE_CHECKING:
     from .types import (
         CreateApplicationResponse,
         ListApplicationsResponse,
-        ListApplicationsResponseMeta,
         ListApplicationsResponseObjectsItem,
         RetrieveApplicationResponse,
         UpdateApplicationResponse,
@@ -17,7 +16,6 @@ if typing.TYPE_CHECKING:
 _dynamic_imports: typing.Dict[str, str] = {
     "CreateApplicationResponse": ".types",
     "ListApplicationsResponse": ".types",
-    "ListApplicationsResponseMeta": ".types",
     "ListApplicationsResponseObjectsItem": ".types",
     "RetrieveApplicationResponse": ".types",
     "UpdateApplicationResponse": ".types",
@@ -48,7 +46,6 @@ def __dir__():
 __all__ = [
     "CreateApplicationResponse",
     "ListApplicationsResponse",
-    "ListApplicationsResponseMeta",
     "ListApplicationsResponseObjectsItem",
     "RetrieveApplicationResponse",
     "UpdateApplicationResponse",

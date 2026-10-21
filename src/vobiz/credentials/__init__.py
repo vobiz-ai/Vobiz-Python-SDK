@@ -9,14 +9,12 @@ if typing.TYPE_CHECKING:
     from .types import (
         CreateCredentialResponse,
         ListCredentialsResponse,
-        ListCredentialsResponseMeta,
         ListCredentialsResponseObjectsItem,
         UpdateCredentialResponse,
     )
 _dynamic_imports: typing.Dict[str, str] = {
     "CreateCredentialResponse": ".types",
     "ListCredentialsResponse": ".types",
-    "ListCredentialsResponseMeta": ".types",
     "ListCredentialsResponseObjectsItem": ".types",
     "UpdateCredentialResponse": ".types",
 }
@@ -46,7 +44,6 @@ def __dir__():
 __all__ = [
     "CreateCredentialResponse",
     "ListCredentialsResponse",
-    "ListCredentialsResponseMeta",
     "ListCredentialsResponseObjectsItem",
     "UpdateCredentialResponse",
 ]

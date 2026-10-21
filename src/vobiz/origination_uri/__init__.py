@@ -9,14 +9,12 @@ if typing.TYPE_CHECKING:
     from .types import (
         CreateOriginationUriResponse,
         ListOriginationUrisResponse,
-        ListOriginationUrisResponseMeta,
         ListOriginationUrisResponseObjectsItem,
         UpdateOriginationUriResponse,
     )
 _dynamic_imports: typing.Dict[str, str] = {
     "CreateOriginationUriResponse": ".types",
     "ListOriginationUrisResponse": ".types",
-    "ListOriginationUrisResponseMeta": ".types",
     "ListOriginationUrisResponseObjectsItem": ".types",
     "UpdateOriginationUriResponse": ".types",
 }
@@ -46,7 +44,6 @@ def __dir__():
 __all__ = [
     "CreateOriginationUriResponse",
     "ListOriginationUrisResponse",
-    "ListOriginationUrisResponseMeta",
     "ListOriginationUrisResponseObjectsItem",
     "UpdateOriginationUriResponse",
 ]

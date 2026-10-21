@@ -12,7 +12,6 @@ if typing.TYPE_CHECKING:
     from .list_cdrs_request_call_direction import ListCdrsRequestCallDirection
     from .list_cdrs_response import ListCdrsResponse
     from .list_cdrs_response_data_item import ListCdrsResponseDataItem
-    from .list_cdrs_response_pagination import ListCdrsResponsePagination
     from .list_cdrs_response_summary import ListCdrsResponseSummary
     from .list_recent_cdrs_response import ListRecentCdrsResponse
     from .list_recent_cdrs_response_data_item import ListRecentCdrsResponseDataItem
@@ -20,7 +19,6 @@ if typing.TYPE_CHECKING:
     from .search_cdrs_response import SearchCdrsResponse
     from .search_cdrs_response_data_item import SearchCdrsResponseDataItem
     from .search_cdrs_response_filters import SearchCdrsResponseFilters
-    from .search_cdrs_response_pagination import SearchCdrsResponsePagination
     from .search_cdrs_response_summary import SearchCdrsResponseSummary
 _dynamic_imports: typing.Dict[str, str] = {
     "ExportCdrsRequestCallDirection": ".export_cdrs_request_call_direction",
@@ -29,7 +27,6 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ListCdrsRequestCallDirection": ".list_cdrs_request_call_direction",
     "ListCdrsResponse": ".list_cdrs_response",
     "ListCdrsResponseDataItem": ".list_cdrs_response_data_item",
-    "ListCdrsResponsePagination": ".list_cdrs_response_pagination",
     "ListCdrsResponseSummary": ".list_cdrs_response_summary",
     "ListRecentCdrsResponse": ".list_recent_cdrs_response",
     "ListRecentCdrsResponseDataItem": ".list_recent_cdrs_response_data_item",
@@ -37,7 +34,6 @@ _dynamic_imports: typing.Dict[str, str] = {
     "SearchCdrsResponse": ".search_cdrs_response",
     "SearchCdrsResponseDataItem": ".search_cdrs_response_data_item",
     "SearchCdrsResponseFilters": ".search_cdrs_response_filters",
-    "SearchCdrsResponsePagination": ".search_cdrs_response_pagination",
     "SearchCdrsResponseSummary": ".search_cdrs_response_summary",
 }
 
@@ -70,7 +66,6 @@ __all__ = [
     "ListCdrsRequestCallDirection",
     "ListCdrsResponse",
     "ListCdrsResponseDataItem",
-    "ListCdrsResponsePagination",
     "ListCdrsResponseSummary",
     "ListRecentCdrsResponse",
     "ListRecentCdrsResponseDataItem",
@@ -78,6 +73,5 @@ __all__ = [
     "SearchCdrsResponse",
     "SearchCdrsResponseDataItem",
     "SearchCdrsResponseFilters",
-    "SearchCdrsResponsePagination",
     "SearchCdrsResponseSummary",
 ]

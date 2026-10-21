@@ -8,13 +8,11 @@ from importlib import import_module
 if typing.TYPE_CHECKING:
     from .create_origination_uri_response import CreateOriginationUriResponse
     from .list_origination_uris_response import ListOriginationUrisResponse
-    from .list_origination_uris_response_meta import ListOriginationUrisResponseMeta
     from .list_origination_uris_response_objects_item import ListOriginationUrisResponseObjectsItem
     from .update_origination_uri_response import UpdateOriginationUriResponse
 _dynamic_imports: typing.Dict[str, str] = {
     "CreateOriginationUriResponse": ".create_origination_uri_response",
     "ListOriginationUrisResponse": ".list_origination_uris_response",
-    "ListOriginationUrisResponseMeta": ".list_origination_uris_response_meta",
     "ListOriginationUrisResponseObjectsItem": ".list_origination_uris_response_objects_item",
     "UpdateOriginationUriResponse": ".update_origination_uri_response",
 }
@@ -44,7 +42,6 @@ def __dir__():
 __all__ = [
     "CreateOriginationUriResponse",
     "ListOriginationUrisResponse",
-    "ListOriginationUrisResponseMeta",
     "ListOriginationUrisResponseObjectsItem",
     "UpdateOriginationUriResponse",
 ]

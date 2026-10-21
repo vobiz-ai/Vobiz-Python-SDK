@@ -22,6 +22,7 @@ if typing.TYPE_CHECKING:
     from .call_record import CallRecord
     from .call_record_call_status import CallRecordCallStatus
     from .capacity_resource_type import CapacityResourceType
+    from .cdr_pagination import CdrPagination
     from .channel_pricing_preview import ChannelPricingPreview
     from .channel_subscription import ChannelSubscription
     from .endpoint import Endpoint
@@ -34,6 +35,7 @@ if typing.TYPE_CHECKING:
     from .kyc_verification_result_status import KycVerificationResultStatus
     from .kyc_verification_result_verification_type import KycVerificationResultVerificationType
     from .not_found_error_body import NotFoundErrorBody
+    from .pagination_meta import PaginationMeta
     from .partner_analytics import PartnerAnalytics
     from .partner_analytics_by_direction import PartnerAnalyticsByDirection
     from .partner_analytics_by_direction_inbound import PartnerAnalyticsByDirectionInbound
@@ -62,6 +64,7 @@ if typing.TYPE_CHECKING:
     from .sub_account_kyc_status_overall_status import SubAccountKycStatusOverallStatus
     from .sub_account_kyc_status_verifications_value import SubAccountKycStatusVerificationsValue
     from .trunk import Trunk
+    from .trunk_list_meta import TrunkListMeta
     from .trunk_trunk_type import TrunkTrunkType
 _dynamic_imports: typing.Dict[str, str] = {
     "Account": ".account",
@@ -80,6 +83,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "CallRecord": ".call_record",
     "CallRecordCallStatus": ".call_record_call_status",
     "CapacityResourceType": ".capacity_resource_type",
+    "CdrPagination": ".cdr_pagination",
     "ChannelPricingPreview": ".channel_pricing_preview",
     "ChannelSubscription": ".channel_subscription",
     "Endpoint": ".endpoint",
@@ -92,6 +96,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "KycVerificationResultStatus": ".kyc_verification_result_status",
     "KycVerificationResultVerificationType": ".kyc_verification_result_verification_type",
     "NotFoundErrorBody": ".not_found_error_body",
+    "PaginationMeta": ".pagination_meta",
     "PartnerAnalytics": ".partner_analytics",
     "PartnerAnalyticsByDirection": ".partner_analytics_by_direction",
     "PartnerAnalyticsByDirectionInbound": ".partner_analytics_by_direction_inbound",
@@ -120,6 +125,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "SubAccountKycStatusOverallStatus": ".sub_account_kyc_status_overall_status",
     "SubAccountKycStatusVerificationsValue": ".sub_account_kyc_status_verifications_value",
     "Trunk": ".trunk",
+    "TrunkListMeta": ".trunk_list_meta",
     "TrunkTrunkType": ".trunk_trunk_type",
 }
 
@@ -162,6 +168,7 @@ __all__ = [
     "CallRecord",
     "CallRecordCallStatus",
     "CapacityResourceType",
+    "CdrPagination",
     "ChannelPricingPreview",
     "ChannelSubscription",
     "Endpoint",
@@ -174,6 +181,7 @@ __all__ = [
     "KycVerificationResultStatus",
     "KycVerificationResultVerificationType",
     "NotFoundErrorBody",
+    "PaginationMeta",
     "PartnerAnalytics",
     "PartnerAnalyticsByDirection",
     "PartnerAnalyticsByDirectionInbound",
@@ -202,5 +210,6 @@ __all__ = [
     "SubAccountKycStatusOverallStatus",
     "SubAccountKycStatusVerificationsValue",
     "Trunk",
+    "TrunkListMeta",
     "TrunkTrunkType",
 ]

@@ -12,7 +12,6 @@ if typing.TYPE_CHECKING:
     from .create_trunk_request_webhook_method import CreateTrunkRequestWebhookMethod
     from .create_trunk_response import CreateTrunkResponse
     from .list_trunks_response import ListTrunksResponse
-    from .list_trunks_response_meta import ListTrunksResponseMeta
     from .list_trunks_response_objects_item import ListTrunksResponseObjectsItem
     from .retrieve_trunk_response import RetrieveTrunkResponse
     from .update_trunk_request_transport import UpdateTrunkRequestTransport
@@ -27,7 +26,6 @@ _dynamic_imports: typing.Dict[str, str] = {
     "CreateTrunkRequestWebhookMethod": ".create_trunk_request_webhook_method",
     "CreateTrunkResponse": ".create_trunk_response",
     "ListTrunksResponse": ".list_trunks_response",
-    "ListTrunksResponseMeta": ".list_trunks_response_meta",
     "ListTrunksResponseObjectsItem": ".list_trunks_response_objects_item",
     "RetrieveTrunkResponse": ".retrieve_trunk_response",
     "UpdateTrunkRequestTransport": ".update_trunk_request_transport",
@@ -66,7 +64,6 @@ __all__ = [
     "CreateTrunkRequestWebhookMethod",
     "CreateTrunkResponse",
     "ListTrunksResponse",
-    "ListTrunksResponseMeta",
     "ListTrunksResponseObjectsItem",
     "RetrieveTrunkResponse",
     "UpdateTrunkRequestTransport",

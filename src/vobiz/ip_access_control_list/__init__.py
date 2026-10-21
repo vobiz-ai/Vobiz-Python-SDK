@@ -6,17 +6,10 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
-    from .types import (
-        CreateIpAclResponse,
-        ListIpAclsResponse,
-        ListIpAclsResponseMeta,
-        ListIpAclsResponseObjectsItem,
-        UpdateIpAclResponse,
-    )
+    from .types import CreateIpAclResponse, ListIpAclsResponse, ListIpAclsResponseObjectsItem, UpdateIpAclResponse
 _dynamic_imports: typing.Dict[str, str] = {
     "CreateIpAclResponse": ".types",
     "ListIpAclsResponse": ".types",
-    "ListIpAclsResponseMeta": ".types",
     "ListIpAclsResponseObjectsItem": ".types",
     "UpdateIpAclResponse": ".types",
 }
@@ -43,10 +36,4 @@ def __dir__():
     return sorted(lazy_attrs)
 
 
-__all__ = [
-    "CreateIpAclResponse",
-    "ListIpAclsResponse",
-    "ListIpAclsResponseMeta",
-    "ListIpAclsResponseObjectsItem",
-    "UpdateIpAclResponse",
-]
+__all__ = ["CreateIpAclResponse", "ListIpAclsResponse", "ListIpAclsResponseObjectsItem", "UpdateIpAclResponse"]

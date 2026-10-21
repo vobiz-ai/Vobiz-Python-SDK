@@ -4,8 +4,8 @@ import typing
 
 import pydantic
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
+from ...types.cdr_pagination import CdrPagination
 from .list_cdrs_response_data_item import ListCdrsResponseDataItem
-from .list_cdrs_response_pagination import ListCdrsResponsePagination
 from .list_cdrs_response_summary import ListCdrsResponseSummary
 
 
@@ -13,7 +13,7 @@ class ListCdrsResponse(UniversalBaseModel):
     account_id: str
     count: int
     data: typing.List[ListCdrsResponseDataItem]
-    pagination: ListCdrsResponsePagination
+    pagination: CdrPagination
     success: bool
     summary: ListCdrsResponseSummary
 

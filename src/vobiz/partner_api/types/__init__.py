@@ -39,7 +39,6 @@ if typing.TYPE_CHECKING:
     from .list_customer_cdrs_request_call_direction import ListCustomerCdrsRequestCallDirection
     from .list_customer_cdrs_request_status import ListCustomerCdrsRequestStatus
     from .list_customer_cdrs_response import ListCustomerCdrsResponse
-    from .list_customer_cdrs_response_pagination import ListCustomerCdrsResponsePagination
     from .list_customer_cdrs_response_summary import ListCustomerCdrsResponseSummary
     from .list_customer_numbers_response import ListCustomerNumbersResponse
     from .list_customer_transactions_request_transaction_type import ListCustomerTransactionsRequestTransactionType
@@ -89,7 +88,6 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ListCustomerCdrsRequestCallDirection": ".list_customer_cdrs_request_call_direction",
     "ListCustomerCdrsRequestStatus": ".list_customer_cdrs_request_status",
     "ListCustomerCdrsResponse": ".list_customer_cdrs_response",
-    "ListCustomerCdrsResponsePagination": ".list_customer_cdrs_response_pagination",
     "ListCustomerCdrsResponseSummary": ".list_customer_cdrs_response_summary",
     "ListCustomerNumbersResponse": ".list_customer_numbers_response",
     "ListCustomerTransactionsRequestTransactionType": ".list_customer_transactions_request_transaction_type",
@@ -155,7 +153,6 @@ __all__ = [
     "ListCustomerCdrsRequestCallDirection",
     "ListCustomerCdrsRequestStatus",
     "ListCustomerCdrsResponse",
-    "ListCustomerCdrsResponsePagination",
     "ListCustomerCdrsResponseSummary",
     "ListCustomerNumbersResponse",
     "ListCustomerTransactionsRequestTransactionType",

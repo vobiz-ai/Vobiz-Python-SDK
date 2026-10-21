@@ -9,14 +9,12 @@ if typing.TYPE_CHECKING:
     from .types import (
         CreateEndpointResponse,
         ListEndpointsResponse,
-        ListEndpointsResponseMeta,
         ListEndpointsResponseObjectsItem,
         RetrieveEndpointResponse,
     )
 _dynamic_imports: typing.Dict[str, str] = {
     "CreateEndpointResponse": ".types",
     "ListEndpointsResponse": ".types",
-    "ListEndpointsResponseMeta": ".types",
     "ListEndpointsResponseObjectsItem": ".types",
     "RetrieveEndpointResponse": ".types",
 }
@@ -46,7 +44,6 @@ def __dir__():
 __all__ = [
     "CreateEndpointResponse",
     "ListEndpointsResponse",
-    "ListEndpointsResponseMeta",
     "ListEndpointsResponseObjectsItem",
     "RetrieveEndpointResponse",
 ]
