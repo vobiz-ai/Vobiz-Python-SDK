@@ -384,6 +384,94 @@ class PhoneNumbersClient:
         _response = self._raw_client.unassign_number_from_trunk(auth_id, phone_number, request_options=request_options)
         return _response.data
 
+    def link_number_to_application(
+        self, auth_id: str, e164: str, *, application_id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> None:
+        """
+        Link a phone number to a voice application. Once linked, inbound
+        calls to that number fetch VobizXML from the application's
+        `answer_url`. A number routes through either an application or a
+        SIP trunk, not both: unassign the number from its trunk first
+        (`DELETE /api/v1/Account/{auth_id}/numbers/{phone_number}/assign`).
+        URL-encode the phone number (use `%2B` instead of `+`).
+
+        Parameters
+        ----------
+        auth_id : str
+            Your account Auth ID
+
+        e164 : str
+            The phone number, URL-encoded (use %2B instead of +).
+
+        application_id : str
+            The `app_id` of the application to link this number to.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        None
+
+        Examples
+        --------
+        from vobiz import Vobiz
+
+        client = Vobiz(
+            auth_token="YOUR_AUTH_TOKEN",
+            api_key="YOUR_API_KEY",
+        )
+        client.phone_numbers.link_number_to_application(
+            auth_id="MA_XXXXXX",
+            e164="%2B912271264217",
+            application_id="12345678901234567",
+        )
+        """
+        _response = self._raw_client.link_number_to_application(
+            auth_id, e164, application_id=application_id, request_options=request_options
+        )
+        return _response.data
+
+    def unlink_number_from_application(
+        self, auth_id: str, e164: str, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> None:
+        """
+        Remove the link between a phone number and its voice application.
+        The number stays in your account inventory but inbound calls no
+        longer fetch VobizXML from that application.
+        URL-encode the phone number (use `%2B` instead of `+`).
+
+        Parameters
+        ----------
+        auth_id : str
+            Your account Auth ID
+
+        e164 : str
+            The phone number, URL-encoded (use %2B instead of +).
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        None
+
+        Examples
+        --------
+        from vobiz import Vobiz
+
+        client = Vobiz(
+            auth_token="YOUR_AUTH_TOKEN",
+            api_key="YOUR_API_KEY",
+        )
+        client.phone_numbers.unlink_number_from_application(
+            auth_id="MA_XXXXXX",
+            e164="%2B912271264217",
+        )
+        """
+        _response = self._raw_client.unlink_number_from_application(auth_id, e164, request_options=request_options)
+        return _response.data
+
     def get_number_health(
         self,
         auth_id: str,
@@ -967,6 +1055,112 @@ class AsyncPhoneNumbersClient:
         """
         _response = await self._raw_client.unassign_number_from_trunk(
             auth_id, phone_number, request_options=request_options
+        )
+        return _response.data
+
+    async def link_number_to_application(
+        self, auth_id: str, e164: str, *, application_id: str, request_options: typing.Optional[RequestOptions] = None
+    ) -> None:
+        """
+        Link a phone number to a voice application. Once linked, inbound
+        calls to that number fetch VobizXML from the application's
+        `answer_url`. A number routes through either an application or a
+        SIP trunk, not both: unassign the number from its trunk first
+        (`DELETE /api/v1/Account/{auth_id}/numbers/{phone_number}/assign`).
+        URL-encode the phone number (use `%2B` instead of `+`).
+
+        Parameters
+        ----------
+        auth_id : str
+            Your account Auth ID
+
+        e164 : str
+            The phone number, URL-encoded (use %2B instead of +).
+
+        application_id : str
+            The `app_id` of the application to link this number to.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        None
+
+        Examples
+        --------
+        import asyncio
+
+        from vobiz import AsyncVobiz
+
+        client = AsyncVobiz(
+            auth_token="YOUR_AUTH_TOKEN",
+            api_key="YOUR_API_KEY",
+        )
+
+
+        async def main() -> None:
+            await client.phone_numbers.link_number_to_application(
+                auth_id="MA_XXXXXX",
+                e164="%2B912271264217",
+                application_id="12345678901234567",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.link_number_to_application(
+            auth_id, e164, application_id=application_id, request_options=request_options
+        )
+        return _response.data
+
+    async def unlink_number_from_application(
+        self, auth_id: str, e164: str, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> None:
+        """
+        Remove the link between a phone number and its voice application.
+        The number stays in your account inventory but inbound calls no
+        longer fetch VobizXML from that application.
+        URL-encode the phone number (use `%2B` instead of `+`).
+
+        Parameters
+        ----------
+        auth_id : str
+            Your account Auth ID
+
+        e164 : str
+            The phone number, URL-encoded (use %2B instead of +).
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        None
+
+        Examples
+        --------
+        import asyncio
+
+        from vobiz import AsyncVobiz
+
+        client = AsyncVobiz(
+            auth_token="YOUR_AUTH_TOKEN",
+            api_key="YOUR_API_KEY",
+        )
+
+
+        async def main() -> None:
+            await client.phone_numbers.unlink_number_from_application(
+                auth_id="MA_XXXXXX",
+                e164="%2B912271264217",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.unlink_number_from_application(
+            auth_id, e164, request_options=request_options
         )
         return _response.data
 

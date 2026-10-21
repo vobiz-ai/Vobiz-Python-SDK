@@ -102,6 +102,8 @@ class RawApplicationsClient:
         app_name: str,
         answer_url: str,
         answer_method: str,
+        hangup_url: typing.Optional[str] = OMIT,
+        hangup_method: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[CreateApplicationResponse]:
         """
@@ -120,6 +122,12 @@ class RawApplicationsClient:
 
         answer_method : str
 
+        hangup_url : typing.Optional[str]
+            URL Vobiz notifies when a call on this application ends. If omitted, it defaults to `answer_url`.
+
+        hangup_method : typing.Optional[str]
+            HTTP method used for `hangup_url`, `GET` or `POST`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -135,6 +143,8 @@ class RawApplicationsClient:
                 "app_name": app_name,
                 "answer_url": answer_url,
                 "answer_method": answer_method,
+                "hangup_url": hangup_url,
+                "hangup_method": hangup_method,
             },
             headers={
                 "content-type": "application/json",
@@ -247,6 +257,10 @@ class RawApplicationsClient:
         *,
         app_name: str,
         default_number_app: bool,
+        answer_url: typing.Optional[str] = OMIT,
+        answer_method: typing.Optional[str] = OMIT,
+        hangup_url: typing.Optional[str] = OMIT,
+        hangup_method: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[UpdateApplicationResponse]:
         """
@@ -264,6 +278,18 @@ class RawApplicationsClient:
 
         default_number_app : bool
 
+        answer_url : typing.Optional[str]
+            URL Vobiz fetches VobizXML from when a call reaches a number or endpoint linked to this application.
+
+        answer_method : typing.Optional[str]
+            HTTP method used for `answer_url`, `GET` or `POST`.
+
+        hangup_url : typing.Optional[str]
+            URL Vobiz notifies when a call on this application ends.
+
+        hangup_method : typing.Optional[str]
+            HTTP method used for `hangup_url`, `GET` or `POST`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -278,6 +304,10 @@ class RawApplicationsClient:
             json={
                 "app_name": app_name,
                 "default_number_app": default_number_app,
+                "answer_url": answer_url,
+                "answer_method": answer_method,
+                "hangup_url": hangup_url,
+                "hangup_method": hangup_method,
             },
             headers={
                 "content-type": "application/json",
@@ -476,6 +506,8 @@ class AsyncRawApplicationsClient:
         app_name: str,
         answer_url: str,
         answer_method: str,
+        hangup_url: typing.Optional[str] = OMIT,
+        hangup_method: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[CreateApplicationResponse]:
         """
@@ -494,6 +526,12 @@ class AsyncRawApplicationsClient:
 
         answer_method : str
 
+        hangup_url : typing.Optional[str]
+            URL Vobiz notifies when a call on this application ends. If omitted, it defaults to `answer_url`.
+
+        hangup_method : typing.Optional[str]
+            HTTP method used for `hangup_url`, `GET` or `POST`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -509,6 +547,8 @@ class AsyncRawApplicationsClient:
                 "app_name": app_name,
                 "answer_url": answer_url,
                 "answer_method": answer_method,
+                "hangup_url": hangup_url,
+                "hangup_method": hangup_method,
             },
             headers={
                 "content-type": "application/json",
@@ -621,6 +661,10 @@ class AsyncRawApplicationsClient:
         *,
         app_name: str,
         default_number_app: bool,
+        answer_url: typing.Optional[str] = OMIT,
+        answer_method: typing.Optional[str] = OMIT,
+        hangup_url: typing.Optional[str] = OMIT,
+        hangup_method: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[UpdateApplicationResponse]:
         """
@@ -638,6 +682,18 @@ class AsyncRawApplicationsClient:
 
         default_number_app : bool
 
+        answer_url : typing.Optional[str]
+            URL Vobiz fetches VobizXML from when a call reaches a number or endpoint linked to this application.
+
+        answer_method : typing.Optional[str]
+            HTTP method used for `answer_url`, `GET` or `POST`.
+
+        hangup_url : typing.Optional[str]
+            URL Vobiz notifies when a call on this application ends.
+
+        hangup_method : typing.Optional[str]
+            HTTP method used for `hangup_url`, `GET` or `POST`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -652,6 +708,10 @@ class AsyncRawApplicationsClient:
             json={
                 "app_name": app_name,
                 "default_number_app": default_number_app,
+                "answer_url": answer_url,
+                "answer_method": answer_method,
+                "hangup_url": hangup_url,
+                "hangup_method": hangup_method,
             },
             headers={
                 "content-type": "application/json",

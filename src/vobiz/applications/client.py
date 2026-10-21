@@ -81,6 +81,8 @@ class ApplicationsClient:
         app_name: str,
         answer_url: str,
         answer_method: str,
+        hangup_url: typing.Optional[str] = OMIT,
+        hangup_method: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateApplicationResponse:
         """
@@ -98,6 +100,12 @@ class ApplicationsClient:
         answer_url : str
 
         answer_method : str
+
+        hangup_url : typing.Optional[str]
+            URL Vobiz notifies when a call on this application ends. If omitted, it defaults to `answer_url`.
+
+        hangup_method : typing.Optional[str]
+            HTTP method used for `hangup_url`, `GET` or `POST`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -120,6 +128,8 @@ class ApplicationsClient:
             app_name="My Voice Application",
             answer_url="https://example.com/answer",
             answer_method="POST",
+            hangup_url="https://example.com/hangup",
+            hangup_method="POST",
         )
         """
         _response = self._raw_client.create_application(
@@ -127,6 +137,8 @@ class ApplicationsClient:
             app_name=app_name,
             answer_url=answer_url,
             answer_method=answer_method,
+            hangup_url=hangup_url,
+            hangup_method=hangup_method,
             request_options=request_options,
         )
         return _response.data
@@ -176,6 +188,10 @@ class ApplicationsClient:
         *,
         app_name: str,
         default_number_app: bool,
+        answer_url: typing.Optional[str] = OMIT,
+        answer_method: typing.Optional[str] = OMIT,
+        hangup_url: typing.Optional[str] = OMIT,
+        hangup_method: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> UpdateApplicationResponse:
         """
@@ -192,6 +208,18 @@ class ApplicationsClient:
         app_name : str
 
         default_number_app : bool
+
+        answer_url : typing.Optional[str]
+            URL Vobiz fetches VobizXML from when a call reaches a number or endpoint linked to this application.
+
+        answer_method : typing.Optional[str]
+            HTTP method used for `answer_url`, `GET` or `POST`.
+
+        hangup_url : typing.Optional[str]
+            URL Vobiz notifies when a call on this application ends.
+
+        hangup_method : typing.Optional[str]
+            HTTP method used for `hangup_url`, `GET` or `POST`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -214,10 +242,22 @@ class ApplicationsClient:
             app_id="12345678",
             app_name="Updated Application Name",
             default_number_app=True,
+            answer_url="https://example.com/answer",
+            answer_method="POST",
+            hangup_url="https://example.com/hangup",
+            hangup_method="POST",
         )
         """
         _response = self._raw_client.update_application(
-            auth_id, app_id, app_name=app_name, default_number_app=default_number_app, request_options=request_options
+            auth_id,
+            app_id,
+            app_name=app_name,
+            default_number_app=default_number_app,
+            answer_url=answer_url,
+            answer_method=answer_method,
+            hangup_url=hangup_url,
+            hangup_method=hangup_method,
+            request_options=request_options,
         )
         return _response.data
 
@@ -336,6 +376,8 @@ class AsyncApplicationsClient:
         app_name: str,
         answer_url: str,
         answer_method: str,
+        hangup_url: typing.Optional[str] = OMIT,
+        hangup_method: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateApplicationResponse:
         """
@@ -353,6 +395,12 @@ class AsyncApplicationsClient:
         answer_url : str
 
         answer_method : str
+
+        hangup_url : typing.Optional[str]
+            URL Vobiz notifies when a call on this application ends. If omitted, it defaults to `answer_url`.
+
+        hangup_method : typing.Optional[str]
+            HTTP method used for `hangup_url`, `GET` or `POST`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -380,6 +428,8 @@ class AsyncApplicationsClient:
                 app_name="My Voice Application",
                 answer_url="https://example.com/answer",
                 answer_method="POST",
+                hangup_url="https://example.com/hangup",
+                hangup_method="POST",
             )
 
 
@@ -390,6 +440,8 @@ class AsyncApplicationsClient:
             app_name=app_name,
             answer_url=answer_url,
             answer_method=answer_method,
+            hangup_url=hangup_url,
+            hangup_method=hangup_method,
             request_options=request_options,
         )
         return _response.data
@@ -447,6 +499,10 @@ class AsyncApplicationsClient:
         *,
         app_name: str,
         default_number_app: bool,
+        answer_url: typing.Optional[str] = OMIT,
+        answer_method: typing.Optional[str] = OMIT,
+        hangup_url: typing.Optional[str] = OMIT,
+        hangup_method: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> UpdateApplicationResponse:
         """
@@ -463,6 +519,18 @@ class AsyncApplicationsClient:
         app_name : str
 
         default_number_app : bool
+
+        answer_url : typing.Optional[str]
+            URL Vobiz fetches VobizXML from when a call reaches a number or endpoint linked to this application.
+
+        answer_method : typing.Optional[str]
+            HTTP method used for `answer_url`, `GET` or `POST`.
+
+        hangup_url : typing.Optional[str]
+            URL Vobiz notifies when a call on this application ends.
+
+        hangup_method : typing.Optional[str]
+            HTTP method used for `hangup_url`, `GET` or `POST`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -490,13 +558,25 @@ class AsyncApplicationsClient:
                 app_id="12345678",
                 app_name="Updated Application Name",
                 default_number_app=True,
+                answer_url="https://example.com/answer",
+                answer_method="POST",
+                hangup_url="https://example.com/hangup",
+                hangup_method="POST",
             )
 
 
         asyncio.run(main())
         """
         _response = await self._raw_client.update_application(
-            auth_id, app_id, app_name=app_name, default_number_app=default_number_app, request_options=request_options
+            auth_id,
+            app_id,
+            app_name=app_name,
+            default_number_app=default_number_app,
+            answer_url=answer_url,
+            answer_method=answer_method,
+            hangup_url=hangup_url,
+            hangup_method=hangup_method,
+            request_options=request_options,
         )
         return _response.data
 
