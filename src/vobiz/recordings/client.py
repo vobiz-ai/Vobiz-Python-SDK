@@ -75,6 +75,11 @@ class RecordingsClient:
         """
         Get details and download URL for a specific recording.
 
+        `recording_url` points at `media.vobiz.ai`. Download it with the same
+        `X-Auth-ID` and `X-Auth-Token` headers you use for the API; the media
+        host returns `401` without them. The file is WAV, although the media
+        host may label it `Content-Type: audio/mpeg`.
+
         Parameters
         ----------
         auth_id : str
@@ -216,6 +221,11 @@ class AsyncRecordingsClient:
     ) -> GetRecordingResponse:
         """
         Get details and download URL for a specific recording.
+
+        `recording_url` points at `media.vobiz.ai`. Download it with the same
+        `X-Auth-ID` and `X-Auth-Token` headers you use for the API; the media
+        host returns `401` without them. The file is WAV, although the media
+        host may label it `Content-Type: audio/mpeg`.
 
         Parameters
         ----------

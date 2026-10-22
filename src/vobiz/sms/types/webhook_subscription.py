@@ -53,7 +53,7 @@ class WebhookSubscription(UniversalBaseModel):
         FieldMetadata(alias="createdAt"),
         pydantic.Field(
             alias="createdAt",
-            description="When the subscription was created (ISO 8601). Read it from `GET /webhooks/{id}` or `GET /webhooks`.",
+            description="When the subscription was created (ISO 8601). The create response can return the zero value `0001-01-01T00:00:00Z`; read the stored time from `GET /webhooks/{id}` or `GET /webhooks`.",
         ),
     ] = None
 

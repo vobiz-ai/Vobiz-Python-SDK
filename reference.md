@@ -2265,6 +2265,11 @@ client.sub_accounts.retrieve_subaccount(
 
 Update the name or status of a sub-account, or change its `kyc_mode`.
 
+Set `is_active` to `false` to deactivate a sub-account. A deactivated
+sub-account no longer appears in the list, and retrieve, update and
+delete requests for it return `404`. The `enabled` field is accepted
+but has no effect.
+
 Promoting an existing sub-account to `customer_use` requires the
 sub-account to already have an `email` (otherwise `400`). On any
 `kyc_mode` change, `kyc_calls_blocked` is re-derived from the
@@ -2336,7 +2341,15 @@ client.sub_accounts.update_subaccount(
 <dl>
 <dd>
 
-**enabled:** `typing.Optional[bool]` 
+**is_active:** `typing.Optional[bool]` — Set to `false` to deactivate the sub-account. A deactivated sub-account no longer appears in list, retrieve, update or delete requests (`404`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**enabled:** `typing.Optional[bool]` — Accepted but has no effect. Use `is_active` instead.
     
 </dd>
 </dl>
@@ -5127,7 +5140,7 @@ client.trunks.create_trunk(
 <dl>
 <dd>
 
-**trunk_status:** `typing.Optional[CreateTrunkRequestTrunkStatus]` — Trunk status - `enabled` or `disabled` (note: not `active`).
+**trunk_status:** `typing.Optional[CreateTrunkRequestTrunkStatus]` — Trunk status to set - `enabled` or `disabled`. Responses report `enabled` as `active` and `disabled` as `suspended`.
     
 </dd>
 </dl>
@@ -5490,7 +5503,7 @@ client.trunks.update_trunk(
 <dl>
 <dd>
 
-**trunk_status:** `typing.Optional[UpdateTrunkRequestTrunkStatus]` 
+**trunk_status:** `typing.Optional[UpdateTrunkRequestTrunkStatus]` — Trunk status to set - `enabled` or `disabled`. Responses report `enabled` as `active` and `disabled` as `suspended`.
     
 </dd>
 </dl>
@@ -8178,6 +8191,11 @@ client.recordings.list_recordings(
 <dd>
 
 Get details and download URL for a specific recording.
+
+`recording_url` points at `media.vobiz.ai`. Download it with the same
+`X-Auth-ID` and `X-Auth-Token` headers you use for the API; the media
+host returns `401` without them. The file is WAV, although the media
+host may label it `Content-Type: audio/mpeg`.
 </dd>
 </dl>
 </dd>
@@ -8899,6 +8917,10 @@ client.credentials.delete_credential(
 <dd>
 
 Add an IP access control rule to restrict SIP trunk access.
+
+Use the public IP address or CIDR range of your own SBC or PBX. The API
+rejects documentation-only ranges such as `203.0.113.0/24` with `400`.
+Responses return the rule's label in `description`.
 </dd>
 </dl>
 </dd>
@@ -8925,7 +8947,7 @@ client = Vobiz(
 client.ip_access_control_list.create_ip_acl(
     auth_id="MA_XXXXXX",
     name="Office IP",
-    ip_address="ip_address",
+    ip_address="YOUR_PUBLIC_IP/32",
 )
 
 ```
@@ -9275,8 +9297,8 @@ client = Vobiz(
 
 client.origination_uri.create_origination_uri(
     auth_id="MA_XXXXXX",
-    name="Primary SBC",
-    sip_uri="sip:sbc.example.com",
+    uri="sip:sbc.example.com",
+    description="Primary SBC",
     priority=1,
 )
 
@@ -9302,7 +9324,7 @@ client.origination_uri.create_origination_uri(
 <dl>
 <dd>
 
-**name:** `str` 
+**uri:** `str` — SIP URI of your inbound destination, for example `sip:sbc.example.com`.
     
 </dd>
 </dl>
@@ -9310,7 +9332,7 @@ client.origination_uri.create_origination_uri(
 <dl>
 <dd>
 
-**sip_uri:** `str` 
+**priority:** `int` — Routing priority. Lower values are tried first.
     
 </dd>
 </dl>
@@ -9318,7 +9340,23 @@ client.origination_uri.create_origination_uri(
 <dl>
 <dd>
 
-**priority:** `int` 
+**description:** `typing.Optional[str]` — Label for the origination URI.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sip_uri:** `typing.Optional[str]` — Not read by the API. The API accepts the request but stores an empty `uri`. Send `uri` instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `typing.Optional[str]` — Not read by the API. Send `description` instead.
     
 </dd>
 </dl>
@@ -9451,8 +9489,9 @@ client = Vobiz(
 client.origination_uri.update_origination_uri(
     auth_id="MA_XXXXXX",
     uri_id="uri_id",
-    name="name",
-    priority=1,
+    uri="sip:sbc.example.com",
+    description="Primary SBC",
+    priority=2,
 )
 
 ```
@@ -9485,7 +9524,7 @@ client.origination_uri.update_origination_uri(
 <dl>
 <dd>
 
-**name:** `str` 
+**uri:** `typing.Optional[str]` — SIP URI of your inbound destination.
     
 </dd>
 </dl>
@@ -9493,7 +9532,23 @@ client.origination_uri.update_origination_uri(
 <dl>
 <dd>
 
-**priority:** `int` 
+**description:** `typing.Optional[str]` — Label for the origination URI.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**priority:** `typing.Optional[int]` — Routing priority. Lower values are tried first.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `typing.Optional[str]` — Not read by the API. Send `description` instead.
     
 </dd>
 </dl>
@@ -9969,7 +10024,7 @@ client.applications.update_application(
 <dl>
 <dd>
 
-**app_name:** `str` 
+**app_name:** `typing.Optional[str]` 
     
 </dd>
 </dl>
@@ -9977,7 +10032,7 @@ client.applications.update_application(
 <dl>
 <dd>
 
-**default_number_app:** `bool` 
+**default_number_app:** `typing.Optional[bool]` 
     
 </dd>
 </dl>
@@ -10284,6 +10339,10 @@ client.endpoints.list_endpoints(
 Create a new SIP endpoint that can be used to make and receive calls
 through IP phones, softphones, or SIP clients. Each endpoint is
 assigned a unique SIP URI and endpoint ID.
+
+The API appends digits to the `username` you request (for example,
+`acme01` can become `acme0125672327435497`). Configure your SIP client
+with the `username` returned in the response.
 </dd>
 </dl>
 </dd>
@@ -10312,7 +10371,7 @@ client.endpoints.create_endpoint(
     username="john_doe",
     password="SecurePassword123!",
     alias="John\'s Desktop Phone",
-    application=12345678,
+    app_id="12345678901234567",
 )
 
 ```
@@ -10361,7 +10420,15 @@ client.endpoints.create_endpoint(
 <dl>
 <dd>
 
-**application:** `int` 
+**app_id:** `typing.Optional[str]` — ID of the application that handles calls from this endpoint. Application IDs are 17-digit strings; send them as JSON strings.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**application:** `typing.Optional[int]` — Not read by the API. Application IDs exceed the range of a JSON integer, and the endpoint is created without an application. Send `app_id` instead.
     
 </dd>
 </dl>
@@ -10510,6 +10577,7 @@ client.endpoints.update_endpoint(
     endpoint_id="87654321",
     alias="John\'s Updated Desktop Phone",
     password="NewSecurePassword456!",
+    app_id="12345678901234567",
 )
 
 ```
@@ -10551,6 +10619,14 @@ client.endpoints.update_endpoint(
 <dd>
 
 **password:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**app_id:** `typing.Optional[str]` — ID of the application to attach to this endpoint, as a string.
     
 </dd>
 </dl>

@@ -32,9 +32,11 @@ class OriginationUriClient:
         self,
         auth_id: str,
         *,
-        name: str,
-        sip_uri: str,
+        uri: str,
         priority: int,
+        description: typing.Optional[str] = OMIT,
+        sip_uri: typing.Optional[str] = OMIT,
+        name: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateOriginationUriResponse:
         """
@@ -45,11 +47,20 @@ class OriginationUriClient:
         auth_id : str
             Your account Auth ID
 
-        name : str
-
-        sip_uri : str
+        uri : str
+            SIP URI of your inbound destination, for example `sip:sbc.example.com`.
 
         priority : int
+            Routing priority. Lower values are tried first.
+
+        description : typing.Optional[str]
+            Label for the origination URI.
+
+        sip_uri : typing.Optional[str]
+            Not read by the API. The API accepts the request but stores an empty `uri`. Send `uri` instead.
+
+        name : typing.Optional[str]
+            Not read by the API. Send `description` instead.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -69,13 +80,19 @@ class OriginationUriClient:
         )
         client.origination_uri.create_origination_uri(
             auth_id="MA_XXXXXX",
-            name="Primary SBC",
-            sip_uri="sip:sbc.example.com",
+            uri="sip:sbc.example.com",
+            description="Primary SBC",
             priority=1,
         )
         """
         _response = self._raw_client.create_origination_uri(
-            auth_id, name=name, sip_uri=sip_uri, priority=priority, request_options=request_options
+            auth_id,
+            uri=uri,
+            priority=priority,
+            description=description,
+            sip_uri=sip_uri,
+            name=name,
+            request_options=request_options,
         )
         return _response.data
 
@@ -118,8 +135,10 @@ class OriginationUriClient:
         auth_id: str,
         uri_id: str,
         *,
-        name: str,
-        priority: int,
+        uri: typing.Optional[str] = OMIT,
+        description: typing.Optional[str] = OMIT,
+        priority: typing.Optional[int] = OMIT,
+        name: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> UpdateOriginationUriResponse:
         """
@@ -132,9 +151,17 @@ class OriginationUriClient:
 
         uri_id : str
 
-        name : str
+        uri : typing.Optional[str]
+            SIP URI of your inbound destination.
 
-        priority : int
+        description : typing.Optional[str]
+            Label for the origination URI.
+
+        priority : typing.Optional[int]
+            Routing priority. Lower values are tried first.
+
+        name : typing.Optional[str]
+            Not read by the API. Send `description` instead.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -155,12 +182,19 @@ class OriginationUriClient:
         client.origination_uri.update_origination_uri(
             auth_id="MA_XXXXXX",
             uri_id="uri_id",
-            name="name",
-            priority=1,
+            uri="sip:sbc.example.com",
+            description="Primary SBC",
+            priority=2,
         )
         """
         _response = self._raw_client.update_origination_uri(
-            auth_id, uri_id, name=name, priority=priority, request_options=request_options
+            auth_id,
+            uri_id,
+            uri=uri,
+            description=description,
+            priority=priority,
+            name=name,
+            request_options=request_options,
         )
         return _response.data
 
@@ -221,9 +255,11 @@ class AsyncOriginationUriClient:
         self,
         auth_id: str,
         *,
-        name: str,
-        sip_uri: str,
+        uri: str,
         priority: int,
+        description: typing.Optional[str] = OMIT,
+        sip_uri: typing.Optional[str] = OMIT,
+        name: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateOriginationUriResponse:
         """
@@ -234,11 +270,20 @@ class AsyncOriginationUriClient:
         auth_id : str
             Your account Auth ID
 
-        name : str
-
-        sip_uri : str
+        uri : str
+            SIP URI of your inbound destination, for example `sip:sbc.example.com`.
 
         priority : int
+            Routing priority. Lower values are tried first.
+
+        description : typing.Optional[str]
+            Label for the origination URI.
+
+        sip_uri : typing.Optional[str]
+            Not read by the API. The API accepts the request but stores an empty `uri`. Send `uri` instead.
+
+        name : typing.Optional[str]
+            Not read by the API. Send `description` instead.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -263,8 +308,8 @@ class AsyncOriginationUriClient:
         async def main() -> None:
             await client.origination_uri.create_origination_uri(
                 auth_id="MA_XXXXXX",
-                name="Primary SBC",
-                sip_uri="sip:sbc.example.com",
+                uri="sip:sbc.example.com",
+                description="Primary SBC",
                 priority=1,
             )
 
@@ -272,7 +317,13 @@ class AsyncOriginationUriClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.create_origination_uri(
-            auth_id, name=name, sip_uri=sip_uri, priority=priority, request_options=request_options
+            auth_id,
+            uri=uri,
+            priority=priority,
+            description=description,
+            sip_uri=sip_uri,
+            name=name,
+            request_options=request_options,
         )
         return _response.data
 
@@ -323,8 +374,10 @@ class AsyncOriginationUriClient:
         auth_id: str,
         uri_id: str,
         *,
-        name: str,
-        priority: int,
+        uri: typing.Optional[str] = OMIT,
+        description: typing.Optional[str] = OMIT,
+        priority: typing.Optional[int] = OMIT,
+        name: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> UpdateOriginationUriResponse:
         """
@@ -337,9 +390,17 @@ class AsyncOriginationUriClient:
 
         uri_id : str
 
-        name : str
+        uri : typing.Optional[str]
+            SIP URI of your inbound destination.
 
-        priority : int
+        description : typing.Optional[str]
+            Label for the origination URI.
+
+        priority : typing.Optional[int]
+            Routing priority. Lower values are tried first.
+
+        name : typing.Optional[str]
+            Not read by the API. Send `description` instead.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -365,15 +426,22 @@ class AsyncOriginationUriClient:
             await client.origination_uri.update_origination_uri(
                 auth_id="MA_XXXXXX",
                 uri_id="uri_id",
-                name="name",
-                priority=1,
+                uri="sip:sbc.example.com",
+                description="Primary SBC",
+                priority=2,
             )
 
 
         asyncio.run(main())
         """
         _response = await self._raw_client.update_origination_uri(
-            auth_id, uri_id, name=name, priority=priority, request_options=request_options
+            auth_id,
+            uri_id,
+            uri=uri,
+            description=description,
+            priority=priority,
+            name=name,
+            request_options=request_options,
         )
         return _response.data
 

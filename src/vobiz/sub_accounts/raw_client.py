@@ -212,12 +212,18 @@ class RawSubAccountsClient:
         sub_auth_id: str,
         *,
         name: typing.Optional[str] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
         enabled: typing.Optional[bool] = OMIT,
         kyc_mode: typing.Optional[UpdateSubaccountRequestKycMode] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[UpdateSubaccountResponse]:
         """
         Update the name or status of a sub-account, or change its `kyc_mode`.
+
+        Set `is_active` to `false` to deactivate a sub-account. A deactivated
+        sub-account no longer appears in the list, and retrieve, update and
+        delete requests for it return `404`. The `enabled` field is accepted
+        but has no effect.
 
         Promoting an existing sub-account to `customer_use` requires the
         sub-account to already have an `email` (otherwise `400`). On any
@@ -233,7 +239,11 @@ class RawSubAccountsClient:
 
         name : typing.Optional[str]
 
+        is_active : typing.Optional[bool]
+            Set to `false` to deactivate the sub-account. A deactivated sub-account no longer appears in list, retrieve, update or delete requests (`404`).
+
         enabled : typing.Optional[bool]
+            Accepted but has no effect. Use `is_active` instead.
 
         kyc_mode : typing.Optional[UpdateSubaccountRequestKycMode]
             Change the verification mode. Promoting to `customer_use` requires the sub-account to have an `email`.
@@ -251,6 +261,7 @@ class RawSubAccountsClient:
             method="PUT",
             json={
                 "name": name,
+                "is_active": is_active,
                 "enabled": enabled,
                 "kyc_mode": kyc_mode,
             },
@@ -515,12 +526,18 @@ class AsyncRawSubAccountsClient:
         sub_auth_id: str,
         *,
         name: typing.Optional[str] = OMIT,
+        is_active: typing.Optional[bool] = OMIT,
         enabled: typing.Optional[bool] = OMIT,
         kyc_mode: typing.Optional[UpdateSubaccountRequestKycMode] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[UpdateSubaccountResponse]:
         """
         Update the name or status of a sub-account, or change its `kyc_mode`.
+
+        Set `is_active` to `false` to deactivate a sub-account. A deactivated
+        sub-account no longer appears in the list, and retrieve, update and
+        delete requests for it return `404`. The `enabled` field is accepted
+        but has no effect.
 
         Promoting an existing sub-account to `customer_use` requires the
         sub-account to already have an `email` (otherwise `400`). On any
@@ -536,7 +553,11 @@ class AsyncRawSubAccountsClient:
 
         name : typing.Optional[str]
 
+        is_active : typing.Optional[bool]
+            Set to `false` to deactivate the sub-account. A deactivated sub-account no longer appears in list, retrieve, update or delete requests (`404`).
+
         enabled : typing.Optional[bool]
+            Accepted but has no effect. Use `is_active` instead.
 
         kyc_mode : typing.Optional[UpdateSubaccountRequestKycMode]
             Change the verification mode. Promoting to `customer_use` requires the sub-account to have an `email`.
@@ -554,6 +575,7 @@ class AsyncRawSubAccountsClient:
             method="PUT",
             json={
                 "name": name,
+                "is_active": is_active,
                 "enabled": enabled,
                 "kyc_mode": kyc_mode,
             },

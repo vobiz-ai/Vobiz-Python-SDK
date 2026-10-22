@@ -4,6 +4,7 @@ import typing
 
 import pydantic
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
+from .create_trunk_response_trunk_status import CreateTrunkResponseTrunkStatus
 
 
 class CreateTrunkResponse(UniversalBaseModel):
@@ -11,7 +12,11 @@ class CreateTrunkResponse(UniversalBaseModel):
     account_id: str
     name: str
     trunk_domain: str
-    trunk_status: str
+    trunk_status: CreateTrunkResponseTrunkStatus = pydantic.Field()
+    """
+    Trunk state as reported in responses - `active` or `suspended`. Requests set it with `enabled` (reported as `active`) or `disabled` (reported as `suspended`).
+    """
+
     secure: bool
     trunk_direction: str
     concurrent_calls_limit: int

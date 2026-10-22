@@ -120,7 +120,7 @@ class RawWebhooksClient:
         Returns
         -------
         HttpResponse[WebhookSubscription]
-            The subscription, active immediately.
+            The subscription, active immediately. `createdAt` can be the zero value `0001-01-01T00:00:00Z` in this response; `GET /webhooks/{id}` returns the stored time.
         """
         _response = self._client_wrapper.httpx_client.request(
             "api/v1/sms/webhooks",
@@ -553,7 +553,7 @@ class AsyncRawWebhooksClient:
         Returns
         -------
         AsyncHttpResponse[WebhookSubscription]
-            The subscription, active immediately.
+            The subscription, active immediately. `createdAt` can be the zero value `0001-01-01T00:00:00Z` in this response; `GET /webhooks/{id}` returns the stored time.
         """
         _response = await self._client_wrapper.httpx_client.request(
             "api/v1/sms/webhooks",

@@ -116,7 +116,7 @@ class TrunksClient:
             Direction of the trunk - **`inbound` or `outbound` only** (a trunk is one direction, not both).
 
         trunk_status : typing.Optional[CreateTrunkRequestTrunkStatus]
-            Trunk status - `enabled` or `disabled` (note: not `active`).
+            Trunk status to set - `enabled` or `disabled`. Responses report `enabled` as `active` and `disabled` as `suspended`.
 
         secure : typing.Optional[bool]
 
@@ -322,6 +322,7 @@ class TrunksClient:
             Direction of the trunk - `inbound` or `outbound` only.
 
         trunk_status : typing.Optional[UpdateTrunkRequestTrunkStatus]
+            Trunk status to set - `enabled` or `disabled`. Responses report `enabled` as `active` and `disabled` as `suspended`.
 
         secure : typing.Optional[bool]
 
@@ -549,7 +550,7 @@ class AsyncTrunksClient:
             Direction of the trunk - **`inbound` or `outbound` only** (a trunk is one direction, not both).
 
         trunk_status : typing.Optional[CreateTrunkRequestTrunkStatus]
-            Trunk status - `enabled` or `disabled` (note: not `active`).
+            Trunk status to set - `enabled` or `disabled`. Responses report `enabled` as `active` and `disabled` as `suspended`.
 
         secure : typing.Optional[bool]
 
@@ -771,6 +772,7 @@ class AsyncTrunksClient:
             Direction of the trunk - `inbound` or `outbound` only.
 
         trunk_status : typing.Optional[UpdateTrunkRequestTrunkStatus]
+            Trunk status to set - `enabled` or `disabled`. Responses report `enabled` as `active` and `disabled` as `suspended`.
 
         secure : typing.Optional[bool]
 

@@ -115,13 +115,18 @@ class EndpointsClient:
         username: str,
         password: str,
         alias: str,
-        application: int,
+        app_id: typing.Optional[str] = OMIT,
+        application: typing.Optional[int] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateEndpointResponse:
         """
         Create a new SIP endpoint that can be used to make and receive calls
         through IP phones, softphones, or SIP clients. Each endpoint is
         assigned a unique SIP URI and endpoint ID.
+
+        The API appends digits to the `username` you request (for example,
+        `acme01` can become `acme0125672327435497`). Configure your SIP client
+        with the `username` returned in the response.
 
         Parameters
         ----------
@@ -134,7 +139,11 @@ class EndpointsClient:
 
         alias : str
 
-        application : int
+        app_id : typing.Optional[str]
+            ID of the application that handles calls from this endpoint. Application IDs are 17-digit strings; send them as JSON strings.
+
+        application : typing.Optional[int]
+            Not read by the API. Application IDs exceed the range of a JSON integer, and the endpoint is created without an application. Send `app_id` instead.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -157,7 +166,7 @@ class EndpointsClient:
             username="john_doe",
             password="SecurePassword123!",
             alias="John's Desktop Phone",
-            application=12345678,
+            app_id="12345678901234567",
         )
         """
         _response = self._raw_client.create_endpoint(
@@ -165,6 +174,7 @@ class EndpointsClient:
             username=username,
             password=password,
             alias=alias,
+            app_id=app_id,
             application=application,
             request_options=request_options,
         )
@@ -216,6 +226,7 @@ class EndpointsClient:
         *,
         alias: str,
         password: str,
+        app_id: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> str:
         """
@@ -234,6 +245,9 @@ class EndpointsClient:
         alias : str
 
         password : str
+
+        app_id : typing.Optional[str]
+            ID of the application to attach to this endpoint, as a string.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -256,10 +270,11 @@ class EndpointsClient:
             endpoint_id="87654321",
             alias="John's Updated Desktop Phone",
             password="NewSecurePassword456!",
+            app_id="12345678901234567",
         )
         """
         _response = self._raw_client.update_endpoint(
-            auth_id, endpoint_id, alias=alias, password=password, request_options=request_options
+            auth_id, endpoint_id, alias=alias, password=password, app_id=app_id, request_options=request_options
         )
         return _response.data
 
@@ -413,13 +428,18 @@ class AsyncEndpointsClient:
         username: str,
         password: str,
         alias: str,
-        application: int,
+        app_id: typing.Optional[str] = OMIT,
+        application: typing.Optional[int] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateEndpointResponse:
         """
         Create a new SIP endpoint that can be used to make and receive calls
         through IP phones, softphones, or SIP clients. Each endpoint is
         assigned a unique SIP URI and endpoint ID.
+
+        The API appends digits to the `username` you request (for example,
+        `acme01` can become `acme0125672327435497`). Configure your SIP client
+        with the `username` returned in the response.
 
         Parameters
         ----------
@@ -432,7 +452,11 @@ class AsyncEndpointsClient:
 
         alias : str
 
-        application : int
+        app_id : typing.Optional[str]
+            ID of the application that handles calls from this endpoint. Application IDs are 17-digit strings; send them as JSON strings.
+
+        application : typing.Optional[int]
+            Not read by the API. Application IDs exceed the range of a JSON integer, and the endpoint is created without an application. Send `app_id` instead.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -460,7 +484,7 @@ class AsyncEndpointsClient:
                 username="john_doe",
                 password="SecurePassword123!",
                 alias="John's Desktop Phone",
-                application=12345678,
+                app_id="12345678901234567",
             )
 
 
@@ -471,6 +495,7 @@ class AsyncEndpointsClient:
             username=username,
             password=password,
             alias=alias,
+            app_id=app_id,
             application=application,
             request_options=request_options,
         )
@@ -530,6 +555,7 @@ class AsyncEndpointsClient:
         *,
         alias: str,
         password: str,
+        app_id: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> str:
         """
@@ -548,6 +574,9 @@ class AsyncEndpointsClient:
         alias : str
 
         password : str
+
+        app_id : typing.Optional[str]
+            ID of the application to attach to this endpoint, as a string.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -575,13 +604,14 @@ class AsyncEndpointsClient:
                 endpoint_id="87654321",
                 alias="John's Updated Desktop Phone",
                 password="NewSecurePassword456!",
+                app_id="12345678901234567",
             )
 
 
         asyncio.run(main())
         """
         _response = await self._raw_client.update_endpoint(
-            auth_id, endpoint_id, alias=alias, password=password, request_options=request_options
+            auth_id, endpoint_id, alias=alias, password=password, app_id=app_id, request_options=request_options
         )
         return _response.data
 

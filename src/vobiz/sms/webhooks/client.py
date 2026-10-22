@@ -85,7 +85,7 @@ class WebhooksClient:
         Returns
         -------
         WebhookSubscription
-            The subscription, active immediately.
+            The subscription, active immediately. `createdAt` can be the zero value `0001-01-01T00:00:00Z` in this response; `GET /webhooks/{id}` returns the stored time.
 
         Examples
         --------
@@ -307,7 +307,7 @@ class AsyncWebhooksClient:
         Returns
         -------
         WebhookSubscription
-            The subscription, active immediately.
+            The subscription, active immediately. `createdAt` can be the zero value `0001-01-01T00:00:00Z` in this response; `GET /webhooks/{id}` returns the stored time.
 
         Examples
         --------

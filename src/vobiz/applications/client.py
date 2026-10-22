@@ -186,8 +186,8 @@ class ApplicationsClient:
         auth_id: str,
         app_id: str,
         *,
-        app_name: str,
-        default_number_app: bool,
+        app_name: typing.Optional[str] = OMIT,
+        default_number_app: typing.Optional[bool] = OMIT,
         answer_url: typing.Optional[str] = OMIT,
         answer_method: typing.Optional[str] = OMIT,
         hangup_url: typing.Optional[str] = OMIT,
@@ -205,9 +205,9 @@ class ApplicationsClient:
 
         app_id : str
 
-        app_name : str
+        app_name : typing.Optional[str]
 
-        default_number_app : bool
+        default_number_app : typing.Optional[bool]
 
         answer_url : typing.Optional[str]
             URL Vobiz fetches VobizXML from when a call reaches a number or endpoint linked to this application.
@@ -497,8 +497,8 @@ class AsyncApplicationsClient:
         auth_id: str,
         app_id: str,
         *,
-        app_name: str,
-        default_number_app: bool,
+        app_name: typing.Optional[str] = OMIT,
+        default_number_app: typing.Optional[bool] = OMIT,
         answer_url: typing.Optional[str] = OMIT,
         answer_method: typing.Optional[str] = OMIT,
         hangup_url: typing.Optional[str] = OMIT,
@@ -516,9 +516,9 @@ class AsyncApplicationsClient:
 
         app_id : str
 
-        app_name : str
+        app_name : typing.Optional[str]
 
-        default_number_app : bool
+        default_number_app : typing.Optional[bool]
 
         answer_url : typing.Optional[str]
             URL Vobiz fetches VobizXML from when a call reaches a number or endpoint linked to this application.

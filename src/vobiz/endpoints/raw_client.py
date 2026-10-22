@@ -120,13 +120,18 @@ class RawEndpointsClient:
         username: str,
         password: str,
         alias: str,
-        application: int,
+        app_id: typing.Optional[str] = OMIT,
+        application: typing.Optional[int] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[CreateEndpointResponse]:
         """
         Create a new SIP endpoint that can be used to make and receive calls
         through IP phones, softphones, or SIP clients. Each endpoint is
         assigned a unique SIP URI and endpoint ID.
+
+        The API appends digits to the `username` you request (for example,
+        `acme01` can become `acme0125672327435497`). Configure your SIP client
+        with the `username` returned in the response.
 
         Parameters
         ----------
@@ -139,7 +144,11 @@ class RawEndpointsClient:
 
         alias : str
 
-        application : int
+        app_id : typing.Optional[str]
+            ID of the application that handles calls from this endpoint. Application IDs are 17-digit strings; send them as JSON strings.
+
+        application : typing.Optional[int]
+            Not read by the API. Application IDs exceed the range of a JSON integer, and the endpoint is created without an application. Send `app_id` instead.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -156,6 +165,7 @@ class RawEndpointsClient:
                 "username": username,
                 "password": password,
                 "alias": alias,
+                "app_id": app_id,
                 "application": application,
             },
             headers={
@@ -259,6 +269,7 @@ class RawEndpointsClient:
         *,
         alias: str,
         password: str,
+        app_id: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[str]:
         """
@@ -278,6 +289,9 @@ class RawEndpointsClient:
 
         password : str
 
+        app_id : typing.Optional[str]
+            ID of the application to attach to this endpoint, as a string.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -292,6 +306,7 @@ class RawEndpointsClient:
             json={
                 "alias": alias,
                 "password": password,
+                "app_id": app_id,
             },
             headers={
                 "content-type": "application/json",
@@ -500,13 +515,18 @@ class AsyncRawEndpointsClient:
         username: str,
         password: str,
         alias: str,
-        application: int,
+        app_id: typing.Optional[str] = OMIT,
+        application: typing.Optional[int] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[CreateEndpointResponse]:
         """
         Create a new SIP endpoint that can be used to make and receive calls
         through IP phones, softphones, or SIP clients. Each endpoint is
         assigned a unique SIP URI and endpoint ID.
+
+        The API appends digits to the `username` you request (for example,
+        `acme01` can become `acme0125672327435497`). Configure your SIP client
+        with the `username` returned in the response.
 
         Parameters
         ----------
@@ -519,7 +539,11 @@ class AsyncRawEndpointsClient:
 
         alias : str
 
-        application : int
+        app_id : typing.Optional[str]
+            ID of the application that handles calls from this endpoint. Application IDs are 17-digit strings; send them as JSON strings.
+
+        application : typing.Optional[int]
+            Not read by the API. Application IDs exceed the range of a JSON integer, and the endpoint is created without an application. Send `app_id` instead.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -536,6 +560,7 @@ class AsyncRawEndpointsClient:
                 "username": username,
                 "password": password,
                 "alias": alias,
+                "app_id": app_id,
                 "application": application,
             },
             headers={
@@ -639,6 +664,7 @@ class AsyncRawEndpointsClient:
         *,
         alias: str,
         password: str,
+        app_id: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[str]:
         """
@@ -658,6 +684,9 @@ class AsyncRawEndpointsClient:
 
         password : str
 
+        app_id : typing.Optional[str]
+            ID of the application to attach to this endpoint, as a string.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -672,6 +701,7 @@ class AsyncRawEndpointsClient:
             json={
                 "alias": alias,
                 "password": password,
+                "app_id": app_id,
             },
             headers={
                 "content-type": "application/json",

@@ -27,9 +27,11 @@ class RawOriginationUriClient:
         self,
         auth_id: str,
         *,
-        name: str,
-        sip_uri: str,
+        uri: str,
         priority: int,
+        description: typing.Optional[str] = OMIT,
+        sip_uri: typing.Optional[str] = OMIT,
+        name: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[CreateOriginationUriResponse]:
         """
@@ -40,11 +42,20 @@ class RawOriginationUriClient:
         auth_id : str
             Your account Auth ID
 
-        name : str
-
-        sip_uri : str
+        uri : str
+            SIP URI of your inbound destination, for example `sip:sbc.example.com`.
 
         priority : int
+            Routing priority. Lower values are tried first.
+
+        description : typing.Optional[str]
+            Label for the origination URI.
+
+        sip_uri : typing.Optional[str]
+            Not read by the API. The API accepts the request but stores an empty `uri`. Send `uri` instead.
+
+        name : typing.Optional[str]
+            Not read by the API. Send `description` instead.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -58,9 +69,11 @@ class RawOriginationUriClient:
             f"api/v1/Account/{encode_path_param(auth_id)}/origination-uris",
             method="POST",
             json={
-                "name": name,
-                "sip_uri": sip_uri,
+                "uri": uri,
+                "description": description,
                 "priority": priority,
+                "sip_uri": sip_uri,
+                "name": name,
             },
             headers={
                 "content-type": "application/json",
@@ -135,8 +148,10 @@ class RawOriginationUriClient:
         auth_id: str,
         uri_id: str,
         *,
-        name: str,
-        priority: int,
+        uri: typing.Optional[str] = OMIT,
+        description: typing.Optional[str] = OMIT,
+        priority: typing.Optional[int] = OMIT,
+        name: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[UpdateOriginationUriResponse]:
         """
@@ -149,9 +164,17 @@ class RawOriginationUriClient:
 
         uri_id : str
 
-        name : str
+        uri : typing.Optional[str]
+            SIP URI of your inbound destination.
 
-        priority : int
+        description : typing.Optional[str]
+            Label for the origination URI.
+
+        priority : typing.Optional[int]
+            Routing priority. Lower values are tried first.
+
+        name : typing.Optional[str]
+            Not read by the API. Send `description` instead.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -165,8 +188,10 @@ class RawOriginationUriClient:
             f"api/v1/Account/{encode_path_param(auth_id)}/origination-uris/{encode_path_param(uri_id)}",
             method="PUT",
             json={
-                "name": name,
+                "uri": uri,
+                "description": description,
                 "priority": priority,
+                "name": name,
             },
             headers={
                 "content-type": "application/json",
@@ -249,9 +274,11 @@ class AsyncRawOriginationUriClient:
         self,
         auth_id: str,
         *,
-        name: str,
-        sip_uri: str,
+        uri: str,
         priority: int,
+        description: typing.Optional[str] = OMIT,
+        sip_uri: typing.Optional[str] = OMIT,
+        name: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[CreateOriginationUriResponse]:
         """
@@ -262,11 +289,20 @@ class AsyncRawOriginationUriClient:
         auth_id : str
             Your account Auth ID
 
-        name : str
-
-        sip_uri : str
+        uri : str
+            SIP URI of your inbound destination, for example `sip:sbc.example.com`.
 
         priority : int
+            Routing priority. Lower values are tried first.
+
+        description : typing.Optional[str]
+            Label for the origination URI.
+
+        sip_uri : typing.Optional[str]
+            Not read by the API. The API accepts the request but stores an empty `uri`. Send `uri` instead.
+
+        name : typing.Optional[str]
+            Not read by the API. Send `description` instead.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -280,9 +316,11 @@ class AsyncRawOriginationUriClient:
             f"api/v1/Account/{encode_path_param(auth_id)}/origination-uris",
             method="POST",
             json={
-                "name": name,
-                "sip_uri": sip_uri,
+                "uri": uri,
+                "description": description,
                 "priority": priority,
+                "sip_uri": sip_uri,
+                "name": name,
             },
             headers={
                 "content-type": "application/json",
@@ -357,8 +395,10 @@ class AsyncRawOriginationUriClient:
         auth_id: str,
         uri_id: str,
         *,
-        name: str,
-        priority: int,
+        uri: typing.Optional[str] = OMIT,
+        description: typing.Optional[str] = OMIT,
+        priority: typing.Optional[int] = OMIT,
+        name: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[UpdateOriginationUriResponse]:
         """
@@ -371,9 +411,17 @@ class AsyncRawOriginationUriClient:
 
         uri_id : str
 
-        name : str
+        uri : typing.Optional[str]
+            SIP URI of your inbound destination.
 
-        priority : int
+        description : typing.Optional[str]
+            Label for the origination URI.
+
+        priority : typing.Optional[int]
+            Routing priority. Lower values are tried first.
+
+        name : typing.Optional[str]
+            Not read by the API. Send `description` instead.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -387,8 +435,10 @@ class AsyncRawOriginationUriClient:
             f"api/v1/Account/{encode_path_param(auth_id)}/origination-uris/{encode_path_param(uri_id)}",
             method="PUT",
             json={
-                "name": name,
+                "uri": uri,
+                "description": description,
                 "priority": priority,
+                "name": name,
             },
             headers={
                 "content-type": "application/json",
