@@ -256,7 +256,7 @@ class PartnerApiClient:
             api_key="YOUR_API_KEY",
         )
         client.partner_api.partner_transfer_balance(
-            customer_auth_id="MA_ZKITB8Z2",
+            customer_auth_id="MA_XXXXXXXX",
             amount=500.0,
             currency="INR",
         )
@@ -561,7 +561,7 @@ class PartnerApiClient:
             api_key="YOUR_API_KEY",
         )
         client.partner_api.create_kyc_session(
-            account_auth_id="MA_ZKITB8Z2",
+            account_auth_id="MA_XXXXXXXX",
         )
         """
         _response = self._raw_client.create_kyc_session(
@@ -947,7 +947,7 @@ class AsyncPartnerApiClient:
 
         async def main() -> None:
             await client.partner_api.partner_transfer_balance(
-                customer_auth_id="MA_ZKITB8Z2",
+                customer_auth_id="MA_XXXXXXXX",
                 amount=500.0,
                 currency="INR",
             )
@@ -1291,7 +1291,7 @@ class AsyncPartnerApiClient:
 
         async def main() -> None:
             await client.partner_api.create_kyc_session(
-                account_auth_id="MA_ZKITB8Z2",
+                account_auth_id="MA_XXXXXXXX",
             )
 
 

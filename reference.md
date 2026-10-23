@@ -11108,7 +11108,7 @@ client = Vobiz(
 )
 
 client.partner_api.partner_transfer_balance(
-    customer_auth_id="MA_ZKITB8Z2",
+    customer_auth_id="MA_XXXXXXXX",
     amount=500,
     currency="INR",
 )
@@ -11656,7 +11656,7 @@ client = Vobiz(
 )
 
 client.partner_api.create_kyc_session(
-    account_auth_id="MA_ZKITB8Z2",
+    account_auth_id="MA_XXXXXXXX",
 )
 
 ```
