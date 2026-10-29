@@ -1,0 +1,3 @@
+# Hand-maintained files Fern must not overwrite on regeneration.
+README.md
+LICENSE

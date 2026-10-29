@@ -20,10 +20,15 @@ dependencies = [
 [project.urls]
 Homepage = "https://vobiz.ai"
 Documentation = "https://vobiz.ai/docs"
-Repository = "https://github.com/vobiz-ai/vobiz-python"
+Repository = "https://github.com/vobiz-ai/Vobiz-Python-SDK"
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.setuptools.package-data]
 vobiz = ["py.typed"]
+
+[tool.pytest.ini_options]
+markers = [
+    "aiohttp: needs the optional httpx_aiohttp transport (auto-skipped when it is not installed)",
+]

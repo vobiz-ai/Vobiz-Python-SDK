@@ -1,7 +1,6 @@
 # Vobiz Python Library
 
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=Vobiz%2FPython)
-[![pypi](https://img.shields.io/pypi/v/vobiz)](https://pypi.python.org/pypi/vobiz)
 
 The Vobiz Python library provides convenient access to the Vobiz APIs from Python.
 
@@ -22,8 +21,17 @@ The Vobiz Python library provides convenient access to the Vobiz APIs from Pytho
 
 ## Installation
 
+The SDK is distributed from this GitHub repo (it is not published to PyPI). Clone it and install from source:
+
 ```sh
-pip install vobiz
+git clone https://github.com/vobiz-ai/Vobiz-Python-SDK.git
+pip install ./Vobiz-Python-SDK
+```
+
+Or install it in one step straight from GitHub:
+
+```sh
+pip install "git+https://github.com/vobiz-ai/Vobiz-Python-SDK.git"
 ```
 
 ## Reference
